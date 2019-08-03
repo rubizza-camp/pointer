@@ -1,0 +1,13 @@
+// Place all the styles related to the trips controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+.tripbar {
+  font-family: 'Dosis', sans-serif;
+}
+
+.map {
+  height: 42rem;
+  width: 100%;
+}
