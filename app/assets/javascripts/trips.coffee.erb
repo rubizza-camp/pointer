@@ -1,9 +1,26 @@
+lastDate = new Date(0)
+
+<%# Convert int to date %>
+makeDate = () ->
+  date = lastDate
+  hour = date.getUTCHours();
+  min = date.getUTCMinutes();
+  sec = date.getUTCSeconds();
+  dateStr = (hour + ":" + min + ":" + sec + ' since start of the trip')
+  $('#time-logger').text(dateStr)
+  console.log lastDate
+  console.log lastDate.valueOf()
+  lastDate = new Date(lastDate.valueOf() + 1000)
+  console.log('Timed')
+  return
+setInterval(makeDate, 1000);
+
 $(document).ready =>
   tripId = ''
   startingPoint = {}
   isOwner = false
   map = null
-  lastDate = new Date
+
 
 
   <%# function for converting coordinates to numbers %>
@@ -135,6 +152,8 @@ $(document).ready =>
     startingPoint = data
     initMap()
 
+
+
   <%# subscribe Pusher client %>
   pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
     cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
@@ -148,15 +167,4 @@ $(document).ready =>
   return
 
 
-  <%# Convert int to date %>
-  makeDate = (date) ->
-    hour = date.getUTCHours();
-    min = date.getUTCMinutes();
-    sec = date.getUTCSeconds();
-    dateStr = (hour + ":" + min + ":" + sec + ' since start of the trip')
-    $('#time-logger').text(dateStr)
-    lastDate-=1000
-    console.log('Timed')
-    return
-  if location.pathname.startsWith('/tripwatcher')
-    setInterval(makeDate(lastDate), 1000)
+
