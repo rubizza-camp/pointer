@@ -12,8 +12,8 @@ class Trip < ApplicationRecord
   # a method that generates a custom JSON output for our trip objects
   def as_json(_options = {})
     super(
-      only: %i[id name uuid],
-      include: { checkins: { only: %i[lat lng trip_id] } }
+      only: %i[id name uuid created_at],
+      include: { checkins: { only: %i[lat lng trip_id created_at] } }
     )
   end
 end
