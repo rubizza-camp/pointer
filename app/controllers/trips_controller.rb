@@ -3,7 +3,8 @@
 class TripsController < ApplicationController
   # before_action :require_login
 
-  def index; end
+  def index;
+  end
 
   # function for creating a new trip
   def create
@@ -19,11 +20,13 @@ class TripsController < ApplicationController
 
   private
 
-    def trip_params
-      params.permit(:name)
-    end
+  def trip_params
+    params.permit(:name)
+  end
 
-    def require_login
-      flash.now[:danger] = "You must be logged in to access this section"
-    end
+  def require_login
+    flash.now[:danger] = "You must be logged in to access this section"
+  end
+
+
 end
