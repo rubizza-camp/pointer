@@ -29,3 +29,6 @@
 # Ignore application configuration
 /config/application.yml
 /.idea
+
+# Ignore secret data for mailer
+.env
