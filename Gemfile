@@ -61,11 +61,10 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "bootstrap"
-gem "devise"
-gem "figaro"
-gem "font-awesome-sass"
-gem "jquery-rails"
-gem "pusher"
+gem "bootstrap", "~> 4.3.1"
+gem "devise", "~> 4.6.2"
+gem "figaro", "~> 1.1.1"
+gem "jquery-rails", "~> 4.3.5"
+gem "pusher",  "~> 1.3.3"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "webpacker", "~> 4.x"
