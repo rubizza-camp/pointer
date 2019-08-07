@@ -2,6 +2,7 @@
 
 class Trip < ApplicationRecord
   before_create :set_uuid
+  belongs_to :task
   has_many :checkins # trip model's association with the checkins model
 
   # a method that creates a random uuid for each trip before its created
