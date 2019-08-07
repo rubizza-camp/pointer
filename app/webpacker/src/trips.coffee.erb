@@ -1,3 +1,4 @@
+import Rails from 'rails-ujs'
 $(document).ready =>
   tripId = ''
   startingPoint = {}
@@ -22,8 +23,10 @@ $(document).ready =>
       beforeSend: (xhr) ->
         xhr.setRequestHeader 'X-CSRF-Token', token
         return
+      dataType: "json"
       data: positionData
       success: (response) ->
+        console.log(response)
         tripId = response.id
         url = """#{window.location.protocol}//#{window.location.host}/tripwatcher/#{response.uuid}"""
         initMap()
