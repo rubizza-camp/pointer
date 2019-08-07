@@ -20,7 +20,7 @@ $(function () {
 });
 import '../src/application.js';
 
-import '../src/trips.coffee.erb';
+import '../src/trips.js.erb';
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
