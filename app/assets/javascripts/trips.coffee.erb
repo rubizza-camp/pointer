@@ -1,8 +1,27 @@
+lastDate = new Date(0)
+
+<%# Convert int to date %>
+makeDate = () ->
+  date = lastDate
+  hour = date.getUTCHours();
+  min = date.getUTCMinutes();
+  sec = date.getUTCSeconds();
+  dateStr = (hour + ":" + min + ":" + sec + ' since start of the trip')
+  $('#time-logger').text(dateStr)
+  console.log lastDate
+  console.log lastDate.valueOf()
+  lastDate = new Date(lastDate.valueOf() + 1000)
+  console.log('Timed')
+  return
+setInterval(makeDate, 1000);
+
 $(document).ready =>
   tripId = ''
   startingPoint = {}
   isOwner = false
   map = null
+
+
 
   <%# function for converting coordinates to numbers %>
   makeNum = (arr) ->
@@ -64,8 +83,7 @@ $(document).ready =>
 
   <%# function for updating the map with the user's current location %>
   updateMap = (checkin) ->
-    console.log checkin
-    lastCheckin = checkin[checkin.length - 1]
+    lastCheckin = checkin[0]
     center =
       lat: startingPoint.lat
       lng: startingPoint.lng
@@ -108,6 +126,12 @@ $(document).ready =>
       updateCurrentLocation(data, tripId)
     return
 
+  <%# update time in view %>
+  updateTime = (data) ->
+    console.log data
+    lastDate = new Date(new Date - new Date(Date.parse(data.checkins[0].created_at)))
+
+
   <%# run this block of code if we're on the homepage %>
   if location.pathname.startsWith('/trips')
   <%# when a user submits their name, get their name and call the function to get their location %>
@@ -128,6 +152,8 @@ $(document).ready =>
     startingPoint = data
     initMap()
 
+
+
   <%# subscribe Pusher client %>
   pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',
     cluster: '<%= ENV["PUSHER_CLUSTER"] %>'
@@ -135,5 +161,10 @@ $(document).ready =>
   channel = pusher.subscribe('location')
   channel.bind 'new', (data) ->
     updateMap makeNum(data.checkins)
+    if !isOwner
+      updateTime data
     return
   return
+
+
+

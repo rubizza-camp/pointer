@@ -68,3 +68,4 @@ gem "font-awesome-sass"
 gem "jquery-rails"
 gem "pusher"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "haversine"
