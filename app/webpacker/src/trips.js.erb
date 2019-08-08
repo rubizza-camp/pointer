@@ -1,3 +1,5 @@
+import axios from 'axios'
+import Pusher from 'pusher-js'
 $(document).ready((function (_this) {
     return function () {
         var channel, data, getCurrentLocation, getLocation, initMap, isOwner, makeNum, map, pusher, saveTrip, showLat,
@@ -98,16 +100,16 @@ $(document).ready((function (_this) {
         updateCurrentLocation = function (tripData, id) {
             var token;
             token = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
+            axios({
                 url: "/trips/" + id + "/checkins",
-                type: 'post',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('X-CSRF-Token', token);
+                method: 'POST',
+                headers: {
+                    'X-CSRF-Token': token
                 },
                 data: tripData,
                 success: function (response) {
                 }
-            });
+            }).then(function(response) {console.log(response)})
         };
         getCurrentLocation = function () {
             navigator.geolocation.getCurrentPosition(function (position) {
