@@ -5,12 +5,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mobile-menu">
-      <form class="form-inline name-form">
-        <input class="form-control mr-sm-2" type="name" name="name" required placeholder="Enter your name" aria-label="name">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Share Location</button>
-      </form>
+
       <div class="share-url"></div>
     </div>
   </nav>
 </header>
-<script async defer src=<%="https://maps.googleapis.com/maps/api/js?key=#{Figaro.env.maps_api_key}"%>></script>
+<%= javascript_pack_tag 'maps_name_form' %>

@@ -4,10 +4,7 @@ $(document).ready((function (_this) {
     return function () {
         var channel, data, getCurrentLocation, getLocation, initMap, isOwner, makeNum, map, pusher, saveTrip, showLat,
             showLng, startingPoint, tripId, updateCurrentLocation, updateMap;
-        tripId = '';
-        startingPoint = {};
-        isOwner = false;
-        map = null;
+
         makeNum = function (arr) {
             arr.forEach(function (arr) {
                 arr.lat = Number(arr.lat);
