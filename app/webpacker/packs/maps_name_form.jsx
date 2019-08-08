@@ -2,16 +2,37 @@ import ReactDOM from "react-dom";
 
 import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
+import axios from 'axios'
+import Pusher from 'pusher-js'
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
+// Marker component
+const Marker = (props) => {
+    const markerStyle = {
+        border: '1px solid white',
+        borderRadius: '50%',
+        height: 10,
+        width: 10,
+        backgroundColor: props.show ? 'red' : 'blue',
+        cursor: 'pointer',
+        zIndex: 10,
+    };
+
+    return (
+        <>
+            <div style={markerStyle}/>
+            {props.show && <InfoWindow place={props.place}/>}
+        </>
+    );
+};
 
 class SimpleMap extends Component {
     static defaultProps = {
-        center: {
+        defaultCenter: {
             lat: 59.95,
             lng: 30.33
         },
-        zoom: 11
+        defaultZoom: 11
     };
 
     handleApiLoaded = (map, maps, places) => {
@@ -24,10 +45,13 @@ class SimpleMap extends Component {
             // Important! Always set the container height explicitly
             <div style={{height: '100vh', width: '100%'}}>
                 <GoogleMapReact
+                    center={this.props.center}
+                    zoom={this.props.zoom}
                     bootstrapURLKeys={{key: "AIzaSyA-RuM94P5ILZY1eU6vwcJvN3wX0b7tXg0"}}
-                    yesIWantToUseGoogleMapApiInternals
+                    yesIWantToUseGoogleMapApiInternals={true}
                     onGoogleApiLoaded={this.handleApiLoaded}
                 >
+                    <Marker lat={this.props.center.lat} lng={this.props.center.lng} text="HELLO"/>
                 </GoogleMapReact>
             </div>
         );
@@ -77,7 +101,7 @@ class MapController extends React.Component {
                 lat: 59.95,
                 lng: 30.33
             },
-            zoom: 11
+            zoom: 18
 
         }
     }
@@ -88,7 +112,7 @@ class MapController extends React.Component {
 
     render() {
         return (
-            <SimpleMap center={this.state.center} map={this.state.map}/>
+            <SimpleMap center={this.state.center} map={this.state.map} zoom={this.state.zoom} key={this.state.center}/>
         );
     }
 
@@ -120,25 +144,23 @@ class MapController extends React.Component {
                 lat: this.state.startingPoint.lat,
                 lng: this.state.startingPoint.lng
             }
-        }, this.createMap)
+        }, this.updateCurrentLocation)
     };
 
-    createMarker = () => {
-        this.setState({
-            marker: new google.maps.Marker({
-                position: this.state.center,
-                map: this.state.map
-            })
-        })
-    }
-    createMap = () => {
-        this.setState({
-            map: new google.maps.Map(document.getElementById('map'), {
-                zoom: 18,
-                center: this.state.center
-            })
-        }, this.createMarker)
+    updateCurrentLocation = () => {
+        axios({
+            url: "/trips/" + 105 + "/checkins",
+            method: 'POST',
+            headers: {
+                'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+            },
+            data: {lat: this.state.startingPoint.lat, lng: this.state.startingPoint.lng},
+            success: function (response) {
+                console.log(response)
+            }
+        }).then()
     };
+
 
 }
 
