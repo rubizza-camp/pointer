@@ -23,9 +23,9 @@ import '../src/application.js';
 //import '../src/trips.js.erb';
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
-
+import $ from 'jquery'
 Rails.start();
 Turbolinks.start();
-
 import 'bootstrap/dist/js/bootstrap';
+
 

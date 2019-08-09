@@ -1,4 +1,5 @@
-<div id="map"></div>
+<%= render 'layouts/header' %>
+<%= javascript_pack_tag 'MapsViewer' %>
 <%= @trip.checkins[0][:lat]  %>
 <%=  @trip.checkins[0][:lng]  %>
 <%= hidden_field_tag 'lat', @trip.checkins[0][:lat]  %>
