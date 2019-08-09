@@ -63,8 +63,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bootstrap"
 gem "devise"
+# Use Omniauth Google plugin
+gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem "figaro"
-gem "font-awesome-sass"
 gem "jquery-rails"
 gem "pusher"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
