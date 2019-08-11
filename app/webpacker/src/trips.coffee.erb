@@ -27,12 +27,12 @@ $(document).ready =>
       data: positionData
       success: (response) ->
         console.log(response)
-        tripId = response.id
-        url = """#{window.location.protocol}//#{window.location.host}/tripwatcher/#{response.uuid}"""
+        tripId = response.data.attributes.id
+        url = """#{window.location.protocol}//#{window.location.host}/tripwatcher/#{response.data.attributes.uuid}"""
         initMap()
         $('.name-form').addClass('collapse')
         $('.share-url').append """
-              <h6 class="m-0 text-center">Hello <strong>#{unescape(response.name)}</strong>, here's your location sharing link: <a href="#{url}">#{url}</a></h6>
+              <h6 class="m-0 text-center">Hello <strong>#{unescape(response.data.attributes.name)}</strong>, here's your location sharing link: <a href="#{url}">#{url}</a></h6>
             """
         getCurrentLocation()
         return
@@ -99,6 +99,7 @@ $(document).ready =>
         return
       data: tripData
       success: (response) ->
+        console.log(response)
         return
     return
 
