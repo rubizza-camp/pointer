@@ -8,12 +8,4 @@ class Trip < ApplicationRecord
   def set_uuid
     self.uuid = SecureRandom.uuid
   end
-
-  # a method that generates a custom JSON output for our trip objects
-  def as_json(_options = {})
-    super(
-      only: %i[id name uuid],
-      include: { checkins: { only: %i[lat lng trip_id] } }
-    )
-  end
 end

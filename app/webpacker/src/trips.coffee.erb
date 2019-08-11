@@ -7,11 +7,11 @@ $(document).ready =>
 
   <%# function for converting coordinates to numbers %>
   makeNum = (arr) ->
+    checks = []
     arr.forEach (arr) ->
-      arr.lat = Number(arr.lat)
-      arr.lng = Number(arr.lng)
+      checks.push  {lat: Number(arr.attributes.lat), lng: Number(arr.attributes.lng)}
       return
-    arr
+    checks
 
   <%# function for creating a new trip %>
   saveTrip = (positionData) ->
@@ -138,6 +138,7 @@ $(document).ready =>
     encrypted: true)
   channel = pusher.subscribe('location')
   channel.bind 'new', (data) ->
-    updateMap makeNum(data.checkins)
+    console.log(data);
+    updateMap makeNum(data.included)
     return
   return
