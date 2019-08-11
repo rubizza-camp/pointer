@@ -40,8 +40,11 @@ class MapsViewer extends React.Component {
     updateMap = (data) => {
         const lastCheckin = data.checkins[data.checkins.length-1]
         console.log(data)
+        if(window.location.href.includes(data.uuid))
+        {
+            this.setState({checkins: data.checkins, center: {lat: Number(lastCheckin.lat), lng: Number(lastCheckin.lng)}})
+        }
 
-        this.setState({checkins: data.checkins, center: {lat: Number(lastCheckin.lat), lng: Number(lastCheckin.lng)}})
 
     };
 
