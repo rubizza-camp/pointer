@@ -5,9 +5,7 @@ import { CREATE_TRIP_URL, TRIP_WATCH_URL, CREATE_CHECKINS_URL } from '../src/api
 import getToken from '../src/csrf_helper'
 import makeNum from '../src/map_helpers'
 
-
 class MapController extends Component {
-
   constructor(props) {
     super(props)
     this.getLocation()
@@ -15,7 +13,6 @@ class MapController extends Component {
   }
 
   state = { checkins: [] }
-
 
   componentWillUnmount() {
     const { timer } = this.state
