@@ -7,7 +7,6 @@ import makeNum from '../src/map_helpers'
 
 
 class MapController extends Component {
-  state = { checkins: [] }
 
   constructor(props) {
     super(props)
@@ -15,12 +14,26 @@ class MapController extends Component {
     this.state.timer = setInterval(this.updateMap, 5000)
   }
 
+  state = { checkins: [] }
+
 
   componentWillUnmount() {
     const { timer } = this.state
     clearInterval(timer)
   }
 
+  getLocation = (name) => {
+    if (!navigator.geolocation) return
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { coords } = position.coords
+      const data = {
+        lat: coords.latitude,
+        lng: coords.longitude,
+        name,
+      }
+      this.setState({ startingPoint: data }, this.createTrip)
+    })
+  }
 
   createTrip = () => {
     const { startingPoint } = this.state
@@ -48,19 +61,6 @@ class MapController extends Component {
       url: `${window.location.protocol}//${window.location.host}/${TRIP_WATCH_URL}/${data.attributes.uuid}`,
       checkins: makeNum(included),
     }, this.updateMap)
-  }
-
-  getLocation = (name) => {
-    if (!navigator.geolocation) return
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { coords } = position.coords
-      const data = {
-        lat: coords.latitude,
-        lng: coords.longitude,
-        name,
-      }
-      this.setState({ startingPoint: data }, this.createTrip)
-    })
   }
 
   updateMap = () => {
@@ -93,12 +93,12 @@ class MapController extends Component {
   }
 
   addCheckin = (response) => {
-    this.setState(((prevState) => ({
+    this.setState((prevState) => ({
       checkins: [...prevState.checkins, {
         lat: Number(response.data.data.attributes.lat),
         lng: Number(response.data.data.attributes.lng),
       }],
-    })))
+    }))
   }
 
 
