@@ -63,6 +63,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bootstrap", "~> 4.3.1"
 gem "devise", "~> 4.6.2"
+gem "fast_jsonapi", "~> 1.5"
 gem "figaro", "~> 1.1.1"
 gem "jquery-rails", "~> 4.3.5"
 gem "pusher",  "~> 1.3.3"

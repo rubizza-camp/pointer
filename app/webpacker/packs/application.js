@@ -15,16 +15,15 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+$(function () {
+    console.log('Hello World from Webpacker');
+});
 
-import '../src/application'
-// import '../src/trips.js.erb';
-import Rails from 'rails-ujs'
-import Turbolinks from 'turbolinks'
-import 'bootstrap/dist/js/bootstrap'
+import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
 
-$(() => {
-  console.log('Hello World from Webpacker')
-})
+Rails.start();
+Turbolinks.start();
 
-Rails.start()
-Turbolinks.start()
+import 'bootstrap/dist/js/bootstrap';
+
