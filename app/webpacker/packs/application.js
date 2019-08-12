@@ -16,16 +16,15 @@
 // const imagePath = (name) => images(name, true)
 
 
-$(function () {
-    console.log('Hello World from Webpacker');
-});
-import '../src/application.js';
-//import '../src/trips.js.erb';
-import Rails from 'rails-ujs';
-import Turbolinks from 'turbolinks';
-import $ from 'jquery'
-Rails.start();
-Turbolinks.start();
-import 'bootstrap/dist/js/bootstrap';
+import '../src/application'
+// import '../src/trips.js.erb';
+import Rails from 'rails-ujs'
+import Turbolinks from 'turbolinks'
+import 'bootstrap/dist/js/bootstrap'
 
+$(() => {
+  console.log('Hello World from Webpacker')
+})
 
+Rails.start()
+Turbolinks.start()
