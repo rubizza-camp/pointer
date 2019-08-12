@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import SimpleMap from './SimpleMap'
-import { CREATE_TRIP_URL, TRIP_WATCH_URL } from '../src/api_endpoints'
+import { CREATE_TRIP_URL, TRIP_WATCH_URL, CREATE_CHECKINS_URL } from '../src/api_endpoints'
 import getToken from '../src/csrf_helper'
 import makeNum from '../src/map_helpers'
 
@@ -38,28 +38,29 @@ class MapController extends Component {
       },
 
     })
-      .then((response) => {
-        const { data, included } = response.data
-        this.setState({
-          tripId: data.attributes.id,
-          url: `${window.location.protocol}//${window.location.host}/${TRIP_WATCH_URL}/${data.attributes.uuid}`,
-          checkins: makeNum(included),
-        }, this.updateMap)
-      })
+      .then((response) => this.generateLink(response))
+  }
+
+  generateLink = (response) => {
+    const { data, included } = response.data
+    this.setState({
+      tripId: data.attributes.id,
+      url: `${window.location.protocol}//${window.location.host}/${TRIP_WATCH_URL}/${data.attributes.uuid}`,
+      checkins: makeNum(included),
+    }, this.updateMap)
   }
 
   getLocation = (name) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const coord = position.coords
-        const data = {
-          lat: coord.latitude,
-          lng: coord.longitude,
-          name,
-        }
-        this.setState({ startingPoint: data }, this.createTrip)
-      })
-    }
+    if (!navigator.geolocation) return
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { coords } = position.coords
+      const data = {
+        lat: coords.latitude,
+        lng: coords.longitude,
+        name,
+      }
+      this.setState({ startingPoint: data }, this.createTrip)
+    })
   }
 
   updateMap = () => {
@@ -78,7 +79,7 @@ class MapController extends Component {
     const { startingPoint } = this.state
     const { lat, lng } = startingPoint
     axios({
-      url: `/trips/${tripId}/checkins`,
+      url: `${CREATE_CHECKINS_URL}/${tripId}/checkins`,
       method: 'POST',
       headers: {
         'X-CSRF-Token': getToken(),
@@ -88,13 +89,18 @@ class MapController extends Component {
         lng,
       },
     })
-      .then((response) => this.setState(((prevState) => ({
-        checkins: [...prevState.checkins, {
-          lat: response.data.lat,
-          lng: response.data.lng,
-        }],
-      }))))
+      .then((response) => this.addCheckin(response))
   }
+
+  addCheckin = (response) => {
+    this.setState(((prevState) => ({
+      checkins: [...prevState.checkins, {
+        lat: Number(response.data.data.attributes.lat),
+        lng: Number(response.data.data.attributes.lng),
+      }],
+    })))
+  }
+
 
   render() {
     const { center, zoom, url, checkins } = this.state
@@ -105,7 +111,6 @@ class MapController extends Component {
         zoom={zoom}
         url={url}
         checkins={checkins}
-
       />
     )
   }

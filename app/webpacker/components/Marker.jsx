@@ -1,30 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-const Marker = (props) => {
-  const { show } = props
-  const markerStyle = {
-    border: '1px solid white',
-    borderRadius: '50%',
-    height: 10,
-    width: 10,
-    backgroundColor: show ? 'red' : 'blue',
-    cursor: 'pointer',
-    zIndex: 10,
-  }
+const StyledMarker = styled.div`
+  position: absolute;
+  border-radius: 50% 50% 50% 0;
+  border: 4px solid blue;
+  width: 20px;
+  height: 20px;
+  transform: rotate(-45deg);`
 
-  return (
-    <>
-      <div style={markerStyle} />
-      {show}
-    </>
-  )
-}
-Marker.propTypes = {
-  show: PropTypes.bool,
-}
+const MarkerWrapper = () => (<StyledMarker />)
 
-Marker.defaultProps = {
-  show: false,
-}
-export default Marker
+export default MarkerWrapper
