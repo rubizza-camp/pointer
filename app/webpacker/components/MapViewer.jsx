@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Pusher from 'pusher-js'
 import SimpleMap from './SimpleMap'
+import makeNum from '../src/map_helpers'
 
 class MapViewer extends Component {
   state = {}
@@ -18,12 +19,13 @@ class MapViewer extends Component {
   }
 
 
-  updateMap = (data) => {
-    const lastCheckin = data.checkins[data.checkins.length - 1]
-
-    if (window.location.href.includes(data.uuid)) {
+  updateMap = (response) => {
+    const { data, included } = response
+    const checkins = makeNum(included)
+    const lastCheckin = checkins[checkins.length - 1]
+    if (window.location.href.includes(data.attributes.uuid)) {
       this.setState({
-        checkins: data.checkins,
+        checkins,
         center: {
           lat: Number(lastCheckin.lat),
           lng: Number(lastCheckin.lng),

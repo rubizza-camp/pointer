@@ -1,20 +1,26 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 import SimpleMap from './SimpleMap'
-import {CREATE_TRIP_URL, TRIP_WATCH_URL} from '../src/api_endpoints'
+import { CREATE_TRIP_URL, TRIP_WATCH_URL } from '../src/api_endpoints'
 import getToken from '../src/csrf_helper'
+import makeNum from '../src/map_helpers'
+
 
 class MapController extends Component {
+  state = { checkins: [] }
 
-  componentWillMount() {
+  constructor(props) {
+    super(props)
     this.getLocation()
-    this.setState({ timer: setInterval(this.updateMap, 5000) })
+    this.state.timer = setInterval(this.updateMap, 5000)
   }
+
 
   componentWillUnmount() {
     const { timer } = this.state
     clearInterval(timer)
   }
+
 
   createTrip = () => {
     const { startingPoint } = this.state
@@ -32,11 +38,14 @@ class MapController extends Component {
       },
 
     })
-      .then((response) => this.setState({
-        tripId: response.data.id,
-        url: `${window.location.protocol}//${window.location.host}/${TRIP_WATCH_URL}/${response.data.uuid}`,
-        checkins: response.data.checkins,
-      }, this.updateMap))
+      .then((response) => {
+        const { data, included } = response.data
+        this.setState({
+          tripId: data.attributes.id,
+          url: `${window.location.protocol}//${window.location.host}/${TRIP_WATCH_URL}/${data.attributes.uuid}`,
+          checkins: makeNum(included),
+        }, this.updateMap)
+      })
   }
 
   getLocation = (name) => {
