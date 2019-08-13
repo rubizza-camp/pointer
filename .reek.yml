@@ -115,6 +115,7 @@ detectors:
       - "/[A-Z]/"
     accept:
       - _
+      - t
   UnusedParameters:
     enabled: true
     exclude: []
@@ -122,7 +123,7 @@ detectors:
     enabled: false
   UtilityFunction:
     enabled: false
- 
+
 exclude_paths:
   - config
   - db
