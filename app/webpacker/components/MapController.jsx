@@ -22,10 +22,9 @@ class MapController extends Component {
   getLocation = (name) => {
     if (!navigator.geolocation) return
     navigator.geolocation.getCurrentPosition((position) => {
-      const { coords } = position.coords
       const data = {
-        lat: coords.latitude,
-        lng: coords.longitude,
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
         name,
       }
       this.setState({ startingPoint: data }, this.createTrip)
@@ -76,7 +75,7 @@ class MapController extends Component {
     const { startingPoint } = this.state
     const { lat, lng } = startingPoint
     axios({
-      url: `${CREATE_CHECKINS_URL}/${tripId}/checkins`,
+      url: `${CREATE_TRIP_URL}/${tripId}/${CREATE_CHECKINS_URL}`,
       method: 'POST',
       headers: {
         'X-CSRF-Token': getToken(),
