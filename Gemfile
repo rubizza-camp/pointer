@@ -63,9 +63,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bootstrap"
 gem "devise"
-gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
-gem 'omniauth-google-oauth2'
+gem "omniauth-facebook"
+gem "omniauth-vkontakte"
+gem "omniauth-google-oauth2"
 gem "figaro"
 gem "font-awesome-sass"
 gem "jquery-rails"

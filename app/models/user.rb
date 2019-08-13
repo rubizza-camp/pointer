@@ -13,11 +13,14 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do | user |
-      user.email = auth.info.email
-      user.name = auth.info.name
-      user.provider = auth.provider
-      user.uid = auth.uid
+    info = auth.info
+    provider = auth.provider
+    uid = auth.uid
+    where(provider: provider, uid: uid).first_or_create do | user |
+      user.email = info.email
+      user.name = info.name
+      user.provider = provider
+      user.uid = uid
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
