@@ -18,11 +18,12 @@ class TripsController < ApplicationController
   end
 
   private
+
     def trip_params
       params.permit(:name)
     end
 
     def require_login
-      flash.now[:danger] = "You must be logged in to access this section"
+      flash.now[:danger] = 'You must be logged in to access this section'
     end
 end
