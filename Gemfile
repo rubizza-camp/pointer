@@ -69,3 +69,4 @@ gem "jquery-rails", "~> 4.3.5"
 gem "pusher",  "~> 1.3.3"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "webpacker", "~> 4.x"
+gem "devise-jwt"
