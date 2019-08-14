@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resources :checkins, only: :create
   end
   get 'tripwatcher/:id', to: 'trips#show'
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
   root to: 'static_pages#home'
 end
