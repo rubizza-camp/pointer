@@ -1,16 +1,41 @@
 // Confirmation.jsx
 import React, { Component } from 'react';
+import axios from 'axios'
 import { Button, List } from 'semantic-ui-react';
 
 class Confirmation extends Component{
     saveAndContinue = (e) => {
         e.preventDefault();
         this.props.nextStep();
+        this.requestData();
     }
 
     back  = (e) => {
         e.preventDefault();
         this.props.prevStep();
+    }
+
+    requestData = () => {
+        var bodyFormData = new FormData();
+        bodyFormData.set('user[email]', this.props.values.email);
+        bodyFormData.set('user[password]', 'mmmmmmm');
+        bodyFormData.set('user[password_confirmation]', 'mmmmmmm');
+        bodyFormData.set('commit', 'Sign up');
+        console.log(bodyFormData)
+        axios({
+            method: 'post',
+            url: '/users',
+            data: bodyFormData,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            })
+            .then(function (response) {
+                //handle success
+                console.log(response);
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
     }
 
     render(){
