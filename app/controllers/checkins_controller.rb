@@ -3,7 +3,7 @@
 class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(checkin_params)
-    render json: @checkin.as_json(only: %i[lat lng trip_id]) if @checkin.save
+    render json: CheckinSerializer.new(@checkin).serialized_json if @checkin.save
   end
 
   private
