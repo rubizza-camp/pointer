@@ -2,6 +2,6 @@
 
 class ApplicationController < ActionController::Base
   def home
-    render plain: "Home"
+    render plain: 'Home'
   end
 end

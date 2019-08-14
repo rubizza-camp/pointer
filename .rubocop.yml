@@ -70,7 +70,7 @@ Style/HashSyntax:
 # extra level of indentation.
 Layout/IndentationConsistency:
   Enabled: true
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 
 # Two spaces, no tabs (for indentation).
 Layout/IndentationWidth:
@@ -148,7 +148,7 @@ Layout/SpaceInsideParens:
 # Check quotes usage according to lint rule below.
 Style/StringLiterals:
   Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 
 # Detect hard tabs, no hard tabs.
 Layout/Tab:

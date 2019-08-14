@@ -23,6 +23,6 @@ class TripsController < ApplicationController
     end
 
     def require_login
-      flash.now[:danger] = "You must be logged in to access this section"
+      flash.now[:danger] = 'You must be logged in to access this section'
     end
 end
