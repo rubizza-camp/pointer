@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class TripsController < ApplicationController
-  # before_action :require_login
+  before_action :authenticate_user!
 
   def index
+    authorize Trip
   end
 
   # function for creating a new trip
   def create
+    authorize Trip
     @trip = Trip.new(trip_params)
     @trip.checkins.build(lat: params[:lat], lng: params[:lng])
     render json: TripSerializer.new(@trip, include: [:checkins]).serialized_json if @trip.save
@@ -15,6 +17,7 @@ class TripsController < ApplicationController
 
   # function for showing a trip
   def show
+    authorize Trip
     @trip = Trip.find_by(uuid: params[:id])
   end
 
@@ -22,9 +25,5 @@ class TripsController < ApplicationController
 
     def trip_params
       params.permit(:name)
-    end
-
-    def require_login
-      flash.now[:danger] = "You must be logged in to access this section"
     end
 end

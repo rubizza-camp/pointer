@@ -5,6 +5,6 @@ class Checkin < ApplicationRecord
   after_create :notify_pusher
   # method to publish a user's current location
   def notify_pusher
-    Pusher.trigger("location", "new", TripSerializer.new(trip, include: [:checkins]))
+    Pusher.trigger('location', 'new', TripSerializer.new(trip, include: [:checkins]))
   end
 end

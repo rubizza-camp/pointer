@@ -7,4 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
+  %w(PetOwner Handler).each do |role|
+    define_method("#{role.underscore}?") do
+      userable_type == role
+    end
+  end
 end
