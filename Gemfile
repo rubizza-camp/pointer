@@ -70,3 +70,4 @@ gem 'pusher',  '~> 1.3.3'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '~> 4.x'
 gem 'pundit'
+gem "google-cloud-storage", "~> 1.11", require: false
