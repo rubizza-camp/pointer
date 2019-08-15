@@ -11,6 +11,9 @@ AllCops:
     - 'actionmailbox/test/dummy/**/*'
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'db/*'
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
