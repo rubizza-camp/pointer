@@ -3,7 +3,8 @@
 class TripsController < ApplicationController
   # before_action :require_login
 
-  def index; end
+  def index
+  end
 
   # function for creating a new trip
   def create
