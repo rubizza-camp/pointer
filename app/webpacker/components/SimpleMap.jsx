@@ -49,8 +49,6 @@ SimpleMap.propTypes = {
   center: PropTypes.object,
   zoom: PropTypes.number,
   checkins: PropTypes.array,
-
-
 }
 SimpleMap.defaultProps = {
   center: DEFAULT_CENTER,

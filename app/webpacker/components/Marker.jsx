@@ -9,6 +9,4 @@ const StyledMarker = styled.div`
   height: 20px;
   transform: rotate(-45deg);`
 
-const MarkerWrapper = () => (<StyledMarker />)
-
-export default MarkerWrapper
+export default StyledMarker

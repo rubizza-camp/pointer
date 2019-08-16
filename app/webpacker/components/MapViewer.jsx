@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Pusher from 'pusher-js'
 import SimpleMap from './SimpleMap'
-import makeNum from '../src/map_helpers'
+import makeNum from '../utils/map_helpers'
 
 class MapViewer extends Component {
   state = {}
