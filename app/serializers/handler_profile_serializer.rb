@@ -1,4 +1,4 @@
-module HandlerProfileSerializer
+class HandlerProfileSerializer
   include FastJsonapi::ObjectSerializer
   include AvatarHelper
   attributes :name, :metro, :description
