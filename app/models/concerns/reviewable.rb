@@ -3,7 +3,6 @@
 module Reviewable
   extend ActiveSupport::Concern
   included do
-    has_many :review, as: :reviewable, dependent: :destroy
-    accepts_nested_attributes_for :reviews
+    has_many :reviews, as: :reviewable, dependent: :destroy
   end
 end
