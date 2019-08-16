@@ -5,7 +5,6 @@ import MapController from '../components/MapController'
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <MapController />,
-
     document.body.appendChild(document.createElement('div'))
   )
 })
