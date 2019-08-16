@@ -41,7 +41,7 @@ class PersonalDetails extends Component{
                 />
             </Form.Field>
             <Button onClick={this.back}>Back</Button>
-            <Button onClick={this.saveAndContinue}>Save And Continue </Button>
+            <Button onClick={this.saveAndContinue}>Save And Continue</Button>
         </Form>
         )
     }
