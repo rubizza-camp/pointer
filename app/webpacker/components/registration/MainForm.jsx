@@ -1,20 +1,16 @@
 // MainForm.jsx
 import React, { Component } from 'react';
-import UserDetails from './UserDetails';
+import BasicInfo from './BasicInfo';
 import PersonalDetails from './PersonalDetails';
-import Confirmation from './Confirmation';
 import Success from './Success';
-import Axios from 'axios';
 
 class MainForm extends Component {
     state = {
         step: 1,
-        firstName: '',
-        lastName: '',
         email: '',
-        age: '',
-        city: '',
-        country: ''
+        password: '',
+        password_confirm: '',
+        role: ''
     }
 
     nextStep = () => {
@@ -37,11 +33,11 @@ class MainForm extends Component {
 
     render(){
         const {step} = this.state;
-        const { firstName, lastName, email, age, city, country } = this.state;
-        const values = { firstName, lastName, email, age, city, country };
+        const { email, password, password_confirm, role } = this.state;
+        const values = { email, password, password_confirm, role };
         switch(step) {
         case 1:
-            return <UserDetails 
+            return <BasicInfo
                     nextStep={this.nextStep} 
                     handleChange = {this.handleChange}
                     values={values}
@@ -54,12 +50,6 @@ class MainForm extends Component {
                     values={values}
                     />
         case 3:
-            return <Confirmation 
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    values={values}
-                    />
-        case 4:
             return <Success />
         }
     }
