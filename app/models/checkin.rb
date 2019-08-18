@@ -6,6 +6,5 @@ class Checkin < ApplicationRecord
   # method to publish a user's current location
   def notify_pusher
     Pusher.trigger("private-location-#{trip.uuid}", "new", TripSerializer.new(trip, include: [:checkins]))
-    p 'CHECKIN!'
   end
 end

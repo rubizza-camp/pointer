@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import SimpleMap from './SimpleMap'
 import { CREATE_TRIP_URL, TRIP_WATCH_URL, CREATE_CHECKINS_URL } from '../constants/api_endpoints'
-import getToken from '../utils/csrf_helper'
 import makeNum from '../utils/map_helpers'
 import appendToHost from '../utils/url_helper'
 import axiosPostRequest from '../utils/axios_helper'
@@ -35,11 +33,7 @@ class MapController extends Component {
   createTrip = () => {
     const { startingPoint } = this.state
     const { lat, lng } = startingPoint
-    axiosPostRequest(CREATE_TRIP_URL, {
-      lat,
-      lng,
-      name: 'DemoTrip',
-    }, response => this.generateLink(response))
+    axiosPostRequest(CREATE_TRIP_URL, { lat, lng, name: 'DemoTrip' }, this.generateLink)
   }
 
   generateLink = (response) => {
@@ -53,30 +47,13 @@ class MapController extends Component {
 
   updateMap = () => {
     const { startingPoint } = this.state
-    const { lat, lng } = startingPoint
-    this.setState({
-      center: {
-        lat,
-        lng,
-      },
-    }, this.updateCurrentLocation)
+    this.setState({ center: startingPoint }, this.updateCurrentLocation)
   }
 
   updateCurrentLocation = () => {
     const { tripId, startingPoint } = this.state
     const { lat, lng } = startingPoint
-    axios({
-      url: `${CREATE_TRIP_URL}/${tripId}/${CREATE_CHECKINS_URL}`,
-      method: 'POST',
-      headers: {
-        'X-CSRF-Token': getToken(),
-      },
-      data: {
-        lat,
-        lng,
-      },
-    })
-      .then((response) => this.addCheckin(response))
+    axiosPostRequest(`${CREATE_TRIP_URL}/${tripId}/${CREATE_CHECKINS_URL}`, { lat, lng }, this.addCheckin)
   }
 
   addCheckin = (response) => {

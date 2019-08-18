@@ -9,7 +9,7 @@ class MapViewer extends Component {
   state = { uuid: window.location.pathname.split('/')[3] }
 
   componentDidMount() {
-    const pusher = new Pusher(process.env.PUSHER_KEY, {
+    this.pusher = new Pusher(process.env.PUSHER_KEY, {
       cluster: process.env.PUSHER_CLUSTER,
       encrypted: true,
       authEndpoint: PUSHER_AUTH_URL,
@@ -20,24 +20,26 @@ class MapViewer extends Component {
       },
     })
     const { uuid } = this.state
-    const channel = pusher.subscribe(`private-location-${uuid}`)
-    channel.bind('new', data => this.updateMap(data))
+    const channel = this.pusher.subscribe(`private-location-${uuid}`)
+    channel.bind('new', this.updateMap)
+  }
+
+  componentWillUnmount() {
+    const { uuid } = this.state
+    this.pusher.unsubscribe(`private-location-${uuid}`)
   }
 
   updateMap = (response) => {
-    console.log('A')
-    const { data, included } = response
+    const { included } = response
     const checkins = makeNum(included)
     const lastCheckin = checkins[checkins.length - 1]
-    if (window.location.href.includes(data.attributes.uuid)) {
-      this.setState({
-        checkins,
-        center: {
-          lat: Number(lastCheckin.lat),
-          lng: Number(lastCheckin.lng),
-        },
-      })
-    }
+    this.setState({
+      checkins,
+      center: {
+        lat: Number(lastCheckin.lat),
+        lng: Number(lastCheckin.lng),
+      },
+    })
   }
 
   render() {

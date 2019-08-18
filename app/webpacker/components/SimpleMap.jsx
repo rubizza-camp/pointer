@@ -14,7 +14,6 @@ const MapWrapper = styled.div`
  height: 100vh;
  width: 100%;
 `
-
 const SimpleMap = (props) => {
   const { url, center, zoom, checkins } = props
   const { lat, lng } = center

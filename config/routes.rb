@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     resources :checkins, only: :create
   end
   get "tripwatcher/:id", to: "trips#show"
-  post "pusher/new", to:"pusher#create"
+  post "pusher/new", to: "pusher#create"
   root to: "static_pages#home"
 end
