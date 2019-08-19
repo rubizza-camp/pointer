@@ -16,7 +16,7 @@ class User < ApplicationRecord
     info = auth.info
     provider = auth.provider
     uid = auth.uid
-    where(provider: provider, uid: uid).first_or_create do | user |
+    where(provider: provider, uid: uid).first_or_create do |user|
       user.email = info.email
       user.name = info.name
       user.provider = provider
