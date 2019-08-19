@@ -47,7 +47,7 @@ class MapController extends Component {
 
   updateMap = () => {
     const { startingPoint } = this.state
-    this.setState({ center: startingPoint }, this.updateCurrentLocation)
+    this.setState(({ startingPoint }) => ({ center: startingPoint }), this.updateCurrentLocation)
   }
 
   updateCurrentLocation = () => {

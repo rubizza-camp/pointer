@@ -3,7 +3,6 @@ const { environment } = require('@rails/webpacker')
 const webpack = require('webpack')
 const dotenv = require('dotenv')
 const erb = require('./loaders/erb')
-const coffee = require('./loaders/coffee')
 
 const dotenvFiles = [
   `.env.${process.env.NODE_ENV}.local`,
@@ -20,7 +19,6 @@ environment.plugins.append('Provide', new webpack.ProvidePlugin({
 }))
 
 environment.loaders.prepend('erb', erb)
-environment.loaders.prepend('coffee', coffee)
 dotenvFiles.forEach((dotenvFile) => {
   dotenv.config({ path: dotenvFile, silent: true })
 })

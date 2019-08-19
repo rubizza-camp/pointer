@@ -6,7 +6,6 @@ import getToken from '../utils/csrf_helper'
 import { PUSHER_AUTH_URL } from '../constants/api_endpoints'
 
 class MapViewer extends Component {
-  state = { uuid: window.location.pathname.split('/')[2] }
 
   componentDidMount() {
     this.pusher = new Pusher(process.env.PUSHER_KEY, {
@@ -19,15 +18,15 @@ class MapViewer extends Component {
         },
       },
     })
-    const { uuid } = this.state
-    const channel = this.pusher.subscribe(`private-location-${uuid}`)
+    const channel = this.pusher.subscribe(this.generateChannelName())
     channel.bind('new', this.updateMap)
   }
 
   componentWillUnmount() {
-    const { uuid } = this.state
-    this.pusher.unsubscribe(`private-location-${uuid}`)
+    this.pusher.unsubscribe(this.generateChannelName())
   }
+
+  generateChannelName = () => `private-location-${window.location.pathname.split('/')[2]}`
 
   updateMap = (response) => {
     const { included } = response
