@@ -9,7 +9,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.checkins.build(lat: params[:lat], lng: params[:lng])
-    render json: @trip.as_json if @trip.save
+    render json: TripSerializer.new(@trip, include: [:checkins]).serialized_json if @trip.save
   end
 
   # function for showing a trip
@@ -18,11 +18,12 @@ class TripsController < ApplicationController
   end
 
   private
+
     def trip_params
       params.permit(:name)
     end
 
     def require_login
-      flash.now[:danger] = "You must be logged in to access this section"
+      flash.now[:danger] = 'You must be logged in to access this section'
     end
 end

@@ -4,7 +4,8 @@ rubocop:
   config_file: .rubocop.yml
 
 reek:
-  enabled: false
+  enabled: true
+  config_file: .reek.yml
 
 coffeescript:
   enabled: false
@@ -14,3 +15,8 @@ jshint:
 
 scss:
   enabled: false
+
+eslint:
+  enabled: true
+  config_file: .eslintrc
+  ignore_file: .eslintignore

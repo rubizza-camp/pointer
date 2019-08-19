@@ -1,11 +1,12 @@
 # frozen_string_literal: true
-
+# :reek:FeatureEnvy
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
+  # :reek:FeatureEnvy
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
