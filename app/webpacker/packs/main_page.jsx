@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <MembersList>
           <MembersController />
         </MembersList>
-        <PageButton><a href="#">Смотреть всех</a></PageButton>
+        <PageButton><a href='#'>Смотреть всех</a></PageButton>
         <PageTitle>Отзывы наших клиентов</PageTitle>
         <Reviews />
-        <PageButton><a href="#">Смотреть все</a></PageButton>
+        <PageButton><a href='#'>Смотреть все</a></PageButton>
       </PageContainer>
       <Footer />
     </>,

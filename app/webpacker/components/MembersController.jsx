@@ -6,7 +6,6 @@ import MembersContainer from './MembersContainer.jsx'
 class MembersController extends Component
 {
   state = {}
-
   constructor(props)
   {
     super(props)
@@ -19,14 +18,12 @@ class MembersController extends Component
       },
 
     }).then((response) => {
-      this.setState({data: response.data.data})
+      this.setState({ data: response.data.data })
     })
   }
-
   render = () => {
     const {data} = this.state
     return (<MembersContainer data={data}/>)
-
   }
 }
 

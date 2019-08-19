@@ -1,25 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from 'reactstrap'
 
-const ReviewsContainer = styled(Container)`
-`
-const PageButton = styled.div`
-display: flex;
-justify-content: center;
-a{
-background: #38b59386;
-margin: 0 0 0 0;
-padding: 10px 40px;
-color: #fff;
-border-radius: 30px;
-transition: 0.3s;
-&:hover{
-  color: #fff;
-  text-decoration: none;
-  background: #2f987c;
-}
-`
 const ReviewsItem = styled.div`
 display: flex;
 margin: 0 0 40px 0;
@@ -93,9 +74,7 @@ function Reviews() {
         </ReviewsItemDate>
         <ReviewsItemText>
           <p>
-        Мне все очень понравилось. Сотрудники были очень внимательн, буду пользоваться еще. Ваш сервис очень облегчает мне жизнь,
-        теперь я могу не переживать о том, что что-то не успею, все супер, спасибо большое ребятам!
-        Всем очень советую.
+        Мне все очень понравилось.Всем очень советую.
           </p>
         </ReviewsItemText>
       </TextContainer>
