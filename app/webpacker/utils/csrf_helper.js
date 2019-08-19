@@ -1,3 +1,2 @@
-export default function getToken() {
-  return document.querySelector('[name="csrf-token"]').content
-}
+const getToken = () => document.querySelector('[name="csrf-token"]').content
+export default getToken

@@ -6,7 +6,7 @@ import getToken from '../utils/csrf_helper'
 import { PUSHER_AUTH_URL } from '../constants/api_endpoints'
 
 class MapViewer extends Component {
-  state = { uuid: window.location.pathname.split('/')[3] }
+  state = { uuid: window.location.pathname.split('/')[2] }
 
   componentDidMount() {
     this.pusher = new Pusher(process.env.PUSHER_KEY, {
