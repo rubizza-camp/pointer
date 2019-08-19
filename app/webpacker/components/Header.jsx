@@ -73,7 +73,7 @@ function Header() {
         <TopHeaderContainer>
           <TopHeaderContacts>
             <p>Телефон для связи:</p>
-            <a href="#">+375(25)5729105</a>
+            <a href='#'>+375(25)5729105</a>
           </TopHeaderContacts>
         </TopHeaderContainer>
       </TopHeader>
@@ -81,16 +81,16 @@ function Header() {
       <LowHeader>
         <LowHeaderContainer>
           <LowHeaderLogo>
-            <a href="#">Pointer</a>
+            <a href='#'>Pointer</a>
           </LowHeaderLogo>
           <LowHeaderMenu>
-            <a href="#">О нас</a>
-            <a href="#">Выгульщики</a>
-            <a href="#">Работа</a>
-            <a href="#">Отзывы</a>
-            <a href="#">Контакты</a>
-            <GreenLink href="#">Вход</GreenLink>
-            <GreenLink href="#">Регистрация</GreenLink>
+            <a href='#'>О нас</a>
+            <a href='#'>Выгульщики</a>
+            <a href='#'>Работа</a>
+            <a href='#'>Отзывы</a>
+            <a href='#'>Контакты</a>
+            <GreenLink href='#'>Вход</GreenLink>
+            <GreenLink href='#'>Регистрация</GreenLink>
           </LowHeaderMenu>
         </LowHeaderContainer>
       </LowHeader>
