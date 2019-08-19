@@ -7,4 +7,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
+
+  def after_confirmation
+    UserNotifierMailer.welcome_email(self).deliver
+  end
 end
