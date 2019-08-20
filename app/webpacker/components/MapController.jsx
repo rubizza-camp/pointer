@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SimpleMap from './SimpleMap'
 import { CREATE_TRIP_URL, TRIP_WATCH_URL, CREATE_CHECKINS_URL } from '../constants/api_endpoints'
-import makeNum from '../utils/map_helpers'
+import makeNums from '../utils/map_helpers'
 import appendToHost from '../utils/url_helper'
 import axiosPostRequest from '../utils/axios_helper'
 
@@ -41,12 +41,11 @@ class MapController extends Component {
     this.setState({
       tripId: data.attributes.id,
       url: appendToHost(`${TRIP_WATCH_URL}/${data.attributes.uuid}`),
-      checkins: makeNum(included),
+      checkins: makeNums(included),
     }, this.updateMap)
   }
 
   updateMap = () => {
-    const { startingPoint } = this.state
     this.setState(({ startingPoint }) => ({ center: startingPoint }), this.updateCurrentLocation)
   }
 

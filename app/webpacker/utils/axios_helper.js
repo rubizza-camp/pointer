@@ -1,5 +1,5 @@
 import axios from 'axios'
-import getToken from './csrf_helper.js'
+import getToken from './csrf_helper'
 
 const axiosPostRequest = (url, data, callback) => {
   axios({

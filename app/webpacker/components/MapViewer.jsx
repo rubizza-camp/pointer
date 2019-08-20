@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Pusher from 'pusher-js'
 import SimpleMap from './SimpleMap'
-import makeNum from '../utils/map_helpers'
+import makeNums from '../utils/map_helpers'
 import getToken from '../utils/csrf_helper'
 import { PUSHER_AUTH_URL } from '../constants/api_endpoints'
 
 class MapViewer extends Component {
+  state = {}
 
   componentDidMount() {
     this.pusher = new Pusher(process.env.PUSHER_KEY, {
@@ -30,7 +31,7 @@ class MapViewer extends Component {
 
   updateMap = (response) => {
     const { included } = response
-    const checkins = makeNum(included)
+    const checkins = makeNums(included)
     const lastCheckin = checkins[checkins.length - 1]
     this.setState({
       checkins,
@@ -52,5 +53,4 @@ class MapViewer extends Component {
     )
   }
 }
-
 export default MapViewer
