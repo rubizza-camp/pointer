@@ -19,11 +19,11 @@ class TripsController < ApplicationController
   def show
     authorize Trip
     @trip = Trip.find_by(uuid: params[:id])
-  end
+    end
 
   private
 
-    def trip_params
-      params.permit(:name)
-    end
+  def trip_params
+    params.permit(:name)
+  end
 end
