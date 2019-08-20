@@ -4,5 +4,4 @@ class CheckinsPolicy < ApplicationPolicy
   def create?
     @user.handler?
   end
-
 end

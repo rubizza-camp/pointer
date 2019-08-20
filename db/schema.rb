@@ -62,6 +62,9 @@ ActiveRecord::Schema.define(version: 2019_08_13_073415) do
     t.datetime 'locked_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'name', default: '', null: false
+    t.string 'provider'
+    t.string 'uid'
     t.integer 'userable_id'
     t.string 'userable_type'
     t.index ['email'], name: 'index_users_on_email', unique: true

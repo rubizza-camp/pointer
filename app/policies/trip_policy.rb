@@ -12,5 +12,4 @@ class TripPolicy < ApplicationPolicy
   def create?
     @user.handler?
   end
-
 end
