@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  def home
-    render plain: 'Home'
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError do
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referrer || root_path)
   end
 end
