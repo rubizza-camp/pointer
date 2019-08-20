@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_110230) do
+ActiveRecord::Schema.define(version: 2019_08_13_073415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -25,11 +25,19 @@ ActiveRecord::Schema.define(version: 2019_07_30_110230) do
     t.index ['trip_id'], name: 'index_checkins_on_trip_id'
   end
 
+  create_table 'handlers', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'pet_owners', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
   create_table 'pets', force: :cascade do |t|
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.bigint 'user_id'
-    t.index ['user_id'], name: 'index_pets_on_user_id'
   end
 
   create_table 'trips', force: :cascade do |t|
@@ -54,10 +62,15 @@ ActiveRecord::Schema.define(version: 2019_07_30_110230) do
     t.datetime 'locked_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'name', default: '', null: false
+    t.string 'provider'
+    t.string 'uid'
+    t.integer 'userable_id'
+    t.string 'userable_type'
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+    t.index ['userable_type', 'userable_id'], name: 'index_users_on_userable_type_and_userable_id'
   end
 
   add_foreign_key 'checkins', 'trips'
-  add_foreign_key 'pets', 'users'
 end
