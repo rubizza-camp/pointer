@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Pusher from 'pusher-js'
 import SimpleMap from './SimpleMap'
-import makeNums from '../utils/map_helpers'
+import { makeNum, makeNums } from '../utils/map_helpers'
 import getToken from '../utils/csrf_helper'
 import { PUSHER_AUTH_URL } from '../constants/api_endpoints'
 
@@ -35,10 +35,7 @@ class MapViewer extends Component {
     const lastCheckin = checkins[checkins.length - 1]
     this.setState({
       checkins,
-      center: {
-        lat: Number(lastCheckin.lat),
-        lng: Number(lastCheckin.lng),
-      },
+      center: makeNum(lastCheckin.lat, lastCheckin.lng),
     })
   }
 

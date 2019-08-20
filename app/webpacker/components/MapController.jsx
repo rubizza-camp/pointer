@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SimpleMap from './SimpleMap'
 import { CREATE_TRIP_URL, TRIP_WATCH_URL, CREATE_CHECKINS_URL } from '../constants/api_endpoints'
-import makeNums from '../utils/map_helpers'
+import { makeNum, makeNums } from '../utils/map_helpers'
 import appendToHost from '../utils/url_helper'
 import axiosPostRequest from '../utils/axios_helper'
 
@@ -57,10 +57,7 @@ class MapController extends Component {
 
   addCheckin = (response) => {
     this.setState((prevState) => ({
-      checkins: [...prevState.checkins, {
-        lat: Number(response.data.data.attributes.lat),
-        lng: Number(response.data.data.attributes.lng),
-      }],
+      checkins: [...prevState.checkins, makeNum(response.data.data.attributes)],
     }))
   }
 
