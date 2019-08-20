@@ -1,5 +1,2 @@
-<div id="map"></div>
-<%= @trip.checkins[0][:lat]  %>
-<%=  @trip.checkins[0][:lng]  %>
-<%= hidden_field_tag 'lat', @trip.checkins[0][:lat]  %>
-<%= hidden_field_tag 'lng', @trip.checkins[0][:lng]  %>
+<%= render 'layouts/header' %>
+<%= javascript_pack_tag 'trip_watch' %>
