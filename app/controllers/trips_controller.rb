@@ -23,7 +23,7 @@ class TripsController < ApplicationController
 
   private
 
-    def trip_params
+  def trip_params
       params.permit(:name)
-    end
+  end
 end

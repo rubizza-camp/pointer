@@ -11,7 +11,7 @@ class CheckinsController < ApplicationController
 
   private
 
-    def checkin_params
-      params.permit(:trip_id, :lat, :lng)
-    end
+  def checkin_params
+    params.permit(:trip_id, :lat, :lng)
+  end
 end
