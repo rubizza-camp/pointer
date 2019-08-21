@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react';
 import ReactDOM from 'react-dom'
+import { Container } from 'reactstrap';
+import MainForm from '../components/authorization/MainForm';
+
 class App extends Component {
 
   render() {
     return(
-      <Container textAlign='center'>
+      <Container>
         <MainForm />
       </Container>     )
   }

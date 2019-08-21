@@ -10,7 +10,8 @@ class MainForm extends Component {
         email: '',
         password: '',
         password_confirm: '',
-        role: ''
+        role: '',
+        data: ''
     }
 
     nextStep = () => {
@@ -33,8 +34,8 @@ class MainForm extends Component {
 
     render(){
         const {step} = this.state;
-        const { email, password, password_confirm, role } = this.state;
-        const values = { email, password, password_confirm, role };
+        const { email, password, password_confirm, role, data } = this.state;
+        const values = { email, password, password_confirm, role, data };
         switch(step) {
         case 1:
             return <BasicInfo

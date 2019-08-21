@@ -1,11 +1,11 @@
-// BasicInfo.jsx
+// Auth.jsx
 import React, { Component } from 'react';
 import { Alert, Button, Label, Spinner } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import axios from 'axios'
 import Errors from './Errors';
   
-class UserDetails extends Component{
+class Auth extends Component{
 
     saveAndContinue = () => {
         this.requestData();
@@ -13,15 +13,14 @@ class UserDetails extends Component{
     }
 
     requestData = () => {
-        var SignupData = new FormData();
-        SignupData.set('user[email]', this.props.values.email);
-        SignupData.set('user[password]',this.props.values.password);
-        SignupData.set('user[password_confirmation]', this.props.values.password_confirm);
-        SignupData.set('commit', 'Sign up');
+        var AuthData = new FormData();
+        AuthData.set('user[email]', this.props.values.email);
+        AuthData.set('user[password]',this.props.values.password);
+        AuthData.set('commit', 'Sign up');
         axios({
             method: 'post',
             url: '/users',
-            data: SignupData,
+            data: AuthData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
             .then((response) => {
@@ -37,7 +36,7 @@ class UserDetails extends Component{
         return(
             <div>
             <Alert color="success">
-            <h2 className="ui centered">Welcome to the registration page!<br/>Please, enter user details</h2>
+            <h2 className="ui centered">Please, enter your login and password</h2>
             </Alert>
             <Errors data={this.state} />
             <AvForm onValidSubmit={this.saveAndContinue} ref={c => (this.form = c)}>
@@ -51,24 +50,11 @@ class UserDetails extends Component{
                 <AvInput type="password" name="pass1" id="password" placeholder="Your password" 
                  onChange={this.props.handleChange('password')} required/>
             </AvGroup>
-            <AvGroup>
-                <Label for="password_confirm">Password Confirmation:</Label>
-                <AvInput type="password" name="pass2" id="password_confirm" placeholder="Password Confirmation" 
-                 onChange={this.props.handleChange('password_confirm')} required/>
-            </AvGroup>
-            <AvGroup>
-                <Label for="exampleSelect">Choose your role:</Label>
-                <AvInput type="select" name="select_role" id="select_role" 
-                 onChange={this.props.handleChange('role')} required>
-                <option>Owner</option>
-                <option>Handler</option>
-                </AvInput>
-            </AvGroup>
-            <Button type='submit' size="lg" color="primary" >Next</Button>
+            <Button type='submit' size="lg" color="primary" >Login</Button>
             </AvForm>               
             </div>    
         )
     }
 }
 
-export default UserDetails;
+export default Auth;
