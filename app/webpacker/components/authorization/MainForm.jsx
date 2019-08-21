@@ -5,7 +5,8 @@ import Auth from './Auth';
 class MainForm extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        remember_me: 0
     }
 
     handleChange = input => event => {
@@ -13,8 +14,8 @@ class MainForm extends Component {
     }
 
     render(){
-        const { email, password } = this.state;
-        const values = { email, password };
+        const { email, password, remember_me } = this.state;
+        const values = { email, password, remember_me };
     return <Auth
                 handleChange = {this.handleChange}
                 values={values}

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def home
     render plain: "Home"
   end
-  
+
   def render_resource(resource)
     if resource.errors.empty?
       render json: resource

@@ -1,6 +1,6 @@
 // Auth.jsx
 import React, { Component } from 'react';
-import { Alert, Button, Label, Spinner } from 'reactstrap';
+import { Alert, Button, Label, FormGroup, Input } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import axios from 'axios'
 import Errors from './Errors';
@@ -16,10 +16,11 @@ class Auth extends Component{
         var AuthData = new FormData();
         AuthData.set('user[email]', this.props.values.email);
         AuthData.set('user[password]',this.props.values.password);
-        AuthData.set('commit', 'Sign up');
+        AuthData.set('user[remember_me]',this.props.values.remember_me);
+        AuthData.set('commit', 'Sign in');
         axios({
             method: 'post',
-            url: '/users',
+            url: '/users/sign_in.json',
             data: AuthData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
@@ -50,6 +51,12 @@ class Auth extends Component{
                 <AvInput type="password" name="pass1" id="password" placeholder="Your password" 
                  onChange={this.props.handleChange('password')} required/>
             </AvGroup>
+            <FormGroup check>
+                <Label check>
+                <Input onChange={this.props.handleChange('remember_me')} type="checkbox" />{' '}
+                Remember me
+                </Label>
+            </FormGroup>
             <Button type='submit' size="lg" color="primary" >Login</Button>
             </AvForm>               
             </div>    
