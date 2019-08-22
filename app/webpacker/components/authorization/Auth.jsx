@@ -17,7 +17,7 @@ class Auth extends Component{
         AuthData.set('user[email]', this.props.values.email);
         AuthData.set('user[password]',this.props.values.password);
         AuthData.set('user[remember_me]',this.props.values.remember_me);
-        AuthData.set('commit', 'Sign in');
+        AuthData.set('commit', 'Log in');
         axios({
             method: 'post',
             url: '/users/sign_in.json',

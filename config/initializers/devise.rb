@@ -16,13 +16,16 @@ Devise.setup do |config|
 
   config.jwt do |jwt|
     jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
-    jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
     jwt.expiration_time = 1.day.to_i
+    jwt.request_formats = {
+                        user: [:json],
+                      }
+    jwt.dispatch_requests = [
+      ['POST', %r{^/users/sign_in.json$}]
+                            ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/users/sign_out$}]
+                              ]
   end
 
   # ==> Mailer Configuration
@@ -265,7 +268,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :get
+  config.sign_out_via = :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

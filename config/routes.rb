@@ -3,8 +3,8 @@
 Rails.application.routes.draw do
   devise_for :users,
              controllers: {
-               sessions: 'sessions',
-               registrations: 'registrations'
+               sessions: 'users/sessions',
+               registrations: 'users/registrations'
              }
   resources :trips do
     resources :checkins, only: :create

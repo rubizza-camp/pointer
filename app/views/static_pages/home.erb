@@ -1,3 +1,10 @@
+<%if user_signed_in? %>
+<li>
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %> 
+</li>
+<% end %>
+
+
 <div id="accordion">
   <div class="card">
     <div class="card-header" id="headingOne">
