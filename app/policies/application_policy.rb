@@ -35,13 +35,7 @@ class ApplicationPolicy
   def destroy?
     false
   end
-
-  %{Admin Owner Walker}.each do |role|
-    define_method("#{role.underscore}?") do
-      userable_type == role
-    end
-  end
-
+  
   class Scope
     attr_reader :user, :scope
 

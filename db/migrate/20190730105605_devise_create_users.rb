@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :reek:FeatureEnvy
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   # :reek:FeatureEnvy
   def change
