@@ -1,14 +1,7 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import styled from 'styled-components'
-import Example from './Navbar'
-import Banner from './Banner'
-import Request from './Request'
-import Questions from './Questions'
-import Reviews from './Reviews'
-import Members from './Members'
-import Footer from './Footer'
 
 const TopHeader = styled.div`
   width: 100%;
@@ -76,29 +69,29 @@ const LowHeaderMenu = styled.div`
 
 function Header() {
   return (
-      <>
+    <>
       <TopHeader>
         <TopHeaderContainer>
           <TopHeaderContacts>
             <p>Телефон для связи:</p>
-            <a href='#'>+375(25)5729105</a>
+            <Link to="/">+375(25)5729105</Link>
           </TopHeaderContacts>
         </TopHeaderContainer>
       </TopHeader>
       <LowHeader>
         <LowHeaderContainer>
-            <LowHeaderLogo>
+          <LowHeaderLogo>
             <Link to="/">Pointer</Link>
-            </LowHeaderLogo>
-            <LowHeaderMenu>
-              <a href='#'>О нас</a>
-              <Link to="/members">Выгульщики</Link>
-              <a href='#'>Работа</a>
-              <a href='#'>Отзывы</a>
-              <a href='#'>Контакты</a>
-              <GreenLink href='#'>Вход</GreenLink>
-              <GreenLink href='#'>Регистрация</GreenLink>
-            </LowHeaderMenu>
+          </LowHeaderLogo>
+          <LowHeaderMenu>
+            <Link to="/">О нас</Link>
+            <Link to="/members">Выгульщики</Link>
+            <Link to="/">Работа</Link>
+            <Link to="/">Отзывы</Link>
+            <Link to="/">Контакты</Link>
+            <GreenLink href="#">Вход</GreenLink>
+            <GreenLink href="#">Регистрация</GreenLink>
+          </LowHeaderMenu>
         </LowHeaderContainer>
       </LowHeader>
 

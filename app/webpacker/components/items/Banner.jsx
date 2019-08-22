@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import banner from '../../images/banner.svg'
 
 const BannerWrapper = styled.div`
@@ -93,7 +94,7 @@ function Banner() {
 няня, передержка собак в Минске
           </BannerTitleNormal>
           <BannerButton>
-            <a href="#">Подробнее</a>
+            <Link to="/">Подробнее</Link>
           </BannerButton>
         </BannerText>
       </BannerContainer>

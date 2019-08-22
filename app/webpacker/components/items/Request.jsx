@@ -76,11 +76,13 @@ function Request() {
         <RequestText>
           <RequestTitle>Оформите заявку в несколько кликов</RequestTitle>
           <RequestBody>
-            <p>Если вы уже наш клиент или просто хотите быстро оформить заявку,
-            эта кнопка для вас</p>
+            <p>
+Если вы уже наш клиент или просто хотите быстро оформить заявку,
+            эта кнопка для вас
+            </p>
           </RequestBody>
           <RequestButton>
-          <a href="#">Оформить</a>
+            <a href="#">Оформить</a>
           </RequestButton>
         </RequestText>
         <RequestImage>

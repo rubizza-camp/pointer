@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from 'reactstrap'
 import star from '../../images/star.png'
 
 const MembersItem = styled.div`
@@ -91,8 +90,8 @@ const Members = (props) => {
   return (
     <MembersItem>
       <MemberPhoto>
-      <img src={props.avatar_url} alt="photo" />
-      </ MemberPhoto>
+        <img src={props.avatar_url} alt="member_photo" />
+      </MemberPhoto>
       <MemberBody>
         <MemberStars>
           <MemberStarsItem>
