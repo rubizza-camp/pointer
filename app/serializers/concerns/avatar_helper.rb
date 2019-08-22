@@ -4,7 +4,7 @@ module AvatarHelper
 
   class_methods do
     def avatar_url(user)
-      Rails.application.routes.url_helpers.rails_blob_path(user.avatar, only_path: true) if user.avatar.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(user.avatar, only_path: true) if user.avatar.attached?
     end
   end
 end

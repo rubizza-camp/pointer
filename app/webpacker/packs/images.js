@@ -1,1 +1,0 @@
-// import './images/banner.svg'

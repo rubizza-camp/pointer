@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from 'reactstrap'
-import banner from '../images/banner.svg'
+import banner from '../../images/banner.svg'
 
 const BannerWrapper = styled.div`
 background: #faf7f0;

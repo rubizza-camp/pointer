@@ -1,9 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container } from 'reactstrap'
+import styled from 'styled-components'
+import Example from './Navbar'
+import Banner from './Banner'
+import Request from './Request'
+import Questions from './Questions'
+import Reviews from './Reviews'
+import Members from './Members'
+import Footer from './Footer'
 
-const HeaderWrapper = styled.div`
-`
 const TopHeader = styled.div`
   width: 100%;
   height: 40px;
@@ -51,6 +57,7 @@ const LowHeaderLogo = styled.div`
   width: 20%;
   a{
     font-family: 'Kalam', cursive;
+    text-decoration: none;
     font-weight: 800;
     color: #4d4d4dff;
     font-size: 24px;
@@ -66,9 +73,10 @@ const LowHeaderMenu = styled.div`
     color: #4d4d4dff;
   }
 `
+
 function Header() {
   return (
-    <HeaderWrapper>
+      <>
       <TopHeader>
         <TopHeaderContainer>
           <TopHeaderContacts>
@@ -77,24 +85,24 @@ function Header() {
           </TopHeaderContacts>
         </TopHeaderContainer>
       </TopHeader>
-
       <LowHeader>
         <LowHeaderContainer>
-          <LowHeaderLogo>
-            <a href='#'>Pointer</a>
-          </LowHeaderLogo>
-          <LowHeaderMenu>
-            <a href='#'>О нас</a>
-            <a href='#'>Выгульщики</a>
-            <a href='#'>Работа</a>
-            <a href='#'>Отзывы</a>
-            <a href='#'>Контакты</a>
-            <GreenLink href='#'>Вход</GreenLink>
-            <GreenLink href='#'>Регистрация</GreenLink>
-          </LowHeaderMenu>
+            <LowHeaderLogo>
+            <Link to="/">Pointer</Link>
+            </LowHeaderLogo>
+            <LowHeaderMenu>
+              <a href='#'>О нас</a>
+              <Link to="/members">Выгульщики</Link>
+              <a href='#'>Работа</a>
+              <a href='#'>Отзывы</a>
+              <a href='#'>Контакты</a>
+              <GreenLink href='#'>Вход</GreenLink>
+              <GreenLink href='#'>Регистрация</GreenLink>
+            </LowHeaderMenu>
         </LowHeaderContainer>
       </LowHeader>
-    </HeaderWrapper>
+
+    </>
   )
 }
 
