@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'pets/index'
+  get 'pets/show'
   resources :trips do
     resources :checkins, only: :create
   end

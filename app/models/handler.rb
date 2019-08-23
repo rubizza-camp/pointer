@@ -2,4 +2,5 @@
 
 class Handler < ApplicationRecord
   include Reviewable
+  include Reviewerable
 end

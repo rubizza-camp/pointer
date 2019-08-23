@@ -70,7 +70,7 @@ Style/HashSyntax:
 # extra level of indentation.
 Layout/IndentationConsistency:
   Enabled: true
-  EnforcedStyle: indented_internal_methods
+  EnforcedStyle: rails
 
 # Two spaces, no tabs (for indentation).
 Layout/IndentationWidth:

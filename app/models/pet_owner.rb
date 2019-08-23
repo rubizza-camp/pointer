@@ -3,4 +3,5 @@
 class PetOwner < ApplicationRecord
   has_many :pets
   include Reviewable
+  include Reviewerable
 end
