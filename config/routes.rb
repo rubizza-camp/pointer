@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   get 'pets/index'
   get 'pets/show'
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   resources :trips do
     resources :checkins, only: :create
   end
@@ -20,6 +21,6 @@ Rails.application.routes.draw do
   end
 
   get 'tripwatcher/:id', to: 'trips#show'
-  devise_for :users
+  post 'pusher/new', to: 'pusher#create'
   root to: 'static_pages#home'
 end

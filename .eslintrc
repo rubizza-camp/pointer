@@ -73,7 +73,9 @@
         "object": true,
         "array": false
       }
-    ]
+    ],
+    "arrow-parens": 0
+
   },
   "overrides": [
     {
