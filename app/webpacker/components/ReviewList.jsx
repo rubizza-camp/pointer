@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-
-const xxx = () => {
-  const {x} = this.props
-  return x
-}
-
 class ReviewList extends Component {
   state = { reviews: [] }
 
