@@ -46,12 +46,11 @@ ActiveRecord::Schema.define(version: 2019_08_15_082143) do
     t.integer "rating"
     t.string "reviewable_type"
     t.bigint "reviewable_id"
-    t.string "reviewerable_type"
-    t.bigint "reviewerable_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
-    t.index ["reviewerable_type", "reviewerable_id"], name: "index_reviews_on_reviewerable_type_and_reviewerable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "trips", force: :cascade do |t|

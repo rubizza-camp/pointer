@@ -6,7 +6,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.text :comment
       t.integer :rating
       t.references :reviewable, polymorphic: true, index: true
-      t.references :reviewerable, polymorphic: true, index: true
+      t.references :user, index: true
 
       t.timestamps
     end
