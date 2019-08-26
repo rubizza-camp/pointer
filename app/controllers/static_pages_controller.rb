@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 class StaticPagesController < ApplicationController
-  def home; end
+  before_action :authenticate_user!
+  def home;end
 end

@@ -2,7 +2,7 @@
 <li>
 <%= link_to('Logout', destroy_user_session_path, method: :delete) %> 
 </li>
-<%else%>
+<%elsif !user_signed_in? && controller_name != 'sessions'  %>
 <li>
 <%= link_to "Log in", new_session_path(resource_name) %><br />
 </li>

@@ -25,7 +25,7 @@ class Auth extends Component{
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
             .then((response) => {
-                this.props.nextStep()
+                // window.location.href = '/';
             })
             .catch((error) => {
                 if(error.response) {
