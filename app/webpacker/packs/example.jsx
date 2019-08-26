@@ -16,7 +16,6 @@ function Basic() {
         <Header />
         <Route path="/" exact component={HomePage} />
         <Route path="/members" component={MembersPage} />
-        <Route path="/404" component={MembersPage} />
       </Router>
       <Footer />
     </>
