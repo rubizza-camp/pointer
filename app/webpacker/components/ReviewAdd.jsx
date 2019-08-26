@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+
+const DEFAULT_STATE = { rating: 5, comment: '' }
 
 class ReviewAdd extends Component {
-  state = { review: { rating: 5, comment: '' } };
+  state = { review: DEFAULT_STATE }
 
   reviewData = () => {
-    const { rating, comment } = this.state
+    const { rating, comment } = this.state.review
     const { match } = this.props
     return {
       rating,
       comment,
-      reviewable_type: 'Pet',
+      reviewable_type: match.params.reviewable_type,
       reviewable_id: match.params.id,
     }
   }
@@ -22,18 +24,21 @@ class ReviewAdd extends Component {
       headers: {'Content-Type': 'application/json' }
     })
       .then(response => response.json())
-      .then(data => {
-        this.props.history.push(`/reviews/${data.id}`);
+      .then(({ data }) => {
+        const { addReview } = this.props
+        addReview(data)
+        this.setState({ review: DEFAULT_STATE })
       })
       .catch(error => console.log('error', error));
   }
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    event.persist()
+    this.setState(({ review }) => ({ review: { ...review, [event.target.name]: event.target.value } }))
   }
 
   handleCancel = () => {
-    this.props.history.push("/reviews");
+    this.setState({ review: DEFAULT_STATE })
   }
 
   render() {
@@ -43,7 +48,7 @@ class ReviewAdd extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Content</label>
-            <textarea name="comment" rows="5" value={this.state.comment} onChange={this.handleChange} className="form-control" />
+            <textarea name="comment" rows="5" value={this.state.review.comment} onChange={this.handleChange} className="form-control" />
           </div>
           <div className="btn-group">
             <button type="submit" className="btn btn-dark">Create</button>
@@ -51,8 +56,8 @@ class ReviewAdd extends Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default ReviewAdd;
+export default ReviewAdd

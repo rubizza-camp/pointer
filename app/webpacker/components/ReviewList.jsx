@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Container } from 'reactstrap'
+import ReviewAdd from './ReviewAdd'
 
 const ReviewsContainer = styled(Container)`
 `
@@ -81,6 +82,10 @@ p{
 class ReviewList extends Component {
   state = { reviews: [] }
 
+  addReview = (data) => {
+    this.setState(({ reviews }) => ({ reviews: [data, ...reviews] }))
+  }
+
   componentDidMount() {
     fetch(`/pets/${this.props.match.params.id}/reviews`)
       .then(response => response.json())
@@ -92,8 +97,14 @@ class ReviewList extends Component {
 
   render() {
     const { reviews } = this.state
+    const { match } = this.props
     return (
       <ReviewsContainer>
+        <p>Reviews for {match.params.reviewable_type} # {match.params.id}</p>
+        <ReviewAdd
+          addReview={this.addReview} 
+          match={match}
+        />
         {reviews.map(({ attributes, relationships, id }) => (
           <ReviewsItem key={id}>
             <PhotoContainer>
@@ -102,7 +113,7 @@ class ReviewList extends Component {
             <TextContainer>
               <React.Fragment>
                 <ReviewsItemName>
-                  <p>{relationships.user.data.id}</p>
+                  <p>User_id: {relationships.user.data.id}</p>
                 </ReviewsItemName>
                 <ReviewsItemDate>
                   <p>{attributes.created_at}</p>
@@ -111,7 +122,7 @@ class ReviewList extends Component {
                   <p>{attributes.comment}</p>
                 </ReviewsItemText>
                 <ReviewsItemText>
-                  <p>{attributes.rating}</p>
+                  <p>Rating: {attributes.rating}</p>
                 </ReviewsItemText>
               </React.Fragment>
             </TextContainer>

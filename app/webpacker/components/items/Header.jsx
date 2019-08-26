@@ -87,7 +87,7 @@ function Header() {
             <Link to="/">О нас</Link>
             <Link to="/members">Выгульщики</Link>
             <Link to="/">Работа</Link>
-            <Link to="/">Отзывы</Link>
+            <Link to="/pets/1/reviews">Отзывы</Link>
             <Link to="/">Контакты</Link>
             <GreenLink href="#">Вход</GreenLink>
             <GreenLink href="#">Регистрация</GreenLink>

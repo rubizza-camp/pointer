@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '*path', to: 'static_pages#home', constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
+
   get 'pets/index'
   get 'pets/show'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
