@@ -1,4 +1,5 @@
 en:
+  phone_number: 'Phone number'
   header:
     about: 'About'
     members: 'Handlers'
@@ -6,7 +7,7 @@ en:
     reviews: 'Revirws'
     contacts: 'Contacts'
     log_in: 'Log in'
-    sign_in: 'Sign in'
+    sign_up: 'Sign up' 
   banner:
     height_title: 'Care'
     average_title: 'About those who are important to you'
