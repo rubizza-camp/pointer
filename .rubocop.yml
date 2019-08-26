@@ -11,6 +11,7 @@ AllCops:
     - 'actionmailbox/test/dummy/**/*'
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
+    - 'db/**/*.rb'
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
@@ -209,4 +210,3 @@ Style/TrivialAccessors:
 Metrics/LineLength:
   Max: 100
   IgnoredPatterns: ['#']
-
