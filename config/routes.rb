@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  get '*path', to: 'static_pages#home'
+
   resources :trips do
     resources :checkins, only: :create
   end
@@ -9,4 +12,5 @@ Rails.application.routes.draw do
   get 'tripwatcher/:id', to: 'trips#show'
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: 'static_pages#home'
+
 end

@@ -1,3 +1,5 @@
+/* global I18n */
+
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from 'reactstrap'
@@ -26,24 +28,25 @@ position: absolute;
 top: 20px;
 `
 const BannerTitleLow = styled.p`
-font-size: 72px;
-font-weight: 800;
-text-transform: uppercase;
-color: #38b59386;
-@media only screen and (max-width: 767px) {
-  font-size: 36px;
-  margin: 0;
-}
+  font-size: 72px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #38b59386;
+  @media only screen and (max-width: 767px) {
+    font-size: 36px;
+    margin: 0;
+  }
 `
 const BannerTitleMedium = styled.p`
-font-size: 36px;
-text-transform: uppercase;
-font-weight: 800;
-color: #4d4d4dd1;
-@media only screen and (max-width: 767px) {
-  font-size: 20px;
-  margin: 0;
-}
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #4d4d4dd1;
+  max-width: 70%;
+  @media only screen and (max-width: 767px) {
+    font-size: 20px;
+    margin: 0;
+  }
 `
 const BannerTitleNormal = styled.p`
 font-size: 26px;
@@ -85,16 +88,13 @@ function Banner() {
           <img src={banner} alt="banner" />
         </BannerImage>
         <BannerText>
-          <BannerTitleLow>Забота</BannerTitleLow>
-          <BannerTitleMedium>О тех, кто вам важен</BannerTitleMedium>
+          <BannerTitleLow>{I18n.t('banner.height_title')}</BannerTitleLow>
+          <BannerTitleMedium>{I18n.t('banner.average_title')}</BannerTitleMedium>
           <BannerTitleNormal>
-Профессиональный выгул,
-            <br />
-            {' '}
-няня, передержка собак в Минске
+            {I18n.t('banner.average_title')}
           </BannerTitleNormal>
           <BannerButton>
-            <Link to="/">Подробнее</Link>
+            <Link to="/">{I18n.t('button.more_info')}</Link>
           </BannerButton>
         </BannerText>
       </BannerContainer>

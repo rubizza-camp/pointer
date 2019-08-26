@@ -5,24 +5,18 @@ import Header from '../components/items/Header'
 import Footer from '../components/items/Footer'
 import MembersPage from '../components/pages/MembersPage'
 import HomePage from '../components/pages/HomePage'
-import './i18n/translations'
 
 global.I18n = I18n
-
-I18n.translations = {
-  en: {
-    hello: 'Hi!',
-  },
-}
+require('./i18n/translations')
 
 function Basic() {
   return (
     <>
-      <h1>{I18n.t('hello')}</h1>
       <Router>
         <Header />
         <Route path="/" exact component={HomePage} />
         <Route path="/members" component={MembersPage} />
+        <Route path="/404" component={MembersPage} />
       </Router>
       <Footer />
     </>
