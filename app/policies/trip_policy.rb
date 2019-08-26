@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class TripPolicy < ApplicationPolicy
-  def show?
-    false
+  def index?
+    @user.handler?
   end
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+
+  def show?
+    true
+  end
+
+  def create?
+    @user.handler?
   end
 end
