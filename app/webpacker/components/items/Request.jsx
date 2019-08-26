@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from 'reactstrap'
 import walk from '../../images/walk.jpg'
 
 const RequestWrapper = styled.div`
