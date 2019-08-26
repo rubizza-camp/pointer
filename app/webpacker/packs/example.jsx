@@ -6,6 +6,8 @@ import Header from '../components/items/Header'
 import Footer from '../components/items/Footer'
 import MembersPage from '../components/pages/MembersPage'
 import HomePage from '../components/pages/HomePage'
+import MainFormSignIn from '../components/items/signin/MainForm'
+import MainFormSignUp from '../components/items/signup/MainForm'
 
 import I18n from 'i18n-js'
 import './i18n/translations'
@@ -26,6 +28,8 @@ function Basic() {
         <Header />
         <Route path="/" exact component={HomePage} />
         <Route path="/members" component={MembersPage} />
+        <Route path="/signin" component={MainFormSignIn} />
+        <Route path="/signup" component={MainFormSignUp} />
       </Router>
       <Footer />
     </>

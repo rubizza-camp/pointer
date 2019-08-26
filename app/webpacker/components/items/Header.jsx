@@ -11,8 +11,8 @@ const TopHeader = styled.div`
   align-items: center;
   font-size: 14px;
 `
-const GreenLink = styled.a`
-color: #38b593cf !important;
+const GreenLink = styled(Link)`
+  color: #38b593cf !important;
 `
 const TopHeaderContacts = styled.div`
   display: flex;
@@ -89,8 +89,8 @@ function Header() {
             <Link to="/">Работа</Link>
             <Link to="/">Отзывы</Link>
             <Link to="/">Контакты</Link>
-            <GreenLink href="#">Вход</GreenLink>
-            <GreenLink href="#">Регистрация</GreenLink>
+            <GreenLink to="/signin">Вход</GreenLink>
+            <GreenLink to="/signup">Регистрация</GreenLink>
           </LowHeaderMenu>
         </LowHeaderContainer>
       </LowHeader>
