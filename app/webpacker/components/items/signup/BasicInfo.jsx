@@ -20,7 +20,7 @@ class UserDetails extends Component{
         SignupData.set('commit', 'Sign up');
         axios({
             method: 'post',
-            url: '/users',
+            url: '/users.json',
             data: SignupData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })

@@ -6,7 +6,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable
+         :confirmable, :omniauthable,
+         :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   def after_confirmation
     UserNotifierMailer.welcome_email(self).deliver
