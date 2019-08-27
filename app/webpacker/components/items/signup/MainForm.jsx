@@ -50,8 +50,6 @@ class MainFormSignUp extends Component {
                     handleChange = {this.handleChange}
                     values={values}
                     />
-        // case 3:
-            // return <Success />
         }
     }
 }

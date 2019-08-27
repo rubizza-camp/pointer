@@ -4,7 +4,7 @@ import { Alert, Button, Label, FormGroup, Input } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import axios from 'axios'
 import Errors from './Errors';
-import Cookies from 'universal-cookie';
+import Cookies from 'js-cookie';
 
 class Auth extends Component{
 
@@ -19,7 +19,6 @@ class Auth extends Component{
         AuthData.set('user[password]',this.props.values.password);
         AuthData.set('user[remember_me]',this.props.values.remember_me);
         AuthData.set('commit', 'Log in');
-        const cookies = new Cookies();
             axios({
             method: 'post',
             url: '/users/sign_in.json',
@@ -27,12 +26,12 @@ class Auth extends Component{
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
             .then((response) => {
-                cookies.set('Authorization',response.headers.authorization);
-                window.location.href = '/';
+                Cookies.set('Authorization', response.headers.authorization)
             })
             .catch((error) => {
                 if(error.response) {
-                this.setState({error : error.response.data.errors[0].detail});
+                this.setState({error : error.response.data});
+                console.log(error.response.data);
             }});
     }
     

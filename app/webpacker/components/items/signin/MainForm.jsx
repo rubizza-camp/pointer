@@ -16,7 +16,7 @@ class MainFormSignIn extends Component {
     render(){
         const { email, password, remember_me } = this.state;
         const values = { email, password, remember_me };
-    return <Auth
+        return <Auth
                 handleChange = {this.handleChange}
                 values={values}
             />

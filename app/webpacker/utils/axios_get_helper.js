@@ -9,7 +9,7 @@ const axiosPostRequest = (url, data, callback) => {
     { var token = '' }
   axios({
     url,
-    method: 'POST',
+    method: 'GET',
     headers: { 'X-CSRF-Token': getToken(), token },
     data,
   }).then(response => callback(response))
