@@ -1,3 +1,5 @@
+/* global I18n */
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
@@ -84,13 +86,13 @@ function Header() {
             <Link to="/">Pointer</Link>
           </LowHeaderLogo>
           <LowHeaderMenu>
-            <Link to="/">О нас</Link>
-            <Link to="/members">Выгульщики</Link>
-            <Link to="/">Работа</Link>
-            <Link to="/">Отзывы</Link>
-            <Link to="/">Контакты</Link>
-            <GreenLink to="/signin">Вход</GreenLink>
-            <GreenLink to="/signup">Регистрация</GreenLink>
+            <Link to="/">{I18n.t('header.about')}</Link>
+            <Link to="/members">{I18n.t('header.members')}</Link>
+            <Link to="/">{I18n.t('header.work')}</Link>
+            <Link to="/">{I18n.t('header.reviews')}</Link>
+            <Link to="/">{I18n.t('header.contacts')}</Link>
+            <GreenLink to="/signin">{I18n.t('header.log_in')}</GreenLink>
+            <GreenLink to="/signup">{I18n.t('header.sign_up')}</GreenLink>
           </LowHeaderMenu>
         </LowHeaderContainer>
       </LowHeader>

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Container, Collapse, CardBody } from 'reactstrap'
+import { Collapse, CardBody } from 'reactstrap'
 
-const QuestionsContainer = styled(Container)`
-`
 const Answer = styled(CardBody)`
   color: #4d4d4de3;
   padding: 0 0 0 20px;

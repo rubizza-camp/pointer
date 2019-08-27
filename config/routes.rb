@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'tripwatcher/:id', to: 'trips#show'
   post 'pusher/new', to: 'pusher#create'
   root to: 'static_pages#home'
+
 end

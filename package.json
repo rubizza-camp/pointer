@@ -2,6 +2,7 @@
   "name": "pointer",
   "private": true,
   "dependencies": {
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "^4.0.7",
     "@types/reactstrap": "^8.0.4",
