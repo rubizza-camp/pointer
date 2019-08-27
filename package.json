@@ -29,7 +29,8 @@
     "react-router-dom": "^5.0.1",
     "reactstrap": "^8.0.1",
     "styled-components": "^4.3.2",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "universal-cookie": "^4.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
