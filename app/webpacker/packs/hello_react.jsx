@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { Spinner } from 'reactstrap'
 import List, { Field, Input, Label } from './List'
 import {transformItems, prepareRequest} from '../utils/pet_helpers'
+import { DirectUpload } from 'activestorage'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -177,7 +178,7 @@ const Profile = ({
   times,
 }) => (
   <Card>
-    <Form onSubmit={onSubmit}>
+    <Form enctype="multipart/form-data" onSubmit={onSubmit}>
       <h1>Profile Card</h1>
       <Label className="custom-file-upload fas">
         <ImgWrap>
@@ -200,7 +201,7 @@ const Edit = ({
   children,
 }) => (
   <Card>
-    <Form onSubmit={onSubmit}>
+    <Form encType="multipart/form-data" onSubmit={onSubmit}>
       <h1>Profile Card</h1>
       {children}
       <SaveButton type="submit">Save</SaveButton>
@@ -209,6 +210,7 @@ const Edit = ({
 )
 
 class CardProfile extends React.Component {
+  
     state = {
       file: '',
       imagePreviewUrl: this.props.data.photo_url || 'https://www.nicepng.com/png/detail/914-9142519_doge-meme-dog-doggo-funny-sticker-momo-png.png',
@@ -224,6 +226,28 @@ class CardProfile extends React.Component {
       this.ListEditor = React.createRef()
     }
 
+    directUpload = (file) =>
+    {
+      console.log(this.state)
+      const railsActiveStorageDirectUploadsUrl = "http://localhost:5000/rails/active_storage/direct_uploads";
+      const upload = new DirectUpload(file, railsActiveStorageDirectUploadsUrl)
+      upload.create((error, blob) => {
+        if (error) {
+          console.log(error)
+        } else {
+          this.updateAvatar(blob)
+         }
+      })
+      
+    }
+
+    updateAvatar = (blob) =>
+    {
+      const {id} = this.state
+      console.log(blob)
+      axiosPatchRequest(`/pet_owners/1/pets/${id}/avatar`, {signed_blob_id: blob.signed_id},(response) => console.log(response))
+    }
+
     photoUpload = e => {
       e.preventDefault()
       const reader = new FileReader()
@@ -232,7 +256,7 @@ class CardProfile extends React.Component {
         this.setState({
           file: reader.result,
           imagePreviewUrl: reader.result,
-        })
+        }, this.directUpload(file))
       }
       reader.readAsDataURL(file)
     }

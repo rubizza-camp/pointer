@@ -11,11 +11,15 @@ class PetsController < ApplicationController
 
     def update
         @pet = Pet.find(params[:id])
-        p params
         @pet.update(pet_params)
-        @pet.update(times: pet_params[:times])
-        @pet.photo.attach(params[:file])
         render json: PetSerializer.new(Pet.all)
+    end
+
+    def update_photo
+        p 'AAAAAAAAAAAAAAAAA'
+        @pet = Pet.find(params[:id])
+        @pet.photo.purge
+        @pet.photo.attach(params[:signed_blob_id])
     end
 
     private
