@@ -25,3 +25,12 @@ export const axiosGetRequest = (url, data, callback) => {
     data,
   }).then(response => callback(response))
 }
+
+export const axiosDeleteRequest = (url, data, callback) => {
+  axios({
+    url,
+    method: 'DELETE',
+    headers: { 'X-CSRF-Token': getToken() },
+    data,
+  }).then(response => callback(response))
+}

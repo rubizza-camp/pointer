@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { axiosPostRequest, axiosPatchRequest, axiosGetRequest } from 'utils/axios_helper'
+import { axiosPostRequest, axiosPatchRequest, axiosGetRequest, axiosDeleteRequest } from 'utils/axios_helper'
 import styled, { createGlobalStyle } from 'styled-components'
 import { Spinner } from 'reactstrap'
 import List, { Field, Input, Label } from './List'
@@ -110,6 +110,13 @@ const Button = styled.button`
 const EditButton = styled(Button)`
 color: #fff;
 width: 180px;`
+const DeleteButton = styled(Button)`
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 1px;
+box-shadow: 10px 0px 10px 0px  #f00;
+max-height: 50px;
+background: #f00`
 const SaveButton = styled(Button)`
 font-weight: 600;
 text-transform: uppercase;
@@ -199,12 +206,15 @@ const Profile = ({
 const Edit = ({
   onSubmit,
   children,
+  onDelete,
+  id,
 }) => (
   <Card>
     <Form encType="multipart/form-data" onSubmit={onSubmit}>
       <h1>Profile Card</h1>
       {children}
       <SaveButton type="submit">Save</SaveButton>
+      <DeleteButton type="button" onClick={onDelete} id={id}> Delete </DeleteButton>
     </Form>
   </Card>
 )
@@ -307,7 +317,7 @@ class CardProfile extends React.Component {
         <>
           {
             (active === 'edit') ? (
-              <Edit onSubmit={this.handleSubmit}>
+              <Edit onSubmit={this.handleSubmit} onDelete={this.props.handleDelete} id={this.state.id}>
                 <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl} />
                 <Name onChange={this.editName} value={name} />
                 <Breed onChange={this.editBreed} value={breed} />
@@ -323,22 +333,17 @@ class CardProfile extends React.Component {
               />
             )
 }
-
-
         </>
       )
     }
 }
-// ListEditor.current.
-
-
 const PetContainer = (props) => {
   {
     return (
 
       <>
         {props.data.map((c) => (
-          <CardProfile data={ (c==null)?({}):(c.attributes)} key = {c.attributes.id}/>
+          <CardProfile data={ (c==null)?({}):(c.attributes)} key = {c.attributes.id} handleDelete = {props.handleDelete}/>
         ))}
       </>
     )
@@ -357,17 +362,23 @@ class PetController extends Component {
     axiosPostRequest('/pet_owners/1/pets', {}, (response) => this.setState(({ data }) => ({ loading: false, data: [...data, response.data.data] })))
   }
 
+  handleDelete = (e) => {
+    e.persist()
+    console.log('AAAAAAA')
+    console.log(e.target.id)
+    axiosDeleteRequest(`/pet_owners/1/pets/${e.target.id}`, {}, (response) => this.setState({data: response.data.data}) )
+  }
+
   render() {
     const { data, loading } = this.state
     return (
       <>
         {
        (loading) ? (<Spinner color="warning" type="grow" />) : (
-
          <>
            <GlobalStyle />
            <Wrapper>
-             <PetContainer data={data} />
+             <PetContainer data={data} handleDelete = {this.handleDelete} />
              <Card>
                <SaveButton onClick={this.addPet}>Add a pet</SaveButton>
              </Card>

@@ -9,6 +9,12 @@ class PetsController < ApplicationController
         render json: PetSerializer.new(Pet.where(pet_owner_id: params[:pet_owner_id])).serialized_json 
     end
 
+    def destroy
+        @pet = Pet.find(params[:id])
+        @pet.delete
+        render json: PetSerializer.new(Pet.where(pet_owner_id: params[:pet_owner_id])).serialized_json
+    end
+
     def update
         @pet = Pet.find(params[:id])
         @pet.update(pet_params)
@@ -16,7 +22,6 @@ class PetsController < ApplicationController
     end
 
     def update_photo
-        p 'AAAAAAAAAAAAAAAAA'
         @pet = Pet.find(params[:id])
         @pet.photo.purge
         @pet.photo.attach(params[:signed_blob_id])

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :checkins, only: :create
   end
   resources :pet_owners do
-    resources :pets, only: [:create, :update, :index]
+    resources :pets, only: [:create, :update, :index, :destroy]
   end
   get 'tripwatcher/:id', to: 'trips#show'
   post 'pusher/new', to: 'pusher#create'
