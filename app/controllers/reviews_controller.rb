@@ -16,7 +16,6 @@ class ReviewsController < ApplicationController
   def create
     current_user = User.first
     @review = @reviewable.reviews.new(review_params.merge(user: current_user))
-    @review.rating = 5
     if @review.save
       render json: ReviewSerializer.new(@review).serialized_json, status: :created
     else

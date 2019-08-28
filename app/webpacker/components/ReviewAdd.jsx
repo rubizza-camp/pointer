@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Rating } from '@material-ui/lab'
+import { FormControl, ButtonGroup, Button, Typography, Box, TextField } from '@material-ui/core'
+import { axiosPostRequest } from '../utils/axios_helper'
 
 const DEFAULT_STATE = { rating: 5, comment: '' }
-
 class ReviewAdd extends Component {
   state = { review: DEFAULT_STATE }
 
@@ -10,26 +12,23 @@ class ReviewAdd extends Component {
     const { match } = this.props
     return {
       rating,
-      comment,
-      reviewable_type: match.params.reviewable_type,
-      reviewable_id: match.params.id,
+      comment
     }
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`/pets/${this.props.match.params.id}/reviews`, {
-      method: 'POST',
-      body: JSON.stringify(this.reviewData()),     
-      headers: {'Content-Type': 'application/json' }
-    })
-      .then(response => response.json())
-      .then(({ data }) => {
-        const { addReview } = this.props
-        addReview(data)
-        this.setState({ review: DEFAULT_STATE })
-      })
-      .catch(error => console.log('error', error));
+    axiosPostRequest(
+      `/${this.props.match.params.reviewable_type}/${this.props.match.params.id}/reviews`,
+      this.reviewData(),
+      this.createReview
+    )
+  }
+
+  createReview = ({ data }) => {
+    const { addReview } = this.props
+    addReview(data.data)
+    this.setState({ review: DEFAULT_STATE })
   }
 
   handleChange = (event) => {
@@ -44,17 +43,38 @@ class ReviewAdd extends Component {
   render() {
     return (
       <div>
-        <h1>Create Review</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>Content</label>
-            <textarea name="comment" rows="5" value={this.state.review.comment} onChange={this.handleChange} className="form-control" />
-          </div>
-          <div className="btn-group">
-            <button type="submit" className="btn btn-dark">Create</button>
-            <button type="button" onClick={this.handleCancel} className="btn btn-secondary">Cancel</button>
-          </div>
-        </form>
+        <Typography variant="h4" gutterBottom>Create review</Typography>
+        <FormControl fullWidth={true}>
+          <TextField
+            label="Comment"
+            name="comment"
+            value={this.state.review.comment}
+            onChange={this.handleChange}
+            autoFocus={true}
+            multiline={true}
+            rows={5}
+            rowsMax={20}
+            placeholder="Enter your comment here"
+            margin="normal"
+            fullWidth={true}
+          />
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">Rating</Typography>
+            <Rating
+              name="rating"
+              value={Number(this.state.review.rating)}
+              onChange={this.handleChange}
+            />
+          </Box>
+          <ButtonGroup size="large" color="primary" aria-label="outlined primary button group">
+            <Button component='button' onClick={this.handleSubmit} color="primary">
+              Create
+            </Button>
+            <Button component='button' color="secondary" onClick={this.handleCancel}>
+              Cancel
+            </Button>
+          </ButtonGroup>
+        </FormControl>
       </div>
     )
   }

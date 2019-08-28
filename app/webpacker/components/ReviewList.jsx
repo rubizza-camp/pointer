@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Container } from 'reactstrap'
 import ReviewAdd from './ReviewAdd'
+import { axiosGetRequest } from '../utils/axios_helper'
 
 const ReviewsContainer = styled(Container)`
 `
@@ -87,12 +88,15 @@ class ReviewList extends Component {
   }
 
   componentDidMount() {
-    fetch(`/pets/${this.props.match.params.id}/reviews`)
-      .then(response => response.json())
-      .then(({ data }) => {
-        this.setState({reviews: data })
-      })
-      .catch(error => console.log('error', error))
+    axiosGetRequest(
+      `/${this.props.match.params.reviewable_type}/${this.props.match.params.id}/reviews`,
+      {},
+      this.setReviews
+    )
+  }
+
+  setReviews = ({ data }) => {
+    this.setState({ reviews: data.data })
   }
 
   render() {
