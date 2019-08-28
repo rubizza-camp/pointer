@@ -1,10 +1,13 @@
 // Auth.jsx
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Alert, Button, Label, FormGroup, Input } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import axios from 'axios'
 import Errors from './Errors';
 import Cookies from 'js-cookie';
+import setAuthorizationToken from '../../../utils/set_auth_token'
+
 
 class Auth extends Component{
 
@@ -27,6 +30,9 @@ class Auth extends Component{
             })
             .then((response) => {
                 Cookies.set('Authorization', response.headers.authorization)
+                setAuthorizationToken();
+                const { setAuth } = this.props
+                setAuth(true)
             })
             .catch((error) => {
                 if(error.response) {
@@ -59,11 +65,15 @@ class Auth extends Component{
                 Remember me
                 </Label>
             </FormGroup>
-            <Button type='submit' size="lg" color="primary" >Login</Button>
+            <Button type='submit' size="lg" color="primary">Login</Button>
             </AvForm>               
             </div>    
         )
     }
+}
+
+Auth.propTypes = {
+    setAuth: PropTypes.func.isRequired,
 }
 
 export default Auth;

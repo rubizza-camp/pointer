@@ -1,6 +1,7 @@
 // MainForm.jsx
-import React, { Component } from 'react';
-import Auth from './Auth';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Auth from './Auth'
 
 class MainFormSignIn extends Component {
     state = {
@@ -10,17 +11,23 @@ class MainFormSignIn extends Component {
     }
 
     handleChange = input => event => {
-        this.setState({ [input] : event.target.value })
+        this.setState({ [input]: event.target.value })
     }
 
-    render(){
-        const { email, password, remember_me } = this.state;
-        const values = { email, password, remember_me };
-        return <Auth
-                handleChange = {this.handleChange}
-                values={values}
-            />
+    render() {
+        const { email, password, remember_me } = this.state
+        const { setAuth } = this.props
+        const values = { email, password, remember_me }
+        return <Auth 
+            setAuth={setAuth}
+            handleChange={this.handleChange}
+            values={values}
+        />
     }
+}
+
+MainFormSignIn.propTypes = {
+    setAuth: PropTypes.func.isRequired,
 }
 
 export default MainFormSignIn;

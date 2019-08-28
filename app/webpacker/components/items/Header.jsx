@@ -1,8 +1,9 @@
 /* global I18n */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Container } from 'reactstrap'
+import { Container, Button } from 'reactstrap'
 import styled from 'styled-components'
 
 const TopHeader = styled.div`
@@ -69,36 +70,42 @@ const LowHeaderMenu = styled.div`
   }
 `
 
-function Header() {
-  return (
-    <>
-      <TopHeader>
-        <TopHeaderContainer>
-          <TopHeaderContacts>
-            <p>Телефон для связи:</p>
-            <Link to="/">+375(25)5729105</Link>
-          </TopHeaderContacts>
-        </TopHeaderContainer>
-      </TopHeader>
-      <LowHeader>
-        <LowHeaderContainer>
-          <LowHeaderLogo>
-            <Link to="/">Pointer</Link>
-          </LowHeaderLogo>
-          <LowHeaderMenu>
-            <Link to="/">{I18n.t('header.about')}</Link>
-            <Link to="/members">{I18n.t('header.members')}</Link>
-            <Link to="/">{I18n.t('header.work')}</Link>
-            <Link to="/">{I18n.t('header.reviews')}</Link>
-            <Link to="/">{I18n.t('header.contacts')}</Link>
-            <GreenLink to="/signin">{I18n.t('header.log_in')}</GreenLink>
-            <GreenLink to="/signup">{I18n.t('header.sign_up')}</GreenLink>
-          </LowHeaderMenu>
-        </LowHeaderContainer>
-      </LowHeader>
 
-    </>
-  )
+const Header = ({ isAuthorized, logout }) => (
+  <>
+    <TopHeader>
+      <TopHeaderContainer>
+        <TopHeaderContacts>
+          <p>Телефон для связи:</p>
+          <Link to="/">+375(25)5729105</Link>
+        </TopHeaderContacts>
+      </TopHeaderContainer>
+    </TopHeader>
+    <LowHeader>
+      <LowHeaderContainer>
+        <LowHeaderLogo>
+          <Link to="/">Pointer</Link>
+        </LowHeaderLogo>
+        <LowHeaderMenu>
+          <Link to="/">{I18n.t('header.about')}</Link>
+          <Link to="/members">{I18n.t('header.members')}</Link>
+          <Link to="/">{I18n.t('header.work')}</Link>
+          <Link to="/">{I18n.t('header.reviews')}</Link>
+          <Link to="/">{I18n.t('header.contacts')}</Link>
+          {isAuthorized
+            ? (<Button outline color="warning" onClick={logout}>Logout</Button>)
+            : (<div><GreenLink to="/signin">{I18n.t('header.log_in')}</GreenLink>
+              <GreenLink to="/signup">{I18n.t('header.sign_up')}</GreenLink></div>)}
+        </LowHeaderMenu>
+      </LowHeaderContainer>
+    </LowHeader>
+  </>
+)
+
+
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 }
 
 export default Header
