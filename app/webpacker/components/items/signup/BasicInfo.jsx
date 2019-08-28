@@ -6,6 +6,10 @@ import axios from 'axios'
 import Errors from './Errors'
 
 class UserDetails extends Component {
+    state = {
+      error: null,
+    }
+
     saveAndContinue = () => {
       this.requestData()
       this.form.reset()
@@ -28,7 +32,7 @@ class UserDetails extends Component {
         })
         .catch((error) => {
           if (error.response) {
-            this.setState({ error: error.response.data.errors[0].detail })
+            this.setState({ error: error.response.data.message })
           }
         })
     }

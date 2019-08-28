@@ -2,16 +2,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
-import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation'
+import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Errors from './Errors'
 import setAuthorizationToken from '../../../utils/set_auth_token'
 
-
 class Auth extends Component {
     saveAndContinue = () => {
       this.requestData()
+      this.form = React.createRef()
       this.form.reset()
     }
 
@@ -48,7 +48,7 @@ class Auth extends Component {
             <h2 className="ui centered">Please, enter your login and password</h2>
           </Alert>
           <Errors data={this.state} />
-          <AvForm onValidSubmit={this.saveAndContinue} ref={c => (this.form = c)}>
+          <AvForm onValidSubmit={this.saveAndContinue} ref={this.form}>
             <AvGroup>
               <Label for="email">Email:</Label>
               <AvInput
@@ -64,7 +64,7 @@ class Auth extends Component {
               <Label for="password">Password:</Label>
               <AvInput
                 type="password"
-                name="pass1"
+                name="password"
                 id="password"
                 placeholder="Your password"
                 onChange={this.props.handleChange('password')}
@@ -74,7 +74,6 @@ class Auth extends Component {
             <FormGroup check>
               <Label check>
                 <Input onChange={this.props.handleChange('remember_me')} type="checkbox" />
-                {' '}
                 Remember me
               </Label>
             </FormGroup>

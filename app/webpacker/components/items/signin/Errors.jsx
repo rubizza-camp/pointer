@@ -3,9 +3,7 @@ import { Alert } from 'reactstrap'
 
 const Errors = (props) => {
   if (!props.data) {
-    return (
-      <div />
-    )
+    return null
   }
 
   return (
