@@ -53,6 +53,7 @@ font-size: 26px;
 font-weight: 500;
 color: #4d4d4da6;
 margin: 20px 0 0 0;
+max-width: 70%;
 @media only screen and (max-width: 767px) {
   font-size: 18px;
   margin: 5px 0 0 0;
@@ -90,9 +91,7 @@ function Banner() {
         <BannerText>
           <BannerTitleLow>{I18n.t('banner.height_title')}</BannerTitleLow>
           <BannerTitleMedium>{I18n.t('banner.average_title')}</BannerTitleMedium>
-          <BannerTitleNormal>
-            {I18n.t('banner.average_title')}
-          </BannerTitleNormal>
+          <BannerTitleNormal>{I18n.t('banner.low_title')}</BannerTitleNormal>
           <BannerButton>
             <Link to="/">{I18n.t('button.more_info')}</Link>
           </BannerButton>

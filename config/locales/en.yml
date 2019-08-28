@@ -1,13 +1,13 @@
 en:
-  phone_number: 'Phone number'
   header:
+    number: 'Phone number'
     about: 'About'
     members: 'Handlers'
     work: 'Job'
     reviews: 'Revirws'
     contacts: 'Contacts'
     log_in: 'Log in'
-    sign_up: 'Sign up' 
+    sign_up: 'Sign up'
   banner:
     height_title: 'Care'
     average_title: 'About those who are important to you'

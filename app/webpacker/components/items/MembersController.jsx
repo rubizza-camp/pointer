@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import MembersContainer from './MembersContainer'
+import axiosGetRequest from '../../utils/axios_helper'
 
 class MembersController extends Component {
   state = {}
 
   constructor(props) {
     super(props)
-    axios({
-      url: '/handlers.json',
-      headers:
-      {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content,
-      },
+    axiosGetRequest('/handlers.json', {}, (response) => {
+      this.setState({ data: response.data.data }))
 
-    }).then((response) => {
-      this.setState({ data: response.data.data })
-    })
   }
 
   render = () => {

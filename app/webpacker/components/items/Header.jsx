@@ -4,6 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import styled from 'styled-components'
+import axiosPostRequest from '../../utils/axios_helper'
 
 const TopHeader = styled.div`
   width: 100%;
@@ -75,7 +76,7 @@ function Header() {
       <TopHeader>
         <TopHeaderContainer>
           <TopHeaderContacts>
-            <p>Телефон для связи:</p>
+            <p>{I18n.t('header.number')}</p>
             <Link to="/">+375(25)5729105</Link>
           </TopHeaderContacts>
         </TopHeaderContainer>
@@ -91,8 +92,9 @@ function Header() {
             <Link to="/">{I18n.t('header.work')}</Link>
             <Link to="/">{I18n.t('header.reviews')}</Link>
             <Link to="/">{I18n.t('header.contacts')}</Link>
+
             <GreenLink href="#">{I18n.t('header.log_in')}</GreenLink>
-            <GreenLink href="#">{I18n.t('header.sign_in')}</GreenLink>
+            <GreenLink href="#">{I18n.t('header.sign_up')}</GreenLink>
           </LowHeaderMenu>
         </LowHeaderContainer>
       </LowHeader>
