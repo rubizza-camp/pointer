@@ -24,7 +24,7 @@ class UserDetails extends Component {
         config: { headers: { 'Content-Type': 'multipart/form-data' } },
       })
         .then((response) => {
-          this.props.nextStep()
+          // this.props.nextStep()
         })
         .catch((error) => {
           if (error.response) {
