@@ -18,6 +18,8 @@ const Errors = (props) => {
 
 Errors.propTypes = {
   data: PropTypes.object.isRequired,
+  error: PropTypes.string.isRequired,
+  split: PropTypes.func.isRequired,
 }
 
 export default Errors
