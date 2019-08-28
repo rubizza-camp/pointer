@@ -1,10 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 
 const Errors = (props) => {
-  if (!props.data.error) {
-    return null
-  }
+  if (!props.data.error) return null
 
   const arr = props.data.error.split('<br>')
   const items = arr.map((error) => <b><li>{error}</li></b>)
@@ -15,6 +14,10 @@ const Errors = (props) => {
       </Alert>
     </div>
   )
+}
+
+Errors.propTypes = {
+  data: PropTypes.object.isRequired,
 }
 
 export default Errors
