@@ -5,29 +5,31 @@ import Auth from './Auth'
 
 class MainFormSignIn extends Component {
     state = {
-        email: '',
-        password: '',
-        remember_me: 0
+      email: '',
+      password: '',
+      remember_me: 0,
     }
 
     handleChange = input => event => {
-        this.setState({ [input]: event.target.value })
+      this.setState({ [input]: event.target.value })
     }
 
     render() {
-        const { email, password, remember_me } = this.state
-        const { setAuth } = this.props
-        const values = { email, password, remember_me }
-        return <Auth 
-            setAuth={setAuth}
-            handleChange={this.handleChange}
-            values={values}
+      const { email, password, remember_me } = this.state
+      const { setAuth } = this.props
+      const values = { email, password, remember_me }
+      return (
+        <Auth
+          setAuth={setAuth}
+          handleChange={this.handleChange}
+          values={values}
         />
+      )
     }
 }
 
 MainFormSignIn.propTypes = {
-    setAuth: PropTypes.func.isRequired,
+  setAuth: PropTypes.func.isRequired,
 }
 
-export default MainFormSignIn;
+export default MainFormSignIn

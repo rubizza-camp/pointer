@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Container } from 'reactstrap';
-import MainForm from '../items/singin/MainForm';
+import { Container } from 'reactstrap'
+import MainForm from '../items/singin/MainForm'
 
 class App extends Component {
-
   render() {
-    return(
+    return (
       <Container>
         <MainForm />
-      </Container>     )
+      </Container>
+    )
   }
 }
 
 ReactDOM.render(
-  <App/>,
+  <App />,
   document.body.appendChild(document.createElement('div')),
 )
 
-export default App;
+export default App

@@ -94,8 +94,16 @@ const Header = ({ isAuthorized, logout }) => (
           <Link to="/">{I18n.t('header.contacts')}</Link>
           {isAuthorized
             ? (<Button outline color="warning" onClick={logout}>Logout</Button>)
-            : (<div><GreenLink to="/signin">{I18n.t('header.log_in')}</GreenLink>
-              <GreenLink to="/signup">{I18n.t('header.sign_up')}</GreenLink></div>)}
+            : (
+              <div>
+                <GreenLink to="/signin">
+                  {I18n.t('header.log_in')}
+                </GreenLink>
+                <GreenLink to="/signup">
+                  {I18n.t('header.sign_up')}
+                </GreenLink>
+              </div>
+            )}
         </LowHeaderMenu>
       </LowHeaderContainer>
     </LowHeader>

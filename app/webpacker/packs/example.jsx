@@ -14,27 +14,31 @@ global.I18n = I18n
 require('./i18n/translations')
 
 class Basic extends Component {
-  state = {isAuthorized: false, isInitialRender: true}
+  state = { isAuthorized: false, isInitialRender: true }
+
   static getDerivedStateFromProps(_nextProps, prevState) {
-    if( prevState.isInitialRender) return { isAuthorized: !!Cookies.get('Authorization'), isInitialRender: false }
+    if (prevState.isInitialRender) return { isAuthorized: !!Cookies.get('Authorization'), isInitialRender: false }
   }
+
   setAuth = isAuthorized => {
-    this.setState({ isAuthorized }) 
+    this.setState({ isAuthorized })
   }
+
   logout = () => {
     Cookies.remove('Authorization')
     setAuthorizationToken()
     this.setAuth(false)
   }
+
   render() {
     const { isAuthorized } = this.state
     return (
       <>
         <Router>
-          <Header logout={this.logout} isAuthorized = {isAuthorized}  />
+          <Header logout={this.logout} isAuthorized={isAuthorized} />
           <Route path="/" exact component={HomePage} />
           <Route path="/members" component={MembersPage} />
-          <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth}/>} />
+          <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth} />} />
           <Route path="/signup" component={MainFormSignUp} />
         </Router>
         <Footer />
