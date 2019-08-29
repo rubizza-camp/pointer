@@ -4,7 +4,7 @@ class PetSerializer
   include FastJsonapi::ObjectSerializer
   include AvatarHelper
   attributes :id, :breed, :name
-  attribute :photo_url do |pet|
+  attribute :photoUrl do |pet|
     pet_photo(pet)
   end
   attribute :times do |pet|

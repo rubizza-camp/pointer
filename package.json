@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "^4.0.7",
+    "activestorage": "^5.2.3",
     "axios": "^0.19.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.3.1",
@@ -20,8 +21,10 @@
     "pusher-js": "^5.0.0",
     "rails-erb-loader": "^5.5.2",
     "rails-ujs": "^5.2.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-activestorage-provider": "^0.8.0",
+    "react-dom": "^16.9.0",
+    "reactstrap": "^8.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.3",
     "semantic-ui-sass": "^2.4.2",
@@ -38,6 +41,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.8.0"
   }
 }
