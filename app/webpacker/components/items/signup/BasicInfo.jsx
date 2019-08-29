@@ -4,6 +4,8 @@ import { Alert, Button, Label, Spinner } from 'reactstrap'
 import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation'
 import axios from 'axios'
 import Errors from './Errors'
+import getToken from '../../../utils/csrf_helper'
+
 
 class UserDetails extends Component {
     state = {
@@ -25,7 +27,7 @@ class UserDetails extends Component {
         method: 'post',
         url: '/users.json',
         data: SignupData,
-        config: { headers: { 'Content-Type': 'multipart/form-data' } },
+        config: { headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } },
       })
         .then((response) => {
           // this.props.nextStep()
