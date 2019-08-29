@@ -317,7 +317,7 @@ export class CardProfile extends Component {
                 times={times}
               />
             )
-}
+          }
         </>
       )
     }

@@ -23,8 +23,9 @@ class PetsController < ApplicationController
 
   def update_photo
     @pet = Pet.find(params[:id])
-    @pet.photo.purge
-    @pet.photo.attach(params[:signed_blob_id])
+    photo = @pet.photo
+    photo.purge
+    photo.attach(params[:signed_blob_id])
   end
 
   private

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'reactstrap'
 import ListItem from './ListItem'
 import { Field, Input, Label } from './ListComponents'
 
-class TodoApp extends Component {
+/* eslint react/no-unused-prop-types: 0 */
+class ListApp extends Component {
     state = {
       initialRender: true,
     };
@@ -58,7 +57,7 @@ class TodoApp extends Component {
             <Label htmlFor="name">
                         Times to go for a walk
             </Label>
-            <TodoList items={items} onDeleteItem={this.handleDeleteItem} />
+            <List items={items} onDeleteItem={this.handleDeleteItem} />
             <Input type="text" onChange={this.handleTextChange} value={text} />
           </Field>
           <Button onClick={this.handleAddItem} disabled={!text} color="info" size="sm">Add</Button>
@@ -67,12 +66,12 @@ class TodoApp extends Component {
     }
 }
 
-TodoApp.propTypes = {
+ListApp.propTypes = {
   items: PropTypes.array.isRequired,
 }
 
 
-const TodoList = (props) => {
+const List = (props) => {
   const { onDeleteItem, items } = props
   return (
     <ul>
@@ -83,9 +82,9 @@ const TodoList = (props) => {
   )
 }
 
-TodoList.propTypes = {
+List.propTypes = {
   onDeleteItem: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
 }
 
-export default TodoApp
+export default ListApp
