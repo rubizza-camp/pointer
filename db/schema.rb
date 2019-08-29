@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_08_26_121835) do
+=======
+ActiveRecord::Schema.define(version: 2019_08_23_081221) do
+>>>>>>> c68374d3bdf9b37acf73472b2b78a7ea1704fcee
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
+<<<<<<< HEAD
 
   create_table "checkins", force: :cascade do |t|
     t.bigint "trip_id"
@@ -56,6 +61,21 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
   create_table "jwt_blacklist", force: :cascade do |t|
     t.string "jti", null: false
     t.index ["jti"], name: "index_jwt_blacklist_on_jti"
+=======
+
+  create_table "checkins", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.decimal "lat"
+    t.decimal "lng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_checkins_on_trip_id"
+  end
+
+  create_table "handlers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> c68374d3bdf9b37acf73472b2b78a7ea1704fcee
   end
 
   create_table "pet_owners", force: :cascade do |t|
@@ -66,6 +86,14 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
   create_table "pets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+=======
+    t.string "name"
+    t.string "breed"
+    t.text "times", default: [], array: true
+    t.bigint "pet_owner_id"
+    t.index ["pet_owner_id"], name: "index_pets_on_pet_owner_id"
+>>>>>>> c68374d3bdf9b37acf73472b2b78a7ea1704fcee
   end
 
   create_table "trips", force: :cascade do |t|
@@ -73,8 +101,11 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
     t.string "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.bigint "handler_id"
     t.index ["handler_id"], name: "index_trips_on_handler_id"
+=======
+>>>>>>> c68374d3bdf9b37acf73472b2b78a7ea1704fcee
   end
 
   create_table "users", force: :cascade do |t|
@@ -104,5 +135,9 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "checkins", "trips"
+<<<<<<< HEAD
   add_foreign_key "trips", "handlers"
+=======
+  add_foreign_key "pets", "pet_owners"
+>>>>>>> c68374d3bdf9b37acf73472b2b78a7ea1704fcee
 end

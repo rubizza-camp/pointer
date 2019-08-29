@@ -7,6 +7,7 @@
     "@rails/webpacker": "^4.0.7",
     "@types/js-cookie": "^2.2.2",
     "@types/reactstrap": "^8.0.4",
+    "activestorage": "^5.2.3",    
     "availity-reactstrap-validation": "^2.6.0",
     "axios": "^0.19.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -43,9 +44,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "webpack-dev-server": "^3.8.0"
-  },
-  "scripts": {
-    "lint": "yarn run eslint --ext .js --ext .jsx app/webpacker"
+    "webpack-dev-server": "^3.7.2"
   }
 }
