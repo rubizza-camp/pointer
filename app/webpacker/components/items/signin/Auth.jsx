@@ -1,12 +1,18 @@
 // Auth.jsx
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Container } from 'reactstrap'
 import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
+import styled from 'styled-components'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Errors from './Errors'
 import setAuthorizationToken from '../../../utils/set_auth_token'
+
+const AuthContainer = styled(Container)`
+  margin-top: 50px;
+`
 
 class Auth extends Component {
     saveAndContinue = () => {
@@ -36,14 +42,13 @@ class Auth extends Component {
         .catch((error) => {
           if (error.response) {
             this.setState({ error: error.response.data })
-            console.log(error.response.data)
           }
         })
     }
 
     render() {
       return (
-        <div>
+        <AuthContainer>
           <Alert color="success">
             <h2 className="ui centered">Please, enter your login and password</h2>
           </Alert>
@@ -79,7 +84,7 @@ class Auth extends Component {
             </FormGroup>
             <Button type="submit" size="lg" color="primary">Login</Button>
           </AvForm>
-        </div>
+        </AuthContainer>
       )
     }
 }

@@ -5,26 +5,26 @@ import styled from 'styled-components'
 import star from '../../images/star.png'
 
 const MembersItem = styled.div`
-display: flex;
-flex-direction: column;
-width: 30%;
-margin: 0 10px 0 0;
-background: #f7f7f7ff;
-padding: 0;
-margin: 0 0 30px 0;
-border: none;
-border-radius: .28571429rem;
--webkit-box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
--webkit-transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
-transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
-transition: box-shadow .1s ease,transform .1s ease;
-transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
-z-index: '';
-@media only screen and (max-width: 767px) {
-  width: 100%;
-  margin: 0 0 25px 0;
-}
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 10px 0 0;
+  background: #f7f7f7ff;
+  padding: 0;
+  margin: 0 0 30px 0;
+  border: none;
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  -webkit-transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  z-index: '';
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    margin: 0 0 25px 0;
+  }
 `
 const MemberPhoto = styled.div`
 width: 100%;
@@ -88,7 +88,6 @@ a{
 `
 
 const Members = (props) => {
-  console.log(props)
   return (
     <MembersItem>
       <MemberPhoto>

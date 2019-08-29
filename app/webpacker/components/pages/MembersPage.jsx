@@ -11,7 +11,6 @@ const PageTitle = styled.p`
   font-weight: 600;
   color: #4d4d4dd1;
   text-align: center;
-}
 `
 
 function MembersPage() {
