@@ -1,21 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 
 const Errors = (props) => {
   if (!props.data) return null
+  console.log(props.data.error.error)
 
   return (
     <div>
       <Alert color="danger">
-        <h3>Invalid email or password</h3>
+        <h5>{props.data.error.error}</h5>
       </Alert>
     </div>
   )
-}
-
-Errors.propTypes = {
-  data: PropTypes.object.isRequired,
 }
 
 export default Errors
