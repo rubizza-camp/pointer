@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 
-const Errors = (props) => {
-  if (!props.data.error) return null
+const Errors = ({ data }) => {
+  if (!data.error) return null
 
-  const arr = props.data.error.split('<br>')
+  const arr = data.error.split('<br>')
   const items = arr.map((error) => <b><li>{error}</li></b>)
   return (
     <div>
@@ -17,9 +17,9 @@ const Errors = (props) => {
 }
 
 Errors.propTypes = {
-  data: PropTypes.object.isRequired,
-  error: PropTypes.string.isRequired,
-  split: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    error: PropTypes.string,
+  }).isRequired,
 }
 
 export default Errors
