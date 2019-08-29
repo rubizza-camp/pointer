@@ -206,8 +206,6 @@ export class CardProfile extends Component {
       initialRender: true,
     }
 
-    ListEditor = React.createRef()
-
     static getDerivedStateFromProps(nextProps, prevState) {
       if (prevState.initialRender) {
         const { data } = nextProps
@@ -225,12 +223,14 @@ export class CardProfile extends Component {
       return null
     }
 
+    ListEditor = React.createRef()
+
     directUpload = (file) => {
       const railsActiveStorageDirectUploadsUrl = '/rails/active_storage/direct_uploads'
       const upload = new DirectUpload(file, railsActiveStorageDirectUploadsUrl)
       upload.create((error, blob) => {
         if (error) {
-          console.log(error)
+          console.error(error)
         } else {
           this.updateAvatar(blob)
         }
@@ -287,7 +287,6 @@ export class CardProfile extends Component {
         active: activeP,
       })
     }
-
 
     render() {
       const {

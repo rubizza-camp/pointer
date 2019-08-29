@@ -8,6 +8,7 @@ class PetSerializer
     pet_photo(pet)
   end
   attribute :times do |pet|
-    pet.times.map{|el| JSON.parse(el.gsub(/:([a-zA-z]+)/,'"\\1"').gsub('=>', ': ')).symbolize_keys[:text]}
+    pet.times.map { |el| JSON.parse(el.gsub(/:([a-zA-z]+)/, '"\\1"')
+      .gsub('=>', ': ')).symbolize_keys[:text] }
   end
 end

@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
 const PetContainer = (props) => {
   const { data, handleDelete } = props
   return (
-
     <>
       {data.map((c) => (
         <CardProfile
@@ -44,42 +43,37 @@ flex-wrap: wrap;
 }`
 
 class PetController extends Component {
-    state = { data: [], loading: true }
+  state = { data: [], loading: true }
 
-    componentDidMount() {
-      axiosGetRequest('/pet_owners/1/pets', {}, (response) => { this.setState({ data: response.data.data, loading: false }) })
-    }
+  componentDidMount() {
+    axiosGetRequest('/pet_owners/1/pets', {}, (response) => { this.setState({ data: response.data.data, loading: false }) })
+  }
 
-    addPet = () => {
-      this.setState({ loading: true })
-      axiosPostRequest('/pet_owners/1/pets', {}, (response) => this.setState(({ data }) => ({ loading: false, data: [...data, response.data.data] })))
-    }
+  addPet = () => {
+    this.setState({ loading: true })
+    axiosPostRequest('/pet_owners/1/pets', {}, (response) => this.setState(({ data }) => ({ loading: false, data: [...data, response.data.data] })))
+  }
 
-    handleDelete = (e) => {
-      e.persist()
-      axiosDeleteRequest(`/pet_owners/1/pets/${e.target.id}`, {}, (response) => this.setState({ data: response.data.data }))
-    }
+  handleDelete = (e) => {
+    e.persist()
+    axiosDeleteRequest(`/pet_owners/1/pets/${e.target.id}`, {}, (response) => this.setState({ data: response.data.data }))
+  }
 
-    render() {
-      const { data, loading } = this.state
-      return (
-        <>
-          {
-         (loading) ? (<Spinner color="warning" type="grow" />) : (
-           <>
-             <GlobalStyle />
-             <Wrapper>
-               <PetContainer data={data} handleDelete={this.handleDelete} />
-               <Card>
-                 <SaveButton onClick={this.addPet}>Add a pet</SaveButton>
-               </Card>
-             </Wrapper>
-           </>
-         )
-            }
-        </>
-      )
-    }
+  render() {
+    const { data, loading } = this.state
+    if (loading) return <Spinner color="warning" type="grow" />
+    return (
+      <>
+        <GlobalStyle />
+        <Wrapper>
+          <PetContainer data={data} handleDelete={this.handleDelete} />
+          <Card>
+            <SaveButton onClick={this.addPet}>Add a pet</SaveButton>
+          </Card>
+        </Wrapper>
+      </>
+    )
+  }
 }
 
 export default PetController
