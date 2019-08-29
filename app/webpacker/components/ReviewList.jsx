@@ -3,24 +3,11 @@ import styled from 'styled-components'
 import { Container } from 'reactstrap'
 import ReviewAdd from './ReviewAdd'
 import { axiosGetRequest } from '../utils/axios_helper'
+import { Rating } from '@material-ui/lab'
+import { Typography, Box } from '@material-ui/core'
+import { find } from 'lodash';
 
 const ReviewsContainer = styled(Container)`
-`
-const PageButton = styled.div`
-display: flex;
-justify-content: center;
-a{
-background: #38b59386;
-margin: 0 0 0 0;
-padding: 10px 40px;
-color: #fff;
-border-radius: 30px;
-transition: 0.3s;
-&:hover{
-  color: #fff;
-  text-decoration: none;
-  background: #2f987c;
-}
 `
 const ReviewsItem = styled.div`
 display: flex;
@@ -37,6 +24,7 @@ const PhotoContainer = styled.div`
 }
 `
 const TextContainer = styled.div`
+  min-width: 0;
 `
 const ReviewsItemPhoto = styled.div`
 width: 145px;
@@ -69,15 +57,17 @@ font-size: 13px;margin: 5px 0 15px 0;
 }
 `
 const ReviewsItemText = styled.div`
-p{
-  color: #6f6f6f;
-}
-@media only screen and (max-width: 767px) {
-  text-align: center;
-  width: 88%;
-  margin: 0 6%;
-  p{
-    margin: 0;
+  p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #6f6f6f;
+  }
+  @media only screen and (max-width: 767px) {
+    text-align: center;
+    width: 88%;
+    margin: 0 6%;
+    p {
+      margin: 0;
   }
 `
 class ReviewList extends Component {
@@ -96,11 +86,11 @@ class ReviewList extends Component {
   }
 
   setReviews = ({ data }) => {
-    this.setState({ reviews: data.data })
+    this.setState({ reviews: data.data, included: data.included })
   }
 
   render() {
-    const { reviews } = this.state
+    const { reviews, included } = this.state
     const { match } = this.props
     return (
       <ReviewsContainer>
@@ -109,15 +99,26 @@ class ReviewList extends Component {
           addReview={this.addReview} 
           match={match}
         />
-        {reviews.map(({ attributes, relationships, id }) => (
+        <br />
+        {
+          
+          reviews.map(({ attributes, relationships, id }) => (
           <ReviewsItem key={id}>
             <PhotoContainer>
               <ReviewsItemPhoto />
             </PhotoContainer>
             <TextContainer>
-              <React.Fragment>
+              <>
                 <ReviewsItemName>
-                  <p>User_id: {relationships.user.data.id}</p>
+                  <p>
+                    User name: 
+                    {
+                    _.find(
+                      included,
+                      function(user) { return user.type === relationships.user.data.type && user.id === relationships.user.data.id}
+                      ).attributes.name
+                    }
+                  </p>
                 </ReviewsItemName>
                 <ReviewsItemDate>
                   <p>{attributes.created_at}</p>
@@ -125,10 +126,17 @@ class ReviewList extends Component {
                 <ReviewsItemText>
                   <p>{attributes.comment}</p>
                 </ReviewsItemText>
+                <Box component="fieldset" mb={3} borderColor="transparent">
+                  <Typography component="legend">Rating</Typography>
+                  <Rating
+                    readOnly={true}
+                    value={Number(attributes.rating)}
+                  />
+                </Box>
                 <ReviewsItemText>
                   <p>Rating: {attributes.rating}</p>
                 </ReviewsItemText>
-              </React.Fragment>
+              </>
             </TextContainer>
           </ReviewsItem>
         ))}

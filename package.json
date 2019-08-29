@@ -21,6 +21,7 @@
     "jquery": "^3.4.1",
     "jquery-ujs": "^1.2.2",
     "lint": "^0.7.0",
+    "lodash": "^4.17.15",
     "popper.js": "^1.15.0",
     "prop-types": "^15.7.2",
     "pusher-js": "^5.0.0",

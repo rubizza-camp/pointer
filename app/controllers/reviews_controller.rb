@@ -5,8 +5,8 @@ class ReviewsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @reviews = @reviewable.reviews
-    render json: ReviewSerializer.new(@reviews).serialized_json
+    @reviews = @reviewable.reviews.order('id DESC')
+    render json: ReviewSerializer.new(@reviews, include: [:user]).serialized_json
   end
 
   def new
