@@ -9,4 +9,5 @@ const axiosPostRequest = (url, data, callback) => {
     data,
   }).then(response => callback(response))
 }
+
 export default axiosPostRequest

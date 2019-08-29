@@ -2,8 +2,12 @@
   "name": "pointer",
   "private": true,
   "dependencies": {
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "^4.0.7",
+    "@types/js-cookie": "^2.2.2",
+    "@types/reactstrap": "^8.0.4",
+    "availity-reactstrap-validation": "^2.6.0",
     "axios": "^0.19.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.3.1",
@@ -13,8 +17,10 @@
     "figaro-js": "^3.0.2",
     "font-awesome": "^4.7.0",
     "google-map-react": "^1.1.4",
+    "i18n-js": "^3.3.0",
     "jquery": "^3.4.1",
     "jquery-ujs": "^1.2.2",
+    "js-cookie": "^2.2.1",
     "popper.js": "^1.15.0",
     "prop-types": "^15.7.2",
     "pusher-js": "^5.0.0",
@@ -22,9 +28,8 @@
     "rails-ujs": "^5.2.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.87.3",
-    "semantic-ui-sass": "^2.4.2",
+    "react-router-dom": "^5.0.1",
+    "reactstrap": "^8.0.1",
     "styled-components": "^4.3.2",
     "turbolinks": "^5.2.0"
   },
@@ -38,6 +43,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.8.0"
+  },
+  "scripts": {
+    "lint": "yarn run eslint --ext .js --ext .jsx app/webpacker"
   }
 }

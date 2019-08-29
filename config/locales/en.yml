@@ -1,33 +1,28 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  phone_number: 'Phone number'
+  header:
+    about: 'About'
+    members: 'Handlers'
+    work: 'Job'
+    reviews: 'Revirws'
+    contacts: 'Contacts'
+    log_in: 'Log in'
+    sign_up: 'Sign up' 
+  banner:
+    height_title: 'Care'
+    average_title: 'About those who are important to you'
+    low_title: 'Professional range, nanny keeping dogs in Minsk'
+  button:
+    more_info: 'More info'
+    make_request: 'Make a request'
+  request:
+    title: 'Make a request in a few clicks'
+    text: 'If you are already our client or just want to quickly place an order, this button is for you'
+  members:
+    title: 'Our handlers'
+    reviews_count: 'Number of reviews'
+    link_to_profile: 'Go to profile'
+  questions:
+    title: 'Frequently asked question'
+  reviews:
+    title: 'Feedback from our customers'
