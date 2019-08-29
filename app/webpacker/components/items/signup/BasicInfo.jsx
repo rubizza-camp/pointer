@@ -1,9 +1,11 @@
 // BasicInfo.jsx
 import React, { Component } from 'react'
 import { Alert, Button, Label, Spinner } from 'reactstrap'
-import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation'
+import { AvForm, AvGroup, AvInput, AvRadioGroup, AvRadio } from 'availity-reactstrap-validation'
 import axios from 'axios'
 import Errors from './Errors'
+import getToken from '../../../utils/csrf_helper'
+
 
 class UserDetails extends Component {
     state = {
@@ -11,6 +13,7 @@ class UserDetails extends Component {
     }
 
     saveAndContinue = () => {
+      console.log(this.props.values)
       this.requestData()
       this.form.reset()
     }
@@ -20,12 +23,13 @@ class UserDetails extends Component {
       SignupData.set('user[email]', this.props.values.email)
       SignupData.set('user[password]', this.props.values.password)
       SignupData.set('user[password_confirmation]', this.props.values.password_confirm)
+      SignupData.set('user[role]', this.props.values.role)
       SignupData.set('commit', 'Sign up')
       axios({
         method: 'post',
         url: '/users.json',
         data: SignupData,
-        config: { headers: { 'Content-Type': 'multipart/form-data' } },
+        config: { headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } },
       })
         .then((response) => {
           // this.props.nextStep()
@@ -83,17 +87,11 @@ Please, enter user details
               />
             </AvGroup>
             <AvGroup>
-              <Label for="exampleSelect">Choose your role:</Label>
-              <AvInput
-                type="select"
-                name="select_role"
-                id="select_role"
-                onChange={this.props.handleChange('role')}
-                required
-              >
-                <option>Owner</option>
-                <option>Handler</option>
-              </AvInput>
+              <Label for="choose_role">Choose your role:</Label>
+              <AvRadioGroup inline name="Choose Role" id='choose_role' required>
+                 <AvRadio onChange={this.props.handleChange('role')} customInput label="Owner" value="Owner" />
+                 <AvRadio onChange={this.props.handleChange('role')} customInput label="Handler" value="Handler" />
+              </AvRadioGroup>
             </AvGroup>
             <Button type="submit" size="lg" color="primary">Next</Button>
           </AvForm>
