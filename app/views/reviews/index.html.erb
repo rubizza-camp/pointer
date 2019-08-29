@@ -1,7 +1,0 @@
-<h1>Reviews for <%= @reviewable.id %></h1>
-
-<%= render(@reviews) || "There are no reviews available." %>
-
-<br>
-
-<%= link_to 'New Review', [:new, @reviewable, :review] %>

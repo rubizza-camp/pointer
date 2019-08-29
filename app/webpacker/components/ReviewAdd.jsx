@@ -8,12 +8,8 @@ class ReviewAdd extends Component {
   state = { review: DEFAULT_STATE }
 
   reviewData = () => {
-    const { rating, comment } = this.state.review
-    const { match } = this.props
-    return {
-      rating,
-      comment
-    }
+    const { review } = this.state
+    return review
   }
 
   handleSubmit = (event) => {
