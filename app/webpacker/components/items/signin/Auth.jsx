@@ -1,8 +1,8 @@
 // Auth.jsx
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Container } from 'reactstrap'
-import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
+import { Container, Alert, Button, Label, FormGroup, Input } from 'reactstrap'
+
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
 import styled from 'styled-components'
 import axios from 'axios'

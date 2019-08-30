@@ -87,45 +87,43 @@ a{
 }
 `
 
-const Members = (props) => {
-  return (
-    <MembersItem>
-      <MemberPhoto>
-        <img src={props.avatar_url} alt="member_photo" />
-      </MemberPhoto>
-      <MemberBody>
-        <MemberStars>
-          <MemberStarsItem>
-            <img src={star} alt="star" />
-          </MemberStarsItem>
-          <MemberStarsItem>
-            <img src={star} alt="star" />
-          </MemberStarsItem>
-          <MemberStarsItem>
-            <img src={star} alt="star" />
-          </MemberStarsItem>
-          <MemberStarsItem>
-            <img src={star} alt="star" />
-          </MemberStarsItem>
-          <MemberStarsItem>
-            <img src={star} alt="star" />
-          </MemberStarsItem>
-        </MemberStars>
-        <MemberName>
-          <p>{props.name}</p>
-        </MemberName>
-        <MemberWalks>
-          <p>{props.trip_count}</p>
-        </MemberWalks>
-        <MemberReviews>
-          <p>{I18n.t('members.reviews_count')}</p>
-        </MemberReviews>
-        <MemberLink>
-          <a href="#">{I18n.t('members.link_to_profile')}</a>
-        </MemberLink>
-      </MemberBody>
-    </MembersItem>
-  )
-}
+const Members = (props) => (
+  <MembersItem>
+    <MemberPhoto>
+      <img src={props.avatar_url} alt="member_photo" />
+    </MemberPhoto>
+    <MemberBody>
+      <MemberStars>
+        <MemberStarsItem>
+          <img src={star} alt="star" />
+        </MemberStarsItem>
+        <MemberStarsItem>
+          <img src={star} alt="star" />
+        </MemberStarsItem>
+        <MemberStarsItem>
+          <img src={star} alt="star" />
+        </MemberStarsItem>
+        <MemberStarsItem>
+          <img src={star} alt="star" />
+        </MemberStarsItem>
+        <MemberStarsItem>
+          <img src={star} alt="star" />
+        </MemberStarsItem>
+      </MemberStars>
+      <MemberName>
+        <p>{props.name}</p>
+      </MemberName>
+      <MemberWalks>
+        <p>{props.trip_count}</p>
+      </MemberWalks>
+      <MemberReviews>
+        <p>{I18n.t('members.reviews_count')}</p>
+      </MemberReviews>
+      <MemberLink>
+        <a href="#">{I18n.t('members.link_to_profile')}</a>
+      </MemberLink>
+    </MemberBody>
+  </MembersItem>
+)
 
 export default Members

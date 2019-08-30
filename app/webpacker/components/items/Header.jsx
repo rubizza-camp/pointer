@@ -91,7 +91,12 @@ const Header = ({ isAuthorized, logout, locale, changeLocale }) => (
           <p>Телефон для связи:</p>
           <Link to="/">+375(25)5729105</Link>
         </TopHeaderContacts>
-        <Select options={OPTIONS} onChange={changeLocale} styles={customStyles} defaultValue={OPTIONS[1]}/>
+        <Select
+          options={OPTIONS}
+          onChange={changeLocale}
+          styles={customStyles}
+          defaultValue={OPTIONS[1]}
+        />
       </TopHeaderContainer>
     </TopHeader>
     <LowHeader>
