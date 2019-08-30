@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # get '*path', to: 'static_pages#home', constraints: ->(request) do
-  #   !request.xhr? && request.format.html?
-  # end
+  get '*path', to: 'static_pages#home', constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks',
                                     :registrations => "users/registrations",
                                     :sessions => "users/sessions" }
