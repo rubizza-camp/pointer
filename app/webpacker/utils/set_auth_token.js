@@ -9,10 +9,5 @@ export default function setAuthorizationToken() {
   } else {
     delete axios.defaults.headers.common.Authorization
     axiosDeleteRequest('/users/sign_out.json', '', '')
-    // axios({
-    //   method: 'DELETE',
-    //   url: '/users/sign_out.json',
-    //   headers: { 'X-CSRF-Token': getToken() },
-    // })
   }
 }
