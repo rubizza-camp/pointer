@@ -4,8 +4,6 @@ import { Alert } from 'reactstrap'
 
 const Errors = ({ data }) => {
   if (!data) return null
-  console.log(data.error.error)
-
   return (
     <div>
       <Alert color="danger">
