@@ -1,9 +1,9 @@
 // MainForm.jsx
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
+import styled from 'styled-components'
 import BasicInfo from './BasicInfo'
 import PersonalDetails from './PersonalDetails'
-import styled from 'styled-components'
 
 const SignContainer = styled(Container)`
   margin-top: 50px;
