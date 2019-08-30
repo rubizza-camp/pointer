@@ -121,11 +121,18 @@ const Members = (props) => {
           <p>{I18n.t('members.reviews_count')}</p>
         </MemberReviews>
         <MemberLink>
-          <a href="#">{I18n.t('members.link_to_profile')}</a>
+          <p>{I18n.t('members.link_to_profile')}</p>
         </MemberLink>
       </MemberBody>
     </MembersItem>
   )
 }
+
+Members.propTypes = {
+  avatar_url: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  trip_count: PropTypes.number.isRequired,
+}
+
 
 export default Members
