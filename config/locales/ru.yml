@@ -1,0 +1,28 @@
+ru:
+  header:
+    number: 'Наш номер:'
+    about: 'О нас'
+    members: 'Выгульщики'
+    work: 'Работа'
+    reviews: 'Отзывы'
+    contacts: 'Контакты'
+    log_in: 'Вход'
+    sign_up: 'Регистрация'
+  banner:
+    height_title: 'Забота'
+    average_title: 'О тех, кто вам важен'
+    low_title: 'Профессиональный выгул, няня, передержка домашних животных в Минске'
+  button:
+    more_info: 'Подробнее'
+    make_request: 'Make a request'
+  request:
+    title: 'Сделать заказ в несколько кликов'
+    text: 'Если вы уже наш клиент или просто хотите быстро сделать заказ, эта кнопка для вас'
+  members:
+    title: 'Наши выгульщики'
+    reviews_count: 'Количество прогулок'
+    link_to_profile: 'Перейти в профиль'
+  questions:
+    title: 'Часто задаваемые вопросы'
+  reviews:
+    title: 'Отзывы наших клиентов'

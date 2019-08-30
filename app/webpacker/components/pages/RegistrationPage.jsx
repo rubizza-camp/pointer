@@ -6,16 +6,9 @@ import MainForm from '../items/singup/MainForm'
 class App extends Component {
   render() {
     return (
-      <Container class="d-flex justify-content-center">
-        <MainForm />
-      </Container>
+      <MainForm />
     )
   }
 }
-
-ReactDOM.render(
-  <App />,
-  document.body.appendChild(document.createElement('div')),
-)
 
 export default App

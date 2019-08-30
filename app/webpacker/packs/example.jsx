@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Cookies from 'js-cookie'
 import I18n from 'i18n-js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Select from 'react-select'
+import styled from 'styled-components'
 import Header from '../components/items/Header'
 import Footer from '../components/items/Footer'
 import MembersPage from '../components/pages/MembersPage'
@@ -10,11 +12,15 @@ import MainFormSignIn from '../components/items/signin/MainForm'
 import MainFormSignUp from '../components/items/signup/MainForm'
 import setAuthorizationToken from '../utils/set_auth_token'
 
+const Wrapper = styled.div`
+  font-family: 'Roboto', sans-serif;
+`
+
 global.I18n = I18n
 require('./i18n/translations')
 
 class Basic extends Component {
-  state = { isAuthorized: false, isInitialRender: true }
+  state = { isAuthorized: false, isInitialRender: true, locale: 'en' }
 
   static getDerivedStateFromProps(_nextProps, prevState) {
     if (prevState.isInitialRender) return { isAuthorized: !!Cookies.get('Authorization'), isInitialRender: false }
@@ -30,19 +36,30 @@ class Basic extends Component {
     this.setAuth(false)
   }
 
+  changeLocale = (e) => {
+    I18n.locale = e.value
+    this.setState(() => ({ locale: I18n.locale }))
+  }
+
   render() {
-    const { isAuthorized } = this.state
+    const { isAuthorized, locale } = this.state
+
     return (
-      <>
+      <Wrapper>
         <Router>
-          <Header logout={this.logout} isAuthorized={isAuthorized} />
+          <Header
+            logout={this.logout}
+            isAuthorized={isAuthorized}
+            locale={locale}
+            changeLocale={this.changeLocale}
+          />
           <Route path="/" exact component={HomePage} />
           <Route path="/members" component={MembersPage} />
           <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth} />} />
           <Route path="/signup" component={MainFormSignUp} />
         </Router>
         <Footer />
-      </>
+      </Wrapper>
     )
   }
 }

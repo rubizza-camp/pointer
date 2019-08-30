@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Container, Button } from 'reactstrap'
 import styled from 'styled-components'
+import Select from 'react-select'
 
 const TopHeader = styled.div`
   width: 100%;
@@ -70,8 +71,19 @@ const LowHeaderMenu = styled.div`
   }
 `
 
+const OPTIONS = [
+  { value: 'ru', label: 'ru' },
+  { value: 'en', label: 'en' },
+]
 
-const Header = ({ isAuthorized, logout }) => (
+const customStyles = {
+  control: () => ({
+    display: 'flex',
+    width: 70,
+  }),
+}
+
+const Header = ({ isAuthorized, logout, locale, changeLocale }) => (
   <>
     <TopHeader>
       <TopHeaderContainer>
@@ -79,6 +91,7 @@ const Header = ({ isAuthorized, logout }) => (
           <p>Телефон для связи:</p>
           <Link to="/">+375(25)5729105</Link>
         </TopHeaderContacts>
+        <Select options={OPTIONS} onChange={changeLocale} styles={customStyles} defaultValue={OPTIONS[1]}/>
       </TopHeaderContainer>
     </TopHeader>
     <LowHeader>
@@ -95,14 +108,14 @@ const Header = ({ isAuthorized, logout }) => (
           {isAuthorized
             ? (<Button outline color="warning" onClick={logout}>Logout</Button>)
             : (
-              <div>
+              <>
                 <GreenLink to="/signin">
                   {I18n.t('header.log_in')}
                 </GreenLink>
                 <GreenLink to="/signup">
                   {I18n.t('header.sign_up')}
                 </GreenLink>
-              </div>
+              </>
             )}
         </LowHeaderMenu>
       </LowHeaderContainer>
@@ -110,8 +123,9 @@ const Header = ({ isAuthorized, logout }) => (
   </>
 )
 
-
 Header.propTypes = {
+  locale: PropTypes.oneOf(OPTIONS.map(({ value }) => value)).isRequired,
+  changeLocale: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
 }
