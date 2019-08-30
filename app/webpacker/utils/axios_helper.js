@@ -1,36 +1,27 @@
 import axios from 'axios'
 import getToken from './csrf_helper'
 
+const makeRequest = (method, url, data, callback) => (
+  axios({
+    url,
+    method,
+    headers: { 'X-CSRF-Token': getToken() },
+    data,
+  }).then(response => callback(response))
+)
+
 export const axiosPostRequest = (url, data, callback) => {
-  axios({
-    url,
-    method: 'POST',
-    headers: { 'X-CSRF-Token': getToken() },
-    data,
-  }).then(response => callback(response))
+  makeRequest('POST', url, data, callback)
 }
-export const axiosPatchRequest = (url, data, callback) => {
-  axios({
-    url,
-    method: 'PATCH',
-    headers: { 'X-CSRF-Token': getToken() },
-    data,
-  }).then(response => callback(response))
-}
+
 export const axiosGetRequest = (url, data, callback) => {
-  axios({
-    url,
-    method: 'GET',
-    headers: { 'X-CSRF-Token': getToken() },
-    data,
-  }).then(response => callback(response))
+  makeRequest('GET', url, data, callback)
+}
+
+export const axiosPatchRequest = (url, data, callback) => {
+  makeRequest('PATCH', url, data, callback)
 }
 
 export const axiosDeleteRequest = (url, data, callback) => {
-  axios({
-    url,
-    method: 'DELETE',
-    headers: { 'X-CSRF-Token': getToken() },
-    data,
-  }).then(response => callback(response))
+  makeRequest('DELETE', url, data, callback)
 }
