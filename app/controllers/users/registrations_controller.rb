@@ -1,9 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
   respond_to :json
 
-  # POST /resource
-   def create    
+  def create
     build_resource(sign_up_params)
 
     resource.save
@@ -23,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         msg = find_message(:"signed_up_but_#{resource.inactive_message}", {})
         expire_data_after_sign_in!
         respond_with(resource) do |format|
-          format.json { render json: {message: msg,url: after_inactive_sign_up_path_for(resource)}, status: 200 }
+          format.json { render json: { message: msg,url: after_inactive_sign_up_path_for(resource) }, status: 200 }
         end
       end
     else
@@ -32,9 +30,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       #http://edgeapi.rubyonrails.org/classes/ActionController/Responder.html
       respond_with(resource) do |format|
         msg = resource.errors.full_messages.join("<br>").html_safe
-        format.json { render json: {message: msg}, status: 401 }
+        format.json { render json: { message: msg }, status: 401 }
       end
     end
-   end
-   
+  end
 end

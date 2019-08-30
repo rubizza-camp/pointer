@@ -9,6 +9,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import Errors from './Errors'
 import setAuthorizationToken from '../../../utils/set_auth_token'
+import getToken from '../../../utils/csrf_helper'
 
 const AuthContainer = styled(Container)`
   margin-top: 50px;
@@ -31,7 +32,7 @@ class Auth extends Component {
         method: 'post',
         url: '/users/sign_in.json',
         data: AuthData,
-        config: { headers: { 'Content-Type': 'multipart/form-data' } },
+        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() },
       })
         .then((response) => {
           Cookies.set('Authorization', response.headers.authorization)
