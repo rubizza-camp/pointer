@@ -83,7 +83,7 @@ const customStyles = {
   }),
 }
 
-const Header = ({ isAuthorized, logout, locale, changeLocale }) => (
+const Header = ({ isAuthorized, logout, changeLocale }) => (
   <>
     <TopHeader>
       <TopHeaderContainer>
