@@ -3,10 +3,8 @@ import getToken from './csrf_helper'
 
 const makeRequest = (method, url, data, callback) => (
   axios({
-front-new
     url: `${url}.json`,
     method: 'POST',
-master
     headers: { 'X-CSRF-Token': getToken() },
     data,
   }).then(response => callback(response))
