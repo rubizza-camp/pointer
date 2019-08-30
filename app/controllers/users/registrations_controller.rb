@@ -3,9 +3,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   # POST /resource
-   def create    
+   def create
+    p sign_up_params    
     build_resource(sign_up_params)
-
+    if(params[:role]=='Owner')
+      self.resource.update(:userable => PetOwner.new)
+    else
+      self.resource.update(:userable => Handler.new)
+    end
     resource.save
     yield resource if block_given?
     if resource.persisted?

@@ -9,6 +9,7 @@ import HomePage from '../components/pages/HomePage'
 import MainFormSignIn from '../components/items/signin/MainForm'
 import MainFormSignUp from '../components/items/signup/MainForm'
 import setAuthorizationToken from '../utils/set_auth_token'
+import PetController from '../components/pages/PetController'
 
 global.I18n = I18n
 require('./i18n/translations')
@@ -40,6 +41,7 @@ class Basic extends Component {
           <Route path="/members" component={MembersPage} />
           <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth} />} />
           <Route path="/signup" component={MainFormSignUp} />
+          <Route path="/pets" component={PetController} />
         </Router>
         <Footer />
       </>

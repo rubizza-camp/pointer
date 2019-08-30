@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { axiosPostRequest, axiosGetRequest, axiosDeleteRequest } from 'utils/axios_helper'
 import styled, { createGlobalStyle } from 'styled-components'
 import { Spinner } from 'reactstrap'
-import { Card, SaveButton } from './PetsCards'
-import { CardProfile } from './CardProfile'
+import { Card, SaveButton } from '../items/PetsCards'
+import { CardProfile } from '../items/CardProfile'
+import Cookies from 'js-cookie'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -46,6 +47,7 @@ class PetController extends Component {
   state = { data: [], loading: true }
 
   componentDidMount() {
+    console.log(Cookies.get())
     axiosGetRequest('/pet_owners/1/pets', {}, (response) => { this.setState({ data: response.data.data, loading: false }) })
   }
 

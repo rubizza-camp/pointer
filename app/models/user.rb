@@ -13,6 +13,10 @@ class User < ApplicationRecord
     UserNotifierMailer.welcome_email(self).deliver
   end
 
+  def jwt_payload
+    {'roleId' => userable_id}
+  end
+
   def self.from_omniauth(auth)
     info = auth.info
     provider = auth.provider
