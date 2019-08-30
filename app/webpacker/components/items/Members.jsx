@@ -1,6 +1,7 @@
 /* global I18n */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import star from '../../images/star.png'
 
