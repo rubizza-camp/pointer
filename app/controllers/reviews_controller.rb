@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = @reviewable.reviews.order('id DESC')
-    render json: ReviewSerializer.new(@reviews, include: [:user]).serialized_json
+    render json: ReviewSerializer.new(@reviews, include: [:user, :pet]).serialized_json
   end
 
   def new
