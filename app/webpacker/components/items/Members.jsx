@@ -134,5 +134,4 @@ Members.propTypes = {
   trip_count: PropTypes.number.isRequired,
 }
 
-
 export default Members
