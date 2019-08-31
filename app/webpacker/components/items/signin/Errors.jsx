@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 
 const Errors = ({ data }) => {
-  if (!data) return null
+  if (!data.error) return null
   return (
     <div>
       <Alert color="danger">

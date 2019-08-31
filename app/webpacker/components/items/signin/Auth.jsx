@@ -1,8 +1,8 @@
 // Auth.jsx
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Container } from 'reactstrap'
-import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
+import { Redirect } from 'react-router'
+import { Alert, Button, Label, FormGroup, Input, Container } from 'reactstrap'
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
 import styled from 'styled-components'
 import axios from 'axios'
@@ -16,6 +16,8 @@ const AuthContainer = styled(Container)`
 `
 
 class Auth extends Component {
+    state = { isSignedUp: false }
+
     saveAndContinue = () => {
       this.requestData()
       this.form = React.createRef()
@@ -39,6 +41,7 @@ class Auth extends Component {
           setAuthorizationToken()
           const { setAuth } = this.props
           setAuth(true)
+          this.setState({ isSignedUp: true })
         })
         .catch((error) => {
           if (error.response) {
@@ -48,6 +51,9 @@ class Auth extends Component {
     }
 
     render() {
+      if (this.state.isSignedUp) {
+        return <Redirect to = {{ pathname: '/' }} />
+      }
       return (
         <AuthContainer>
           <Alert color="success">
