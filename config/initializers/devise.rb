@@ -15,7 +15,7 @@ Devise.setup do |config|
       ['POST', %r{^/users/sign_in.json$}]
     ]
     jwt.revocation_requests = [
-      ['DELETE', %r{^/users/sign_out$}]
+      ['DELETE', %r{^/users/sign_out.json$}]
     ]
     jwt.request_formats = {
                         user: [:json],

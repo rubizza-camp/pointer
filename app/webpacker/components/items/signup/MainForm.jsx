@@ -1,8 +1,13 @@
 // MainForm.jsx
 import React, { Component } from 'react'
+import { Container } from 'reactstrap'
+import styled from 'styled-components'
 import BasicInfo from './BasicInfo'
 import PersonalDetails from './PersonalDetails'
-// import Success from './Success';
+
+const SignContainer = styled(Container)`
+  margin-top: 50px;
+`
 
 class MainFormSignUp extends Component {
     state = {
@@ -39,20 +44,24 @@ class MainFormSignUp extends Component {
       switch (step) {
         case 1:
           return (
+            <SignContainer>
             <BasicInfo
               nextStep={this.nextStep}
               handleChange={this.handleChange}
               values={values}
             />
+            </SignContainer>
           )
         case 2:
           return (
-            <PersonalDetails
-              nextStep={this.nextStep}
-              prevStep={this.prevStep}
-              handleChange={this.handleChange}
-              values={values}
-            />
+            <SignContainer>
+              <PersonalDetails
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
+            </SignContainer>
           )
       }
     }

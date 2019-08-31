@@ -5,4 +5,5 @@ class Handler < ApplicationRecord
   include Loginable
   include Ratingable
   has_many :trips
+  has_one_attached :avatar
 end

@@ -1,13 +1,19 @@
 // Auth.jsx
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Container } from 'reactstrap'
 import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
+import styled from 'styled-components'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Errors from './Errors'
 import setAuthorizationToken from '../../../utils/set_auth_token'
 import getToken from '../../../utils/csrf_helper'
+
+const AuthContainer = styled(Container)`
+  margin-top: 50px;
+`
 
 class Auth extends Component {
     saveAndContinue = () => {
@@ -26,8 +32,7 @@ class Auth extends Component {
         method: 'post',
         url: '/users/sign_in.json',
         data: AuthData,
-        config: { headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } },
-      })
+        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
         .then((response) => {
           Cookies.set('Authorization', response.headers.authorization)
           setAuthorizationToken()
@@ -44,7 +49,7 @@ class Auth extends Component {
 
     render() {
       return (
-        <div>
+        <AuthContainer>
           <Alert color="success">
             <h2 className="ui centered">Please, enter your login and password</h2>
           </Alert>
@@ -80,7 +85,7 @@ class Auth extends Component {
             </FormGroup>
             <Button type="submit" size="lg" color="primary">Login</Button>
           </AvForm>
-        </div>
+        </AuthContainer>
       )
     }
 }

@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
 const NavbarWrapper = styled.div`
-display: none;
-@media only screen and (max-width: 767px) {
-  display: block;
-}
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
 `
 
 export default class Example extends React.Component {

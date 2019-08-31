@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2019_08_31_073552) do
     t.bigint "pet_owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string "name", default: "", null: false
     t.integer "rating", default: 5, null: false
     t.index ["pet_owner_id"], name: "index_pets_on_pet_owner_id"
@@ -84,6 +85,13 @@ ActiveRecord::Schema.define(version: 2019_08_31_073552) do
     t.datetime "updated_at", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+=======
+    t.string "name"
+    t.string "breed"
+    t.text "times", default: [], array: true
+    t.bigint "pet_owner_id"
+    t.index ["pet_owner_id"], name: "index_pets_on_pet_owner_id"
+>>>>>>> master
   end
 
   create_table "trips", force: :cascade do |t|
@@ -122,5 +130,6 @@ ActiveRecord::Schema.define(version: 2019_08_31_073552) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "checkins", "trips"
+  add_foreign_key "pets", "pet_owners"
   add_foreign_key "trips", "handlers"
 end
