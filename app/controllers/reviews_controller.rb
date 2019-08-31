@@ -2,22 +2,18 @@
 
 class ReviewsController < ApplicationController
   before_action :find_reviewable
-  skip_before_action :verify_authenticity_token
 
   def index
-    @reviews = @reviewable.reviews.order('id DESC')
+    @reviews = policy_scope(@reviewable.reviews).order('id DESC')
     render json: ReviewSerializer.new(@reviews, include: [:user]).serialized_json
   end
 
-  def new
-    @review = @reviewable.reviews.new
-  end
-
   def create
-    current_user = User.first
+    authorize :review
     @review = @reviewable.reviews.new(review_params.merge(user: current_user))
     if @review.save
       @reviewable.refresh_rating
+      debugger
       render json: ReviewSerializer.new(@review, include: [:user, :reviewable]).serialized_json, status: :created
     else
       render json: @review.errors, status: :unprocessable_entity

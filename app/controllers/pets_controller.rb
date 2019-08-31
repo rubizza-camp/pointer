@@ -2,10 +2,11 @@ class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :update_photo, :update, :destroy]
 
   def index
-    render json: PetSerializer.new(Pet.where(:pet_owner_id => pet_owner_id)).serialized_json
+    render json: PetSerializer.new(policy_scope(Pet).where(:pet_owner_id => pet_owner_id)).serialized_json
   end
   
   def show
+    authorize @pet
     render json: PetSerializer.new(@pet).serialized_json
   end
 
