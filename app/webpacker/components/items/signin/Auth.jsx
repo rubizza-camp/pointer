@@ -52,7 +52,7 @@ class Auth extends Component {
 
     render() {
       if (this.state.isSignedUp) {
-        return <Redirect to = {{ pathname: '/' }} />
+        return <Redirect to={{ pathname: '/' }} />
       }
       return (
         <AuthContainer>
