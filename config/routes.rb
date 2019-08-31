@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :pet_owners do
     resources :pets, only: [:create, :update, :index, :destroy]
   end
-  get 'tripwatcher/:id', to: 'trips#show'
   post 'pusher/new', to: 'pusher#create'
   post 'pet_owner/identify', to: 'pet_owner#identify'
   patch 'pet_owners/:pet_owner_id/pets/:id/avatar', to: 'pets#update_photo'

@@ -12,6 +12,8 @@ import MainFormSignIn from '../components/items/signin/MainForm'
 import MainFormSignUp from '../components/items/signup/MainForm'
 import setAuthorizationToken from '../utils/set_auth_token'
 import PetController from '../components/pages/PetController'
+import MapController from '../components/pages/MapController'
+import MapViewer from '../components/pages/MapViewer'
 
 const Wrapper = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -59,6 +61,8 @@ class Basic extends Component {
           <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth} />} />
           <Route path="/signup" component={MainFormSignUp} />
           <Route path="/pets" component={PetController} />
+          <Route path="/trips" component={MapController} />
+          <Route exact path="/tripwatcher/:uuid" component={MapViewer} />
         </Router>
         <Footer />
       </Wrapper>
