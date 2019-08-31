@@ -1,49 +1,98 @@
 // PersonalDetails.jsx
 import React, { Component } from 'react'
+import { AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation'
+import { Alert, Button, Label } from 'reactstrap'
+import axios from 'axios'
+import getToken from '../../../utils/csrf_helper'
+
 
 class PersonalDetails extends Component {
-    saveAndContinue = (e) => {
-      e.preventDefault()
-      this.props.nextStep()
-    }
+    // saveAndContinue = () => {
+    //   if(this.props.values.role == 'Owner') {
 
-    back = (e) => {
-      e.preventDefault()
-      this.props.prevStep()
-    }
+    //   }
+    //   else {
+        
+    //   }
+    //   requestData(url)
+    //   // this.props.nextStep()
+    // }
+
+    // requestData = (url) => {
+    //   const SignupPersonalData = new FormData()
+    //   SignupPersonalData.set('first_name', this.props.values.first_name)
+    //   SignupPersonalData.set('last_name', this.props.values.last_name)
+    //   SignupPersonalData.set('metro', this.props.values.metro)
+    //   SignupPersonalData.set('phone', this.props.values.phone)
+    //   axios({
+    //     method: 'post',
+    //     url: `${url}`,
+    //     data: SignupPersonalData,
+    //     headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
+    //     .then((response) => {
+    //     })
+    //     .catch((error) => {
+    //       if (error.response) {
+    //         this.props.nextStep()
+    //         this.setState({ error: error.response.data.message })
+    //       }
+    //     })
+    // }
 
     render() {
-      const { values } = this.props
       return (
-        <Form color="blue">
-          <h1 className="ui centered">Enter Personal Details</h1>
-          <Form.Field>
-            <label>Age</label>
-            <input
-              placeholder="Age"
-              onChange={this.props.handleChange('age')}
-              defaultValue={values.age}
+        <AvForm>
+          <Alert color="success">
+            <h2 className="ui centered">
+              Please, enter your personal details:
+            </h2>
+          </Alert>
+          <AvGroup>
+          <Label for="first_name">Enter your first name:</Label>
+            <AvInput
+              type="text"
+              name="first_name"
+                id="first_name"
+                placeholder="First name:"
+                onChange={this.props.handleChange('first_name')}
+                required
             />
-          </Form.Field>
-          <Form.Field>
-            <label>City</label>
-            <input
-              placeholder="City"
-              onChange={this.props.handleChange('city')}
-              defaultValue={values.city}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Country</label>
-            <input
-              placeholder="Country"
-              onChange={this.props.handleChange('country')}
-              defaultValue={values.country}
-            />
-          </Form.Field>
-          <Button onClick={this.back}>Back</Button>
+          </AvGroup>
+          <AvGroup>
+          <Label for="last_name">Enter your last name:</Label>
+              <AvInput
+                type="text"
+                name="last_name"
+                id="last_name"
+                placeholder="Last name:"
+                onChange={this.props.handleChange('last_name')}
+                required
+              />
+          </AvGroup>
+          <AvGroup>
+          <Label for="metro">Enter your metro line:</Label>
+              <AvInput
+                type="text"
+                name="metro"
+                id="metro"
+                placeholder="Metro line:"
+                onChange={this.props.handleChange('metro')}
+                required
+              />
+          </AvGroup>
+          <AvGroup>
+          <Label for="phone">Enter your phone number:</Label>
+              <AvInput
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder="Phone number:"
+                onChange={this.props.handleChange('phone')}
+                required
+              />
+          </AvGroup>
           <Button onClick={this.saveAndContinue}>Save And Continue</Button>
-        </Form>
+        </AvForm>
       )
     }
 }

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PetsController < ApplicationController
+  debugger
   def create
     render json: PetSerializer.new(Pet.create(:pet_owner_id => pet_owner_id)).serialized_json
   end

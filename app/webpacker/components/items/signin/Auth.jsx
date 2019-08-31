@@ -45,7 +45,6 @@ class Auth extends Component {
         .catch((error) => {
           if (error.response) {
             this.setState({ error: error.response.data })
-            console.log(error.response.data)
           }
         })
     }

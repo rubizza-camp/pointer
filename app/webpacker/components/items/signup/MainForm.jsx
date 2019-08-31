@@ -17,6 +17,10 @@ class MainFormSignUp extends Component {
       password_confirm: '',
       role: '',
       data: '',
+      first_name: '',
+      last_name: '',
+      phone: '',
+      metro: '',
     }
 
     nextStep = () => {
@@ -39,8 +43,8 @@ class MainFormSignUp extends Component {
 
     render() {
       const { step } = this.state
-      const { email, password, password_confirm, role, data } = this.state
-      const values = { email, password, password_confirm, role, data }
+      const { email, password, password_confirm, role, data, first_name, last_name, phone, metro } = this.state
+      const values = { email, password, password_confirm, role, data, first_name, last_name, phone, metro }
       switch (step) {
         case 1:
           return (
@@ -57,7 +61,6 @@ class MainFormSignUp extends Component {
             <SignContainer>
               <PersonalDetails
                 nextStep={this.nextStep}
-                prevStep={this.prevStep}
                 handleChange={this.handleChange}
                 values={values}
               />

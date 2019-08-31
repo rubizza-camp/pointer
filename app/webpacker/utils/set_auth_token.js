@@ -8,6 +8,6 @@ export default function setAuthorizationToken() {
     axios.defaults.headers.common.Authorization = token
   } else {
     delete axios.defaults.headers.common.Authorization
-    axiosDeleteRequest('/users/sign_out.json', '', '')
+    axiosDeleteRequest('/users/sign_out', '', '')
   }
 }

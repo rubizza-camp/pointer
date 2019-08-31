@@ -1,11 +1,10 @@
 // BasicInfo.jsx
 import React, { Component } from 'react'
-import { Alert, Button, Label, Spinner } from 'reactstrap'
+import { Alert, Button, Label } from 'reactstrap'
 import { AvForm, AvGroup, AvInput, AvRadioGroup, AvRadio } from 'availity-reactstrap-validation'
 import axios from 'axios'
 import Errors from './Errors'
 import getToken from '../../../utils/csrf_helper'
-
 
 class UserDetails extends Component {
     state = {
@@ -13,7 +12,6 @@ class UserDetails extends Component {
     }
 
     saveAndContinue = () => {
-      console.log(this.props.values)
       this.requestData()
       this.form.reset()
     }
@@ -31,10 +29,10 @@ class UserDetails extends Component {
         data: SignupData,
         headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
         .then((response) => {
-          // this.props.nextStep()
         })
         .catch((error) => {
           if (error.response) {
+            this.props.nextStep()
             this.setState({ error: error.response.data.message })
           }
         })
