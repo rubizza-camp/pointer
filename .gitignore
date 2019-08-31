@@ -28,6 +28,7 @@
 
 # Ignore application configuration
 /config/application.yml
+/config/gcs.json
 /.idea
 
 /public/packs

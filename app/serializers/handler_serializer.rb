@@ -11,5 +11,4 @@ class HandlerSerializer
   attribute :avatar_url do |handler|
     avatar_url(handler)
   end
-
 end

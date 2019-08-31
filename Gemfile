@@ -3,8 +3,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# ruby '2.6.3'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -70,7 +68,8 @@ gem 'pundit', '~> 2.0.1'
 gem 'pusher',  '~> 1.3.3'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '~> 4.x'
+gem "google-cloud-storage", "~> 1.11", require: false
+gem 'devise-jwt'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'omniauth-google-oauth2'
-gem "google-cloud-storage", "~> 1.11", require: false

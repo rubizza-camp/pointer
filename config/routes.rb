@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   get '*path', to: 'static_pages#home', constraints: ->(request) do
     !request.xhr? && request.format.html?
   end
-
-  get 'pets/index'
-  get 'pets/show'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks',
+                                    :registrations => "users/registrations",
+                                    :sessions => "users/sessions" }
   resources :trips do
     resources :checkins, only: :create
   end

@@ -1,6 +1,10 @@
+/* global I18n */
+
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import walk from '../../images/walk.jpg'
+
 
 const RequestWrapper = styled.div`
 margin: 60px 0 40px 0;
@@ -73,15 +77,15 @@ function Request() {
     <RequestWrapper>
       <RequestContainer>
         <RequestText>
-          <RequestTitle>Оформите заявку в несколько кликов</RequestTitle>
+          <RequestTitle>{I18n.t('request.title')}</RequestTitle>
           <RequestBody>
-            <p>
-Если вы уже наш клиент или просто хотите быстро оформить заявку,
-            эта кнопка для вас
-            </p>
+            <p>{I18n.t('request.text')}</p>
           </RequestBody>
           <RequestButton>
-            <a href="#">Оформить</a>
+            <Link to="/">
+              {I18n.t('button.make_request')}
+              {' '}
+            </Link>
           </RequestButton>
         </RequestText>
         <RequestImage>

@@ -1,3 +1,5 @@
+/* global I18n */
+
 import React from 'react'
 import styled from 'styled-components'
 import star from '../../images/star.png'
@@ -117,10 +119,10 @@ const Members = (props) => {
           <p>{props.trip_count}</p>
         </MemberWalks>
         <MemberReviews>
-          <p>Количество отзывов: 19</p>
+          <p>{I18n.t('members.reviews_count')}</p>
         </MemberReviews>
         <MemberLink>
-          <a href="#">Перейти в профиль</a>
+          <a href="#">{I18n.t('members.link_to_profile')}</a>
         </MemberLink>
       </MemberBody>
     </MembersItem>
