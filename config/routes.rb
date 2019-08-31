@@ -2,8 +2,9 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks',
-                                    :registrations => "users/registrations",
-                                    :sessions => "users/sessions" }
+                                    :registrations => 'users/registrations',
+                                    :sessions => 'users/sessions',
+                                    :confirmations => 'users/confirmations' }
   get '*path', to: 'static_pages#home', constraints: ->(request) do
     !request.xhr? && request.format.html?
   end
