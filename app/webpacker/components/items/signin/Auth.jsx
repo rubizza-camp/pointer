@@ -26,8 +26,7 @@ class Auth extends Component {
         method: 'post',
         url: '/users/sign_in.json',
         data: AuthData,
-        config: { headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } },
-      })
+        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
         .then((response) => {
           Cookies.set('Authorization', response.headers.authorization)
           setAuthorizationToken()

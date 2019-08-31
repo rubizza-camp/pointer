@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { axiosPostRequest, axiosGetRequest, axiosDeleteRequest } from 'utils/axios_helper'
 import styled, { createGlobalStyle } from 'styled-components'
 import { Spinner } from 'reactstrap'
+import Cookies from 'js-cookie'
+import * as JWT from 'jwt-decode'
 import { Card, SaveButton } from '../items/PetsCards'
 import { CardProfile } from '../items/CardProfile'
-import Cookies from 'js-cookie'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -46,19 +47,23 @@ flex-wrap: wrap;
 class PetController extends Component {
   state = { data: [], loading: true }
 
+  constructor(props) {
+    super(props)
+    this.id = JWT(Cookies.get('Authorization')).id
+  }
+
   componentDidMount() {
-    console.log(Cookies.get())
-    axiosGetRequest('/pet_owners/1/pets', {}, (response) => { this.setState({ data: response.data.data, loading: false }) })
+    axiosGetRequest(`/pet_owners/${this.id}/pets`, {}, (response) => { this.setState({ data: response.data.data||[], loading: false }) })
   }
 
   addPet = () => {
     this.setState({ loading: true })
-    axiosPostRequest('/pet_owners/1/pets', {}, (response) => this.setState(({ data }) => ({ loading: false, data: [...data, response.data.data] })))
+    axiosPostRequest(`/pet_owners/${this.id}/pets`, {}, (response) => this.setState(({ data }) => ({ loading: false, data: [...data, response.data.data] })))
   }
 
   handleDelete = (e) => {
     e.persist()
-    axiosDeleteRequest(`/pet_owners/1/pets/${e.target.id}`, {}, (response) => this.setState({ data: response.data.data }))
+    axiosDeleteRequest(`/pet_owners/${this.id}/pets/${e.target.id}`, {}, (response) => this.setState({ data: response.data.data }))
   }
 
   render() {
@@ -68,7 +73,7 @@ class PetController extends Component {
       <>
         <GlobalStyle />
         <Wrapper>
-          <PetContainer data={data} handleDelete={this.handleDelete} />
+          <PetContainer data={data} handleDelete={this.handleDelete} user />
           <Card>
             <SaveButton onClick={this.addPet}>Add a pet</SaveButton>
           </Card>

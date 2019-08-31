@@ -47,6 +47,10 @@ export const EditButton = styled(Button)`
 color: #fff;
 width: 180px;`
 
+export const TaskButton = styled(Button)`
+background: #ffdab9;
+width: 200px;`
+
 export const DeleteButton = styled(Button)`
 font-weight: 600;
 text-transform: uppercase;

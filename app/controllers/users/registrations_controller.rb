@@ -2,8 +2,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
-    build_resource(sign_up_params)
-
+    role_hash = {userable: sign_up_params[:role]=='Owner' ? PetOwner.create : Handler.create }
+    p role_hash
+    build_resource(sign_up_params.except(:role).merge(role_hash))
     resource.save
     yield resource if block_given?
     if resource.persisted?

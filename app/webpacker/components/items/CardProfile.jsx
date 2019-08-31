@@ -4,8 +4,10 @@ import PropTypes from 'prop-types'
 import { DirectUpload } from 'activestorage'
 import styled from 'styled-components'
 import { transformItems } from '../../utils/pet_helpers'
-import { Form, SaveButton, DeleteButton, EditButton, Card } from './PetsCards'
+import { Form, SaveButton, DeleteButton, EditButton, TaskButton, Card } from './PetsCards'
 import { Field, Input, Label } from './ListComponents'
+import Cookies from 'js-cookie'
+import * as JWT from 'jwt-decode'
 import List from './List'
 
 const Edit = ({
@@ -16,7 +18,6 @@ const Edit = ({
 }) => (
   <Card>
     <Form encType="multipart/form-data" onSubmit={onSubmit}>
-      <h1>Profile Card</h1>
       {children}
       <SaveButton type="submit">Save</SaveButton>
       <DeleteButton type="button" onClick={onDelete} id={id}> Delete </DeleteButton>
@@ -89,10 +90,10 @@ const Profile = ({
   name,
   breed,
   times,
+  onCreateTask,
 }) => (
   <Card>
     <Form enctype="multipart/form-data" onSubmit={onSubmit}>
-      <h1>Profile Card</h1>
       <Label className="custom-file-upload fas">
         <ImgWrap>
           <Img htmlFor="photo-upload" src={src} />
@@ -105,7 +106,8 @@ const Profile = ({
       <Label>Times to walk</Label>
       {times.map(item => (
         <BreedShow key={item.id} text={item.text}>{item.text}</BreedShow>))}
-      <EditButton type="submit" className="edit">Edit Profile </EditButton>
+      <EditButton type="submit">Edit Profile </EditButton>
+      <TaskButton type="button" onClick={onCreateTask}>Create task</TaskButton>
     </Form>
   </Card>
 )
@@ -206,6 +208,11 @@ export class CardProfile extends Component {
       initialRender: true,
     }
 
+    constructor(props){
+      super(props)
+      this.id = JWT(Cookies.get('Authorization')).id
+    }
+
     static getDerivedStateFromProps(nextProps, prevState) {
       if (prevState.initialRender) {
         const { data } = nextProps
@@ -230,7 +237,7 @@ export class CardProfile extends Component {
       const upload = new DirectUpload(file, railsActiveStorageDirectUploadsUrl)
       upload.create((error, blob) => {
         if (error) {
-          console.error(error)
+          console.warn(error)
         } else {
           this.updateAvatar(blob)
         }
@@ -240,7 +247,7 @@ export class CardProfile extends Component {
     updateAvatar = (blob) => {
       const { data } = this.props
       const { id } = data
-      axiosPatchRequest(`/pet_owners/1/pets/${id}/avatar`, { signed_blob_id: blob.signed_id }, () => undefined)
+      axiosPatchRequest(`/pet_owners/${this.id}/pets/${id}/avatar`, { signed_blob_id: blob.signed_id }, () => undefined)
     }
 
     photoUpload = e => {
@@ -273,7 +280,7 @@ export class CardProfile extends Component {
     updatePet = () => {
       const { data } = this.props
       const { id } = data
-      axiosPatchRequest(`/pet_owners/1/pets/${id}`, this.state, () => undefined)
+      axiosPatchRequest(`/pet_owners/${this.id}/pets/${id}`, this.state, () => undefined)
     }
 
     handleSubmit = e => {
@@ -288,6 +295,13 @@ export class CardProfile extends Component {
       })
     }
 
+    handleTask = e => {
+    const {data} = this.props
+    const {id} = data
+    Cookies.set('petId', id)
+    window.location.href='#'
+    }
+
     render() {
       const {
         imagePreviewUrl,
@@ -296,7 +310,7 @@ export class CardProfile extends Component {
         active,
         times,
       } = this.state
-      const { handleDelete, data } = this.props
+      const { handleDelete, data, handleTask } = this.props
       const { id } = data
       return (
         <>
@@ -315,6 +329,7 @@ export class CardProfile extends Component {
                 name={name}
                 breed={breed}
                 times={times}
+                onCreateTask={this.handleTask}
               />
             )
           }
@@ -326,4 +341,5 @@ export class CardProfile extends Component {
 CardProfile.propTypes = {
   data: PropTypes.object.isRequired,
   handleDelete: PropTypes.func.isRequired,
+  handleTask: PropTypes.func.isRequired,
 }

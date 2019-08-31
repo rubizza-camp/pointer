@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def jwt_payload
-    {'roleId' => userable_id}
+    {'id' => id}
   end
 
   def self.from_omniauth(auth)
