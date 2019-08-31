@@ -1,11 +1,21 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import getToken from './csrf_helper'
+
+const headers = () => {
+  let token = ''
+  if (Cookies.get('Authorization')) {
+    token = `${Cookies.get('Authorization')}`
+  }
+  return token
+}
+
 
 const makeRequest = (method, url, data, callback) => (
   axios({
     url: `${url}.json`,
     method,
-    headers: { 'X-CSRF-Token': getToken() },
+    headers: { 'X-CSRF-Token': getToken(), 'Authorization': headers() },
     data,
   }).then(response => callback(response))
 )

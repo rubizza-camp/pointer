@@ -53,7 +53,7 @@ class PetController extends Component {
   }
 
   componentDidMount() {
-    axiosGetRequest(`/pet_owners/${this.id}/pets`, {}, (response) => { this.setState({ data: response.data.data||[], loading: false }) })
+    axiosGetRequest(`/pet_owners/${this.id}/pets`, {}, (response) => { this.setState({ data: response.data.data || [], loading: false }) })
   }
 
   addPet = () => {
