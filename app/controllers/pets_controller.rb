@@ -10,6 +10,7 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
+    render json: PetSerializer.new(@pet).serialized_json
   end
 
   # GET /pets/new

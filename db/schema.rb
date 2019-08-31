@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_084542) do
+ActiveRecord::Schema.define(version: 2019_08_31_073552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,17 +51,26 @@ ActiveRecord::Schema.define(version: 2019_08_15_084542) do
     t.string "name"
     t.string "metro"
     t.text "description"
+    t.integer "rating", default: 5, null: false
+  end
+
+  create_table "jwt_blacklist", id: :serial, force: :cascade do |t|
+    t.string "jti", null: false
+    t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
 
   create_table "pet_owners", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rating", default: 5, null: false
   end
 
   create_table "pets", force: :cascade do |t|
     t.bigint "pet_owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: "", null: false
+    t.integer "rating", default: 5, null: false
     t.index ["pet_owner_id"], name: "index_pets_on_pet_owner_id"
   end
 

@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { Container } from 'reactstrap'
 import ReviewAdd from './ReviewAdd'
 import { axiosGetRequest } from '../utils/axios_helper'
+import findModel from '../utils/find_model_helper'
 import { Rating } from '@material-ui/lab'
 import { Typography, Box } from '@material-ui/core'
-import { find } from 'lodash';
+import { get } from 'lodash'
 
 const ReviewsContainer = styled(Container)`
 `
@@ -83,60 +84,66 @@ class ReviewList extends Component {
       {},
       this.setReviews
     )
+    axiosGetRequest(
+      `/${this.props.match.params.reviewable_type}/${this.props.match.params.id}`,
+      {},
+      this.setReviewable
+    )
   }
 
   setReviews = ({ data }) => {
     this.setState({ reviews: data.data, included: data.included })
   }
 
+  setReviewable = ({ data }) => {
+    this.setState({ reviewable: data.data})
+  }
+
   render() {
-    const { reviews, included } = this.state
+    const { reviews, reviewable, included } = this.state
     const { match } = this.props
     return (
       <ReviewsContainer>
-        <p>Reviews for {match.params.reviewable_type} # {match.params.id}</p>
+        <p>
+          Reviews for {get(reviewable, 'attributes.name')}
+        </p>
+        <Box component="fieldset" mb={3} borderColor="transparent">
+          <Typography component="legend">Rating</Typography>
+          <Rating
+            readOnly={true}
+            value={Number(get(reviewable, 'attributes.rating'))}
+          />
+        </Box>
         <ReviewAdd
           addReview={this.addReview} 
           match={match}
         />
         <br />
-        {
-          
-          reviews.map(({ attributes, relationships, id }) => (
+        {reviews.map(({ attributes, id, relationships }) => (
           <ReviewsItem key={id}>
             <PhotoContainer>
               <ReviewsItemPhoto />
             </PhotoContainer>
             <TextContainer>
-              <>
-                <ReviewsItemName>
-                  <p>
-                    User name: 
-                    {
-                    _.find(
-                      included,
-                      function(user) { return user.type === relationships.user.data.type && user.id === relationships.user.data.id}
-                      ).attributes.name
-                    }
-                  </p>
-                </ReviewsItemName>
-                <ReviewsItemDate>
-                  <p>{attributes.created_at}</p>
-                </ReviewsItemDate>
-                <ReviewsItemText>
-                  <p>{attributes.comment}</p>
-                </ReviewsItemText>
-                <Box component="fieldset" mb={3} borderColor="transparent">
-                  <Typography component="legend">Rating</Typography>
-                  <Rating
-                    readOnly={true}
-                    value={Number(attributes.rating)}
-                  />
-                </Box>
-                <ReviewsItemText>
-                  <p>Rating: {attributes.rating}</p>
-                </ReviewsItemText>
-              </>
+              <ReviewsItemName>
+                <p>User name: {get(findModel(included, relationships.user), 'attributes.name')}</p>
+              </ReviewsItemName>
+              <ReviewsItemDate>
+                <p>{attributes.created_at}</p>
+              </ReviewsItemDate>
+              <ReviewsItemText>
+                <p>{attributes.comment}</p>
+              </ReviewsItemText>
+              <Box component="fieldset" mb={3} borderColor="transparent">
+                <Typography component="legend">Rating</Typography>
+                <Rating
+                  readOnly={true}
+                  value={Number(attributes.rating)}
+                />
+              </Box>
+              <ReviewsItemText>
+                <p>Rating: {attributes.rating}</p>
+              </ReviewsItemText>
             </TextContainer>
           </ReviewsItem>
         ))}

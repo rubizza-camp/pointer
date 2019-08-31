@@ -2,5 +2,6 @@
 
 class Pet < ApplicationRecord
   include Reviewable
+  include Ratingable
   belongs_to :pet_owner
 end

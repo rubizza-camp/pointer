@@ -1,5 +1,5 @@
 class PetSerializer
   include FastJsonapi::ObjectSerializer
 
-  attributes :created_at
+  attributes :name, :rating
 end

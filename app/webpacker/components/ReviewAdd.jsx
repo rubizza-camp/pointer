@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Rating } from '@material-ui/lab'
 import { FormControl, ButtonGroup, Button, Typography, Box, TextField } from '@material-ui/core'
-import { axiosPostRequest } from '../utils/axios_helper'
+import { axiosPostRequest, axiosGetRequest } from '../utils/axios_helper'
 
 const DEFAULT_STATE = { rating: 5, comment: '' }
 class ReviewAdd extends Component {
@@ -19,6 +19,15 @@ class ReviewAdd extends Component {
       this.reviewData(),
       this.createReview
     )
+    axiosGetRequest(
+      `/${this.props.match.params.reviewable_type}/${this.props.match.params.id}`,
+      {},
+      this.setReviewable
+    )
+  }
+
+  setReviewable = ({ data }) => {
+    this.setState({ reviewable: data.data})
   }
 
   createReview = ({ data }) => {
