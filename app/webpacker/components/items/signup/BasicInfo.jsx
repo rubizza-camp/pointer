@@ -29,8 +29,7 @@ class UserDetails extends Component {
         method: 'post',
         url: '/users.json',
         data: SignupData,
-        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() },
-      })
+        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
         .then((response) => {
           // this.props.nextStep()
         })

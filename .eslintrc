@@ -67,6 +67,8 @@
     "react/jsx-filename-extension": 0,
     "react-hooks/rules-of-hooks": "error",
     "strict": 0,
+    "quotes": "off",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
     "prefer-destructuring": [
       "error",
       {
