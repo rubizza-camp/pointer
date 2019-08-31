@@ -19,20 +19,11 @@ class ReviewAdd extends Component {
       this.reviewData(),
       this.createReview
     )
-    axiosGetRequest(
-      `/${this.props.match.params.reviewable_type}/${this.props.match.params.id}`,
-      {},
-      this.setReviewable
-    )
-  }
-
-  setReviewable = ({ data }) => {
-    this.setState({ reviewable: data.data})
   }
 
   createReview = ({ data }) => {
     const { addReview } = this.props
-    addReview(data.data)
+    addReview(data)
     this.setState({ review: DEFAULT_STATE })
   }
 

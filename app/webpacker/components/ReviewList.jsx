@@ -72,10 +72,14 @@ const ReviewsItemText = styled.div`
   }
 `
 class ReviewList extends Component {
-  state = { reviews: [] }
+  state = { reviews: [], reviewable: {} }
 
   addReview = (data) => {
-    this.setState(({ reviews }) => ({ reviews: [data, ...reviews] }))
+    this.setState(({ reviews, included }) => ({
+      reviews: [data.data, ...reviews],
+      included: [...data.included, ...included],
+      reviewable: findModel(data.included, data.data.relationships.reviewable),
+    }))
   }
 
   componentDidMount() {
@@ -116,6 +120,7 @@ class ReviewList extends Component {
         </Box>
         <ReviewAdd
           addReview={this.addReview} 
+          setReviewable={this.setReviewable}
           match={match}
         />
         <br />

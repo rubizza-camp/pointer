@@ -57,10 +57,10 @@ class Basic extends Component {
           />
           <Route path="/" exact component={HomePage} />
           <Route path="/members" component={MembersPage} />
-          <Route exact path="/:reviewable_type/:id/reviews" component={ReviewList} />
+          <Route path="/:reviewable_type/:id/reviews" component={ReviewList} />
           <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth} />} />
           <Route path="/signup" component={MainFormSignUp} />
-          <Route path="/pets" component={PetController} />
+          <Route exact path="/pets" component={PetController} />
         </Router>
         <Footer />
       </Wrapper>
