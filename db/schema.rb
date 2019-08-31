@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_121835) do
+ActiveRecord::Schema.define(version: 2019_08_31_073552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
     t.string "name"
     t.string "metro"
     t.text "description"
+    t.integer "rating", default: 5, null: false
   end
 
   create_table "jwt_blacklist", id: :serial, force: :cascade do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
   create_table "pet_owners", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rating", default: 5, null: false
   end
 
   create_table "pets", force: :cascade do |t|
@@ -70,7 +72,20 @@ ActiveRecord::Schema.define(version: 2019_08_26_121835) do
     t.string "breed"
     t.text "times", default: [], array: true
     t.bigint "pet_owner_id"
+    t.integer "rating", default: 5, null: false
     t.index ["pet_owner_id"], name: "index_pets_on_pet_owner_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "rating"
+    t.string "reviewable_type"
+    t.bigint "reviewable_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "trips", force: :cascade do |t|

@@ -11,9 +11,20 @@ Rails.application.routes.draw do
   resources :trips do
     resources :checkins, only: :create
   end
+
+  resources :pets do
+    resources :reviews
+  end
+
   resources :pet_owners do
+    resources :reviews
     resources :pets, only: [:create, :update, :index, :destroy]
   end
+
+  resources :handlers do
+    resources :reviews
+  end
+
   get 'tripwatcher/:id', to: 'trips#show'
   post 'pusher/new', to: 'pusher#create'
   post 'pet_owner/identify', to: 'pet_owner#identify'
