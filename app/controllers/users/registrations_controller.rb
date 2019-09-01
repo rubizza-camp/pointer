@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
-    role_hash = {userable: sign_up_params[:role]=='Owner' ? PetOwner.create : Handler.create }
+    role_hash = { userable: sign_up_params[:role]=='Owner' ? PetOwner.create : Handler.create }
     p role_hash
     build_resource(sign_up_params.except(:role).merge(role_hash))
     resource.save
@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         msg = find_message(:"signed_up_but_#{resource.inactive_message}", {})
         expire_data_after_sign_in!
         respond_with(resource) do |format|
-          format.json { render json: { message: msg,url: after_inactive_sign_up_path_for(resource) }, status: 200 }
+          format.json { render json: UserSerializer.new(resource).serialized_json, status: 200 }
         end
       end
     else

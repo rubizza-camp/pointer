@@ -5,4 +5,3 @@ class StaticPagesController < ApplicationController
     authorize :static_page
   end
 end
-

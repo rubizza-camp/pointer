@@ -4,7 +4,7 @@ class PetsController < ApplicationController
   def index
     render json: PetSerializer.new(policy_scope(Pet).where(:pet_owner_id => pet_owner_id)).serialized_json
   end
-  
+
   def show
     authorize @pet
     render json: PetSerializer.new(@pet).serialized_json

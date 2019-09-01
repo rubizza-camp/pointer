@@ -7,6 +7,12 @@ class PetOwnersController < ApplicationController
     authorize @pet_owner
     render json: PetOwnerSerializer.new(@pet_owner).serialized_json
   end
+  
+  def update
+    pet_owner = PetOwner.find(params['id'])
+    authorize pet_owner
+    pet_owner.update(pet_owner_attributes)
+  end
 
   private
 
@@ -14,7 +20,7 @@ class PetOwnersController < ApplicationController
     @pet_owner = PetOwner.find(params[:id])
   end
 
-  def pet_owner_params
-    params.permit(:name)
+  def pet_owner_attributes
+    params.require(:data).permit(:name, :phone, :metro)
   end
 end

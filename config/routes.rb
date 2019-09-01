@@ -2,8 +2,9 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks',
-                                    :registrations => "users/registrations",
-                                    :sessions => "users/sessions" }
+                                    :registrations => 'users/registrations',
+                                    :sessions => 'users/sessions',
+                                    :confirmations => 'users/confirmations' }
   get '*path', to: 'static_pages#home', constraints: ->(request) do
     !request.xhr? && request.format.html?
   end
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
   resources :handlers do
     resources :reviews
   end
+
+  resources :pet_owners, only: :update
+  resources :handlers, only: :update
 
   get 'tripwatcher/:id', to: 'trips#show'
   post 'pusher/new', to: 'pusher#create'

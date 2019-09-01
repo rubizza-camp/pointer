@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_09_01_113325) do
+=======
+ActiveRecord::Schema.define(version: 2019_09_01_110645) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +52,11 @@ ActiveRecord::Schema.define(version: 2019_09_01_113325) do
   create_table "handlers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "metro"
-    t.text "description"
     t.integer "rating", default: 5, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "metro"
+    t.text "phone"
   end
 
   create_table "jwt_blacklist", id: :serial, force: :cascade do |t|
@@ -63,7 +68,14 @@ ActiveRecord::Schema.define(version: 2019_09_01_113325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rating", default: 5, null: false
+<<<<<<< HEAD
     t.string "name"
+=======
+    t.string "first_name"
+    t.string "last_name"
+    t.string "metro"
+    t.text "phone"
+>>>>>>> master
   end
 
   create_table "pets", force: :cascade do |t|

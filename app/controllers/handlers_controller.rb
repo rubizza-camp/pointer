@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HandlersController < ApplicationController
   before_action :set_handler, only: [:show]
 
@@ -17,6 +15,10 @@ class HandlersController < ApplicationController
   end
 
   def edit; end
+
+  def update
+    Handler.update(params['id'], first_name: params['first_name'], last_name: params['last_name'], phone: params['phone'], metro: params['metro'])
+ end
 
   def show
     authorize @handler

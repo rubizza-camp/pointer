@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CheckinsPolicy < ApplicationPolicy
+class CheckinPolicy < ApplicationPolicy
   def create?
     @user.handler?
   end
