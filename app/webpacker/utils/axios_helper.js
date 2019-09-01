@@ -18,6 +18,10 @@ export const axiosGetRequest = (url, data, callback) => {
   makeRequest('GET', url, data, callback)
 }
 
+export const axiosPatchRequest = (url, data, callback) => {
+  makeRequest('PATCH', url, data, callback)
+}
+
 export const axiosDeleteRequest = (url, data, callback) => {
   makeRequest('DELETE', url, data, callback)
 }

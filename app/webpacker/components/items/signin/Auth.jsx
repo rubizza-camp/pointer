@@ -32,8 +32,7 @@ class Auth extends Component {
         method: 'post',
         url: '/users/sign_in.json',
         data: AuthData,
-        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() },
-      })
+        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
         .then((response) => {
           Cookies.set('Authorization', response.headers.authorization)
           setAuthorizationToken()
@@ -43,6 +42,7 @@ class Auth extends Component {
         .catch((error) => {
           if (error.response) {
             this.setState({ error: error.response.data })
+            console.log(error.response.data)
           }
         })
     }

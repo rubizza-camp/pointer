@@ -14,14 +14,16 @@ import TaskFormPage from '../components/pages/TaskFormPage'
 import MainFormSignIn from '../components/items/signin/MainForm'
 import MainFormSignUp from '../components/items/signup/MainForm'
 import setAuthorizationToken from '../utils/set_auth_token'
+<<<<<<< HEAD
 import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet'
 import aphroditeInterface from 'react-with-styles-interface-aphrodite'
 import DefaultTheme from 'react-dates/lib/theme/DefaultTheme'
 
 ThemedStyleSheet.registerInterface(aphroditeInterface)
 ThemedStyleSheet.registerTheme(DefaultTheme)
+=======
 import PetController from '../components/pages/PetController'
-
+>>>>>>> 63e3268a07f5697464f22691039d8cbd1d0540fe
 
 const Wrapper = styled.div`
   font-family: 'Roboto', sans-serif;

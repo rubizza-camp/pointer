@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Pet < ApplicationRecord
+<<<<<<< HEAD
+  belongs_to :user
   has_many :tasks
+=======
   belongs_to :pet_owner
   has_one_attached :photo
+>>>>>>> 63e3268a07f5697464f22691039d8cbd1d0540fe
 end
