@@ -108,9 +108,9 @@ class ReviewList extends Component {
     const { match } = this.props
     return (
       <ReviewsContainer>
-        <p>
-          Reviews for {get(reviewable, 'type')} {get(reviewable, 'attributes.name')}
-        </p>
+        <ReviewsItemName>
+          <p>Reviews for {get(reviewable, 'type')} {get(reviewable, 'attributes.name')}</p>
+        </ReviewsItemName>
         <Box component="fieldset" mb={3} borderColor="transparent">
           <Typography component="legend">Rating</Typography>
           <Rating
