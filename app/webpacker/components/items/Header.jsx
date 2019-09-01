@@ -100,11 +100,10 @@ const Header = ({ isAuthorized, logout, locale, changeLocale }) => (
           <Link to="/">Pointer</Link>
         </LowHeaderLogo>
         <LowHeaderMenu>
-          <Link to="/">{I18n.t('header.about')}</Link>
+          <Link to="/about">{I18n.t('header.about')}</Link>
           <Link to="/members">{I18n.t('header.members')}</Link>
-          <Link to="/">{I18n.t('header.work')}</Link>
           <Link to="/">{I18n.t('header.reviews')}</Link>
-          <Link to="/">{I18n.t('header.contacts')}</Link>
+          <Link to="/contacts">{I18n.t('header.contacts')}</Link>
           {isAuthorized
             ? (<Button outline color="warning" onClick={logout}>Logout</Button>)
             : (

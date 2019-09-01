@@ -81,8 +81,7 @@ const BannerButton = styled.div`
       }
     }
 `
-function Banner() {
-  return (
+const Banner = () => (
     <BannerWrapper>
       <BannerContainer>
         <BannerImage>
@@ -99,6 +98,5 @@ function Banner() {
       </BannerContainer>
     </BannerWrapper>
   )
-}
 
 export default Banner

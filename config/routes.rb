@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :trips do
     resources :checkins, only: :create
   end
+  resources :tasks, only: :create
   get 'handlers/all', to: 'handlers#all_handlers'
   resources :handlers
   get 'tripwatcher/:id', to: 'trips#show'
