@@ -109,7 +109,7 @@ class ReviewList extends Component {
     return (
       <ReviewsContainer>
         <ReviewsItemName>
-          <p>Reviews for {get(reviewable, 'type')} {get(reviewable, 'attributes.name')}</p>
+          <p>Reviews for {String(get(reviewable, 'type')).replace("_", " ")} {get(reviewable, 'attributes.name')}</p>
         </ReviewsItemName>
         <Box component="fieldset" mb={3} borderColor="transparent">
           <Typography component="legend">Rating</Typography>
