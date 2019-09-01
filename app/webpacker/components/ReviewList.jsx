@@ -109,7 +109,7 @@ class ReviewList extends Component {
     return (
       <ReviewsContainer>
         <p>
-          Reviews for {get(reviewable, 'attributes.name')}
+          Reviews for {get(reviewable, 'type')} {get(reviewable, 'attributes.name')}
         </p>
         <Box component="fieldset" mb={3} borderColor="transparent">
           <Typography component="legend">Rating</Typography>
