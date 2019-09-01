@@ -17,8 +17,10 @@ class HandlersController < ApplicationController
   def edit; end
 
   def update
-    Handler.update(params['id'], first_name: params['first_name'], last_name: params['last_name'], phone: params['phone'], metro: params['metro'])
- end
+    handler = Handler.find(params['id'])
+    authorize handler
+    handler.update(pet_owner_attributes)
+  end
 
   def show
     authorize @handler
@@ -26,6 +28,10 @@ class HandlersController < ApplicationController
   end
 
   private
+
+  def handler_attributes
+    params.require(:data).permit(:first_name, :last_name, :phone, :metro)
+  end
 
   def set_handler
     @handler = Handler.find(params[:id])
