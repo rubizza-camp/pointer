@@ -30,7 +30,7 @@ class HandlersController < ApplicationController
   private
 
   def handler_attributes
-    params.require(:data).permit(:first_name, :last_name, :phone, :metro)
+    params.require(:data).permit(:name, :last_name, :phone, :metro)
   end
 
   def set_handler
