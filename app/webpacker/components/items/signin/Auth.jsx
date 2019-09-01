@@ -1,8 +1,8 @@
 // Auth.jsx
+/* eslint camelcase: 0 */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Container } from 'reactstrap'
-import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
+import { Container, Alert, Button, Label, FormGroup, Input } from 'reactstrap'
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
 import styled from 'styled-components'
 import axios from 'axios'
@@ -24,9 +24,11 @@ class Auth extends Component {
 
     requestData = () => {
       const AuthData = new FormData()
-      AuthData.set('user[email]', this.props.values.email)
-      AuthData.set('user[password]', this.props.values.password)
-      AuthData.set('user[remember_me]', this.props.values.remember_me)
+      const { values } = this.props
+      const { email, password, remember_me } = values
+      AuthData.set('user[email]', email)
+      AuthData.set('user[password]', password)
+      AuthData.set('user[remember_me]', remember_me)
       AuthData.set('commit', 'Log in')
       axios({
         method: 'post',
@@ -42,7 +44,7 @@ class Auth extends Component {
         .catch((error) => {
           if (error.response) {
             this.setState({ error: error.response.data })
-            console.log(error.response.data)
+            console.warn(error.response.data)
           }
         })
     }
@@ -92,6 +94,7 @@ class Auth extends Component {
 
 Auth.propTypes = {
   setAuth: PropTypes.func.isRequired,
+  values: PropTypes.array.isRequired,
 }
 
 export default Auth

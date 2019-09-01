@@ -1,5 +1,7 @@
+import React from 'react'
 import Members from './Members'
 
+/* eslint no-unused-expressions: 0 */
 const MembersContainer = () => {
   <>
     {this.props.data.map((c) => (
@@ -7,8 +9,8 @@ const MembersContainer = () => {
         key={c.id}
         name={c.attributes.name}
         metro={c.attributes.metro}
-        trip_count={c.attributes.trip_count}
-        avatar_url={c.attributes.avatar_url}
+        tripCount={c.attributes.trip_count}
+        avatarUrl={c.attributes.avatar_url}
       />
     ))}
   </>

@@ -2,17 +2,17 @@
 
 class PetsController < ApplicationController
   def create
-    render json: PetSerializer.new(Pet.create(:pet_owner_id => pet_owner_id)).serialized_json
+    render json: PetSerializer.new(Pet.create(pet_owner_id: pet_owner_id)).serialized_json
   end
 
   def index
-    render json: PetSerializer.new(Pet.where(:pet_owner_id => pet_owner_id)).serialized_json
+    render json: PetSerializer.new(Pet.where(pet_owner_id: pet_owner_id)).serialized_json
   end
 
   def destroy
     @pet = Pet.find(params[:id])
     @pet.delete
-    render json: PetSerializer.new(Pet.where(:pet_owner_id => pet_owner_id)).serialized_json
+    render json: PetSerializer.new(Pet.where(pet_owner_id: pet_owner_id)).serialized_json
   end
 
   def update

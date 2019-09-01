@@ -45,11 +45,11 @@ class MainFormSignUp extends Component {
         case 1:
           return (
             <SignContainer>
-            <BasicInfo
-              nextStep={this.nextStep}
-              handleChange={this.handleChange}
-              values={values}
-            />
+              <BasicInfo
+                nextStep={this.nextStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
             </SignContainer>
           )
         case 2:

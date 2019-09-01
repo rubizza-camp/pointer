@@ -35,12 +35,13 @@ const Open = styled.div`
     margin: 0;
   }
 `
-
+/* eslint jsx-a11y/anchor-is-valid: 0 */
 class Questions extends Component {
+  state = { collapse: false }
+
   constructor(props) {
     super(props)
     this.toggle = this.toggle.bind(this)
-    this.state = { collapse: false }
   }
 
   toggle() {
@@ -48,13 +49,14 @@ class Questions extends Component {
   }
 
   render() {
+    const { collapse } = this.state
     return (
       <>
         <ItemQuestions onClick={this.toggle} style={{ marginBottom: '1rem' }}>
           <a>Toggle</a>
-          <Open><p>></p></Open>
+          <Open><p>&gt;</p></Open>
         </ItemQuestions>
-        <Collapse isOpen={this.state.collapse}>
+        <Collapse isOpen={collapse}>
           <Answer>
           Anim pariatur cliche reprehenderit,
           enim eiusmod high life accusamus terry richardson ad squid. Nihil

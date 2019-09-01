@@ -89,10 +89,11 @@ a{
 `
 
 const Members = (props) => {
+  const { avatarUrl, name, tripCount } = props
   return (
     <MembersItem>
       <MemberPhoto>
-        <img src={props.avatar_url} alt="member_photo" />
+        <img src={avatarUrl} alt="member_photo" />
       </MemberPhoto>
       <MemberBody>
         <MemberStars>
@@ -113,10 +114,10 @@ const Members = (props) => {
           </MemberStarsItem>
         </MemberStars>
         <MemberName>
-          <p>{props.name}</p>
+          <p>{name}</p>
         </MemberName>
         <MemberWalks>
-          <p>{props.trip_count}</p>
+          <p>{tripCount}</p>
         </MemberWalks>
         <MemberReviews>
           <p>{I18n.t('members.reviews_count')}</p>
@@ -130,9 +131,9 @@ const Members = (props) => {
 }
 
 Members.propTypes = {
-  avatar_url: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  trip_count: PropTypes.number.isRequired,
+  tripCount: PropTypes.number.isRequired,
 }
 
 export default Members

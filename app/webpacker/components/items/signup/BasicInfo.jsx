@@ -87,9 +87,9 @@ Please, enter user details
             </AvGroup>
             <AvGroup>
               <Label for="choose_role">Choose your role:</Label>
-              <AvRadioGroup inline name="Choose Role" id='choose_role' required>
-                 <AvRadio onChange={this.props.handleChange('role')} customInput label="Owner" value="Owner" />
-                 <AvRadio onChange={this.props.handleChange('role')} customInput label="Handler" value="Handler" />
+              <AvRadioGroup inline name="Choose Role" id="choose_role" required>
+                <AvRadio onChange={this.props.handleChange('role')} customInput label="Owner" value="Owner" />
+                <AvRadio onChange={this.props.handleChange('role')} customInput label="Handler" value="Handler" />
               </AvRadioGroup>
             </AvGroup>
             <Button type="submit" size="lg" color="primary">Next</Button>

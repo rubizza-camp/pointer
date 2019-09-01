@@ -3,11 +3,11 @@ import { axiosPatchRequest } from 'utils/axios_helper'
 import PropTypes from 'prop-types'
 import { DirectUpload } from 'activestorage'
 import styled from 'styled-components'
+import Cookies from 'js-cookie'
+import * as JWT from 'jwt-decode'
 import { transformItems } from '../../utils/pet_helpers'
 import { Form, SaveButton, DeleteButton, EditButton, TaskButton, Card } from './PetsCards'
 import { Field, Input, Label } from './ListComponents'
-import Cookies from 'js-cookie'
-import * as JWT from 'jwt-decode'
 import List from './List'
 
 const Edit = ({
@@ -114,6 +114,7 @@ const Profile = ({
 
 Profile.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onCreateTask: PropTypes.func.isRequired,
   src: PropTypes.string.isRequired,
   name: PropTypes.string,
   breed: PropTypes.string,
@@ -208,11 +209,6 @@ export class CardProfile extends Component {
       initialRender: true,
     }
 
-    constructor(props){
-      super(props)
-      this.id = JWT(Cookies.get('Authorization')).id
-    }
-
     static getDerivedStateFromProps(nextProps, prevState) {
       if (prevState.initialRender) {
         const { data } = nextProps
@@ -231,6 +227,11 @@ export class CardProfile extends Component {
     }
 
     ListEditor = React.createRef()
+
+    constructor(props) {
+      super(props)
+      this.id = JWT(Cookies.get('Authorization')).id
+    }
 
     directUpload = (file) => {
       const railsActiveStorageDirectUploadsUrl = '/rails/active_storage/direct_uploads'
@@ -295,11 +296,11 @@ export class CardProfile extends Component {
       })
     }
 
-    handleTask = e => {
-    const {data} = this.props
-    const {id} = data
-    Cookies.set('petId', id)
-    window.location.href='#'
+    handleTask = _e => {
+      const { data } = this.props
+      const { id } = data
+      Cookies.set('petId', id)
+      window.location.href = '#'
     }
 
     render() {
@@ -310,7 +311,7 @@ export class CardProfile extends Component {
         active,
         times,
       } = this.state
-      const { handleDelete, data, handleTask } = this.props
+      const { handleDelete, data } = this.props
       const { id } = data
       return (
         <>
@@ -341,5 +342,4 @@ export class CardProfile extends Component {
 CardProfile.propTypes = {
   data: PropTypes.object.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  handleTask: PropTypes.func.isRequired,
 }
