@@ -19,7 +19,7 @@ class HandlersController < ApplicationController
   def update
     handler = Handler.find(params['id'])
     authorize handler
-    handler.update(pet_owner_attributes)
+    handler.update(handler_attributes)
   end
 
   def show
