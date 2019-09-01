@@ -16,7 +16,7 @@ class PersonalDetails extends Component {
 
   requestData = (url) => {
     const SignupPersonalData = new FormData()
-    SignupPersonalData.set('first_name', this.props.values.first_name)
+    SignupPersonalData.set('name', this.props.values.first_name)
     SignupPersonalData.set('last_name', this.props.values.last_name)
     SignupPersonalData.set('metro', this.props.values.metro)
     SignupPersonalData.set('phone', this.props.values.phone)

@@ -10,6 +10,6 @@ class PetOwnersController < ApplicationController
   private
 
   def pet_owner_attributes
-    params.require(:data).permit(:first_name, :last_name, :phone, :metro)
+    params.require(:data).permit(:name, :last_name, :phone, :metro)
   end
 end
