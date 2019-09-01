@@ -7,4 +7,5 @@ class HandlerPolicy < ApplicationPolicy
   def show?
     true
   end
+  end
 end
