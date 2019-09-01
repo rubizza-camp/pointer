@@ -18,6 +18,10 @@ class User < ApplicationRecord
     {'id' => id}
   end
 
+  def name
+    userable.name
+  end
+
   def self.from_omniauth(auth)
     info = auth.info
     provider = auth.provider
