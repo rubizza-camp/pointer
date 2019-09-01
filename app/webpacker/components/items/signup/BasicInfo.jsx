@@ -29,10 +29,11 @@ class UserDetails extends Component {
         data: SignupData,
         headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
         .then((response) => {
+         this.props.userableId(response.data.data.attributes.userable_id)
+         this.props.nextStep()
         })
         .catch((error) => {
           if (error.response) {
-            this.props.nextStep()
             this.setState({ error: error.response.data.message })
           }
         })

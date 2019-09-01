@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :pet_owners, only: :update
+  resources :handlers, only: :update
+
   get 'tripwatcher/:id', to: 'trips#show'
   post 'pusher/new', to: 'pusher#create'
   post 'pet_owner/identify', to: 'pet_owner#identify'

@@ -11,8 +11,8 @@ import HomePage from '../components/pages/HomePage'
 import ReviewList from '../components/ReviewList'
 import MainFormSignIn from '../components/items/signin/MainForm'
 import MainFormSignUp from '../components/items/signup/MainForm'
-import setAuthorizationToken from '../utils/set_auth_token'
 import PetController from '../components/pages/PetController'
+import { axiosDeleteRequest } from '../utils/axios_helper'
 
 const Wrapper = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -34,7 +34,7 @@ class Basic extends Component {
 
   logout = () => {
     Cookies.remove('Authorization')
-    setAuthorizationToken()
+    axiosDeleteRequest('/users/sign_out', '', '')
     this.setAuth(false)
   }
 
