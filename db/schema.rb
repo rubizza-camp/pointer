@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_110645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rating", default: 5, null: false
-    t.string "first_name"
+    t.string "name"
     t.string "last_name"
     t.string "metro"
     t.text "phone"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_110645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rating", default: 5, null: false
-    t.string "first_name"
+    t.string "name"
     t.string "last_name"
     t.string "metro"
     t.text "phone"
