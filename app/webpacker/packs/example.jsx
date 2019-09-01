@@ -13,6 +13,8 @@ import MainFormSignIn from '../components/items/signin/MainForm'
 import MainFormSignUp from '../components/items/signup/MainForm'
 import PetController from '../components/pages/PetController'
 import { axiosDeleteRequest } from '../utils/axios_helper'
+import MapController from '../components/pages/MapController'
+import MapViewer from '../components/pages/MapViewer'
 
 const Wrapper = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -60,7 +62,13 @@ class Basic extends Component {
           <Route path="/:reviewable_type/:id/reviews" component={ReviewList} />
           <Route path="/signin" render={routeProps => <MainFormSignIn {...routeProps} setAuth={this.setAuth} />} />
           <Route path="/signup" component={MainFormSignUp} />
+<<<<<<< HEAD
           <Route exact path="/pets" component={PetController} />
+=======
+          <Route path="/pets" component={PetController} />
+          <Route path="/trips" component={MapController} />
+          <Route exact path="/tripwatcher/:uuid" component={MapViewer} />
+>>>>>>> b85cb459a22e3c584665379cd9338d819bb6acb9
         </Router>
         <Footer />
       </Wrapper>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Pusher from 'pusher-js'
-import SimpleMap from './SimpleMap'
-import { makeNums } from '../utils/map_helpers'
-import getToken from '../utils/csrf_helper'
-import { PUSHER_AUTH_URL } from '../constants/api_endpoints'
+import SimpleMap from '../items/SimpleMap'
+import { makeNums } from '../../utils/map_helpers'
+import getToken from '../../utils/csrf_helper'
+import { PUSHER_AUTH_URL } from '../../constants/api_endpoints'
 
 class MapViewer extends Component {
   state = {}
