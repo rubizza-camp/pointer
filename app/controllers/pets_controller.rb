@@ -11,6 +11,7 @@ class PetsController < ApplicationController
   end
 
   def create
+    authorize :pet
     render json: PetSerializer.new(Pet.create(:pet_owner_id => pet_owner_id)).serialized_json
   end
 

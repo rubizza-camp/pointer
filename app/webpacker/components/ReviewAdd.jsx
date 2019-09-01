@@ -39,10 +39,10 @@ class ReviewAdd extends Component {
   render() {
     return (
       <div>
-        <Typography variant="h4" gutterBottom>Create review</Typography>
+        <Typography variant="h4" gutterBottom>{I18n.t('reviews.create')}</Typography>
         <FormControl fullWidth={true}>
           <TextField
-            label="Comment"
+            label={I18n.t('reviews.comment')}
             name="comment"
             value={this.state.review.comment}
             onChange={this.handleChange}
@@ -50,12 +50,12 @@ class ReviewAdd extends Component {
             multiline={true}
             rows={5}
             rowsMax={20}
-            placeholder="Enter your comment here"
+            placeholder={I18n.t('reviews.enter_comment')}
             margin="normal"
             fullWidth={true}
           />
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend">Rating</Typography>
+            <Typography component="legend">{I18n.t('reviews.rating')}</Typography>
             <Rating
               name="rating"
               value={Number(this.state.review.rating)}
@@ -64,10 +64,10 @@ class ReviewAdd extends Component {
           </Box>
           <ButtonGroup size="large" color="primary" aria-label="outlined primary button group">
             <Button component='button' onClick={this.handleSubmit} color="primary">
-              Create
+              {I18n.t('reviews.create')}
             </Button>
             <Button component='button' color="secondary" onClick={this.handleCancel}>
-              Cancel
+              {I18n.t('reviews.cancel')}
             </Button>
           </ButtonGroup>
         </FormControl>

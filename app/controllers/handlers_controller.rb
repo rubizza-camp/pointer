@@ -40,4 +40,4 @@ class HandlersController < ApplicationController
   def handler_params
     params.permit(:name)
   end
- end
+end

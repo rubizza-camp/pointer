@@ -26,3 +26,14 @@ en:
     title: 'Frequently asked question'
   reviews:
     title: 'Feedback from our customers'
+    create: Create review
+    cancel: Cancel
+    comment: Comment
+    enter_comment: Enter your comment
+    reviews_for: Reviews for
+    rating: Rating
+    user_name: User name
+    reviewable:
+      pet: pet
+      handler: handler
+      pet_owner: pet owner
