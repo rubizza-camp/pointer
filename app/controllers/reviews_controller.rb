@@ -13,7 +13,6 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.new(review_params.merge(user: current_user))
     if @review.save
       @reviewable.refresh_rating
-      debugger
       render json: ReviewSerializer.new(@review, include: [:user, :reviewable]).serialized_json, status: :created
     else
       render json: @review.errors, status: :unprocessable_entity

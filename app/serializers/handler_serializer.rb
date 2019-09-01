@@ -3,7 +3,7 @@ class HandlerSerializer
   include FastJsonapi::ObjectSerializer
   include AvatarHelper
 
-  attributes :name, :metro
+  attributes :name, :metro, :rating
   attribute :trip_count do |handler|
     handler.trips.count
   end

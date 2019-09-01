@@ -26,3 +26,14 @@ ru:
     title: 'Часто задаваемые вопросы'
   reviews:
     title: 'Отзывы наших клиентов'
+    create: Оставить отзыв
+    cancel: Отмена
+    comment: Комментарий
+    enter_comment: Оставьте свой комментарий
+    reviews_for: Отзывы на
+    rating: Рейтинг
+    user_name: Имя пользователя
+    reviewable:
+      pet: домашнее животное
+      handler: выгульщика
+      pet_owner: владельца домашнего животного

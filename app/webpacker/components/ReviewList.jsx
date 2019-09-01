@@ -108,11 +108,11 @@ class ReviewList extends Component {
     const { match } = this.props
     return (
       <ReviewsContainer>
-        <p>
-          Reviews for {get(reviewable, 'attributes.name')}
-        </p>
+        <ReviewsItemName>
+          <p>{I18n.t('reviews.reviews_for')} {I18n.t(`reviews.reviewable.${get(reviewable, 'type')}`)} {get(reviewable, 'attributes.name')}</p>
+        </ReviewsItemName>
         <Box component="fieldset" mb={3} borderColor="transparent">
-          <Typography component="legend">Rating</Typography>
+          <Typography component="legend">{I18n.t('reviews.rating')}</Typography>
           <Rating
             readOnly={true}
             value={Number(get(reviewable, 'attributes.rating'))}
@@ -131,7 +131,7 @@ class ReviewList extends Component {
             </PhotoContainer>
             <TextContainer>
               <ReviewsItemName>
-                <p>User name: {get(findModel(included, relationships.user), 'attributes.name')}</p>
+                <p>{I18n.t('reviews.user_name')}: {get(findModel(included, relationships.user), 'attributes.name')}</p>
               </ReviewsItemName>
               <ReviewsItemDate>
                 <p>{attributes.created_at}</p>
@@ -140,15 +140,12 @@ class ReviewList extends Component {
                 <p>{attributes.comment}</p>
               </ReviewsItemText>
               <Box component="fieldset" mb={3} borderColor="transparent">
-                <Typography component="legend">Rating</Typography>
+                <Typography component="legend">{I18n.t('reviews.rating')}</Typography>
                 <Rating
                   readOnly={true}
                   value={Number(attributes.rating)}
                 />
               </Box>
-              <ReviewsItemText>
-                <p>Rating: {attributes.rating}</p>
-              </ReviewsItemText>
             </TextContainer>
           </ReviewsItem>
         ))}
