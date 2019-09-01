@@ -12,14 +12,6 @@
   <%= javascript_pack_tag 'application'%>
 </head>
 <body>
-<% flash.keys.each do |type| %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <div data-alert class="alert alert-<%= type %>" role="alert">
-    <%= flash[type] %>
-    <a href="#" class="close">&times;</a>
-  </div>
-<% end %>
 <%= yield %>
 </body>
 </html>

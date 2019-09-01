@@ -1,14 +1,13 @@
 // Auth.jsx
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Container } from 'reactstrap'
-import { Alert, Button, Label, FormGroup, Input } from 'reactstrap'
+import { Redirect } from 'react-router'
+import { Alert, Button, Label, FormGroup, Input, Container } from 'reactstrap'
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation'
 import styled from 'styled-components'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Errors from './Errors'
-import setAuthorizationToken from '../../../utils/set_auth_token'
 import getToken from '../../../utils/csrf_helper'
 
 const AuthContainer = styled(Container)`
@@ -16,6 +15,8 @@ const AuthContainer = styled(Container)`
 `
 
 class Auth extends Component {
+    state = { isSignedUp: false }
+
     saveAndContinue = () => {
       this.requestData()
       this.form = React.createRef()
@@ -32,22 +33,24 @@ class Auth extends Component {
         method: 'post',
         url: '/users/sign_in.json',
         data: AuthData,
-        headers: { 'Content-Type': 'multipart/form-data', 'X-CSRF-Token': getToken() } })
+        headers: { 'X-CSRF-Token': getToken() } })
         .then((response) => {
           Cookies.set('Authorization', response.headers.authorization)
-          setAuthorizationToken()
           const { setAuth } = this.props
           setAuth(true)
+          this.setState({ isSignedUp: true })
         })
         .catch((error) => {
           if (error.response) {
             this.setState({ error: error.response.data })
-            console.log(error.response.data)
           }
         })
     }
 
     render() {
+      if (this.state.isSignedUp) {
+        return <Redirect to={{ pathname: '/' }} />
+      }
       return (
         <AuthContainer>
           <Alert color="success">

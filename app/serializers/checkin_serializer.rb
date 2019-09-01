@@ -2,6 +2,7 @@
 
 class CheckinSerializer
   include FastJsonapi::ObjectSerializer
+
   attributes :lat, :lng
   belongs_to :trip
 end

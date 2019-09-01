@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 class PetSerializer
   include FastJsonapi::ObjectSerializer
   include AvatarHelper
-  attributes :id, :breed, :name
+  attributes :id, :breed, :name, :rating
   attribute :photoUrl do |pet|
     pet_photo(pet)
   end
